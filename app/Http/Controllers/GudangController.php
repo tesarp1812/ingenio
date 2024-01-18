@@ -239,7 +239,7 @@ class GudangController extends Controller
 
     public function simpanOSCE(Request $request)
     {
-        //dd($request->all());
+        dd($request->all());
         $paket = paket_kirim::create([
             'nama_paket' => $request->inputNamaPaket,
             'nama_penerima' => $request->inputNamaPenerima,
@@ -287,6 +287,6 @@ class GudangController extends Controller
             'keterangan' => 'Pengiriman ke Babies, Penerima: ' . $nama_penerima
         ]);
 
-        return redirect('gudang');
+        return redirect('gudang.riwayat_barang');
     }
 }
