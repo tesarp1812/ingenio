@@ -60,13 +60,37 @@ class DatabaseSeeder extends Seeder
         }
 
 
-        //faker baju
-        for ($i = 0; $i < 15000; $i++) {
+        // //faker baju
+        for ($i = 0; $i < 150; $i++) {
             $userKepala = DB::table('users')->inRandomOrder()->first();
             $baju = DB::table('bajus')->inRandomOrder()->first();
 
             DB::table('riwayat_bajus')->insert([
                 'baju_id' => $baju->id,
+                'jumlah' => $faker->numberBetween(-10, 30),
+                'user_id' => $userKepala->id,
+                'keterangan' => $faker->randomElement(['kirim', 'masuk']),
+                'created_at' => $faker->dateTimeInInterval($startDate = '- 7 days', $interval = '+ 1 days', $timezone = null),
+                'updated_at' => now(),
+            ]);
+        }
+
+        //faker buku
+        // Masukkan data ke dalam tabel 'bajus'
+        DB::table('bukus')->insert([
+            'nama_buku' => 'OSCE'
+        ]);
+
+        DB::table('bukus')->insert([
+            'nama_buku' => 'UKMPPD'
+        ]);
+
+        for ($i = 0; $i < 15; $i++) {
+            $userKepala = DB::table('users')->inRandomOrder()->first();
+            $buku = DB::table('bukus')->inRandomOrder()->first();
+
+            DB::table('riwayat_bukus')->insert([
+                'buku_id' => $buku->id,
                 'jumlah' => $faker->numberBetween(-10, 30),
                 'user_id' => $userKepala->id,
                 'keterangan' => $faker->randomElement(['kirim', 'masuk']),

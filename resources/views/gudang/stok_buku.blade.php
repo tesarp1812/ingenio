@@ -10,22 +10,20 @@
         </div>
         <div class="card-body">
             <a class="btn btn-primary mb-3" href="/gudang">kembali</a>
-            <a class="btn btn-primary mb-3" href="/riwayat">Cek Riwayat Stok</a>
+            <a class="btn btn-primary mb-3" href="/riwayat_buku">Cek Riwayat Stok</a>
             <div class="text-center mt-3">
                 <table id="myTable" class="table table-striped table-bordered">
                     <thead>
                         <tr>
                             <th scope="col">Barang</th>
-                            <th scope="col">Ukuran</th>
                             <th scope="col">Stok</th>
                         </tr>
                     </thead>
                     <tbody>
                         @foreach ($stok as $s)
                             <tr>
-                                <td>{{ ucwords($s->baju) }}</td>
-                                <td>{{ strtoupper($s->ukuran) }}</td>
-                                <td>{{ $s->total_per_ukuran }}</td>
+                                <td>{{ ucwords($s->nama_buku) }}</td>
+                                <td>{{ $s->stok }}</td>
                             </tr>
                         @endforeach
                     </tbody>
@@ -34,9 +32,5 @@
         </div>
       </div>
 </div>
-
-
-
-    
 
 @endsection
