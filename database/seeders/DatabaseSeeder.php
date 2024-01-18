@@ -48,10 +48,10 @@ class DatabaseSeeder extends Seeder
                 $ukuran = $faker->randomElement(['s', 'm', 'l', 'xl', 'xxl', 'xxxl']);
                 $combo = $jenisBaju . '-' . $ukuran;
             } while (in_array($combo, $existingCombos));
-        
+
             // Tambahkan kombinasi ke array existingCombos
             $existingCombos[] = $combo;
-        
+
             // Masukkan data ke dalam tabel 'bajus'
             DB::table('bajus')->insert([
                 'baju' => $jenisBaju,
@@ -60,8 +60,13 @@ class DatabaseSeeder extends Seeder
         }
 
 
+<<<<<<< HEAD
         // //faker baju
         for ($i = 0; $i < 150; $i++) {
+=======
+        //faker baju
+        for ($i = 0; $i < 15; $i++) {
+>>>>>>> d79b546ac5e3268e8b1c95f449eb91819a82858d
             $userKepala = DB::table('users')->inRandomOrder()->first();
             $baju = DB::table('bajus')->inRandomOrder()->first();
 
