@@ -4,19 +4,19 @@
 <div class="container">
     <div class="card mt-4">
         <div class="card-header">
-          Riwayat Stok Baju
+          Riwayat Stok Buku Ingenio
         </div>
         <div class="card-body">
             <a class="btn btn-primary mb-3" href="/gudang">kembali</a>
-            <a class="btn btn-primary mb-3" href="/form_baju">Tambah Data</a>
+            <a class="btn btn-primary mb-3" href="/form_barang">Tambah Data</a>
             <div class="text-center mt-3">
                 <table id="myTable" class="table table-striped table-bordered">
                     <thead>
                         <tr>
                             <th scope="col">NO</th>
                             <th scope="col">Barang</th>
-                            <th scope="col">Ukuran</th>
                             <th scope="col">Jumlah</th>
+                            {{-- <th scope="col">Jenis</th> --}}
                             <th scope="col">User</th>
                             <th scope="col">Tanggal</th>
                             <th scope="col">Jam</th>
@@ -27,9 +27,9 @@
                         @foreach ($data as $d)
                             <tr>
                                 <th scope="row">{{ $d->id }}</th>
-                                <td>{{ $d->baju->nama_barang }}</td>
-                                <td>{{ $d->baju->ukuran }}</td>
+                                <td>{{ $d->barang->nama_barang }}</td>
                                 <td>{{ $d->jumlah }}</td>
+                                {{-- <td>{{$d->barang->jenis}}</td> --}}
                                 <td>{{ $d->user->name }}</td>
                                 <td>{{ $d->formattedCreatedAt }}</td>
                                 <td>{{$d->JamCreatedAt}}</td>

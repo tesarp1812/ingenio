@@ -28,7 +28,7 @@ class DatabaseSeeder extends Seeder
 
 
         // faker user
-        for ($i = 0; $i < 5; $i++) {
+        for ($i = 0; $i < 2; $i++) {
             DB::table('users')->insert([
                 'name' => $faker->firstName,
                 'email' => $faker->email,
@@ -40,6 +40,7 @@ class DatabaseSeeder extends Seeder
             ]);
         }
 
+        // Seeder untuk Baju
         $existingCombos = [];
 
         for ($i = 0; $i < 5; $i++) {
@@ -54,19 +55,46 @@ class DatabaseSeeder extends Seeder
 
             // Masukkan data ke dalam tabel 'bajus'
             DB::table('bajus')->insert([
-                'baju' => $jenisBaju,
+                'nama_barang' => $jenisBaju,
                 'ukuran' => $ukuran,
+                'created_at' => now(),
+                'updated_at' => now(),
             ]);
         }
 
+        // Seeder untuk Buku
+        DB::table('barangs')->insert([
+            'nama_barang' => 'UKMPPD',
+            'jenis' => 'buku',
+            'created_at' => now(),
+            'updated_at' => now(),
+        ]);
 
-<<<<<<< HEAD
-        // //faker baju
-        for ($i = 0; $i < 150; $i++) {
-=======
+        DB::table('barangs')->insert([
+            'nama_barang' => 'OSCE',
+            'jenis' => 'buku',
+            'created_at' => now(),
+            'updated_at' => now(),
+        ]);
+
+        // Seeder untuk Merchandise
+        DB::table('barangs')->insert([
+            'nama_barang' => 'payung',
+            'jenis' => 'merchandise',
+            'created_at' => now(),
+            'updated_at' => now(),
+        ]);
+
+        DB::table('barangs')->insert([
+            'nama_barang' => 'bantal',
+            'jenis' => 'merchandise',
+            'created_at' => now(),
+            'updated_at' => now(),
+        ]);
+
+
         //faker baju
-        for ($i = 0; $i < 15; $i++) {
->>>>>>> d79b546ac5e3268e8b1c95f449eb91819a82858d
+        for ($i = 0; $i < 150; $i++) {
             $userKepala = DB::table('users')->inRandomOrder()->first();
             $baju = DB::table('bajus')->inRandomOrder()->first();
 
@@ -80,22 +108,13 @@ class DatabaseSeeder extends Seeder
             ]);
         }
 
-        //faker buku
-        // Masukkan data ke dalam tabel 'bajus'
-        DB::table('bukus')->insert([
-            'nama_buku' => 'OSCE'
-        ]);
-
-        DB::table('bukus')->insert([
-            'nama_buku' => 'UKMPPD'
-        ]);
-
+        //faker barang
         for ($i = 0; $i < 15; $i++) {
             $userKepala = DB::table('users')->inRandomOrder()->first();
-            $buku = DB::table('bukus')->inRandomOrder()->first();
+            $barang = DB::table('barangs')->inRandomOrder()->first();
 
-            DB::table('riwayat_bukus')->insert([
-                'buku_id' => $buku->id,
+            DB::table('riwayat_barangs')->insert([
+                'barang_id' => $barang->id,
                 'jumlah' => $faker->numberBetween(-10, 30),
                 'user_id' => $userKepala->id,
                 'keterangan' => $faker->randomElement(['kirim', 'masuk']),
@@ -103,5 +122,6 @@ class DatabaseSeeder extends Seeder
                 'updated_at' => now(),
             ]);
         }
+
     }
 }

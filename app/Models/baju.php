@@ -11,11 +11,11 @@ class baju extends Model
 
     public function riwayat()
     {
-        return $this->hasMany(riwayat_baju::class);
+        return $this->hasMany(Riwayat_Baju::class);
     }
     
     protected $fillable = [
-        'baju',
-        'ukuran', 
+        'nama_barang',
+        'ukuran',
     ];
 }

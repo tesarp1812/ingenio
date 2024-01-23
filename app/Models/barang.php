@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class riwayat_buku extends Model
+class barang extends Model
 {
 
     use HasFactory;
@@ -13,11 +13,6 @@ class riwayat_buku extends Model
     public function user()
     {
         return $this->belongsTo(User::class);
-    }
-
-    public function buku()
-    {
-        return $this->belongsTo(buku::class);
     }
 
     protected $dates = ['created_at', 'updated_at'];
@@ -36,9 +31,7 @@ class riwayat_buku extends Model
 
 
     protected $fillable = [
-        'buku_id',
-        'jumlah',
-        'user_id',
-        'keterangan'
+        'nama_barang',
+        'jenis'
     ];
 }

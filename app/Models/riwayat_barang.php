@@ -5,8 +5,9 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class riwayat_baju extends Model
+class riwayat_barang extends Model
 {
+
     use HasFactory;
 
     public function user()
@@ -14,34 +15,29 @@ class riwayat_baju extends Model
         return $this->belongsTo(User::class);
     }
 
-    public function baju()
+
+    public function barang()
     {
-        return $this->belongsTo(Baju::class);
+        return $this->belongsTo(barang::class);
     }
 
     protected $dates = ['created_at', 'updated_at'];
 
+    // ambil jam
     public function getJamCreatedAtAttribute()
-{
-    if ($this->created_at !== null) {
+    {
         return $this->created_at->format('H:i');
     }
 
-    return null; // atau sesuai kebutuhan jika tidak ada nilai
-}
-
-public function getFormattedCreatedAtAttribute()
-{
-    if ($this->created_at !== null) {
+    //ambil date format dd-mm-yyyy
+    public function getFormattedCreatedAtAttribute()
+    {
         return $this->created_at->format('d-m-Y');
     }
 
-    return null; // atau sesuai kebutuhan jika tidak ada nilai
-}
-
 
     protected $fillable = [
-        'baju_id',
+        'barang_id',
         'jumlah',
         'user_id',
         'keterangan'

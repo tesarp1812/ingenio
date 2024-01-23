@@ -11,22 +11,20 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('bajus', function (Blueprint $table) {
+        Schema::create('barangs', function (Blueprint $table) {
             $table->id();
             $table->string('nama_barang');
-            $table->string('ukuran');
+            $table->string('jenis');
             $table->timestamps();
 
-            //relasi
-            //$table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
         });
-    } 
+    }
 
     /**
      * Reverse the migrations.
      */
     public function down(): void
     {
-        Schema::dropIfExists('bajus');
+        Schema::dropIfExists('barangs');
     }
 };

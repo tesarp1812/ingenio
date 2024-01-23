@@ -19,8 +19,8 @@ return new class extends Migration
             $table->text('keterangan');
             $table->timestamps();
 
-            $table->foreign('baju_id')->references('id')->on('bajus')->onDelete('cascade');
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
+            $table->foreign('baju_id')->references('id')->on('bajus')->onDelete('cascade');
         });
     }
 
@@ -29,6 +29,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('riwayat_bajus');
+        Schema::dropIfExists('merchandises');
     }
 };

@@ -23,27 +23,34 @@ Route::get('/admin', function () {
 });
 
 Route::controller(GudangController::class)->group(function () {
+   
+    // stok barang
+    Route::get('stok_barang', 'stokBarang');
+
+   // table baju
     Route::get('gudang', 'index');
     //baju
     Route::get('riwayat_baju', 'riwayatBaju');
-    Route::get('stok_baju', 'rekapStockBaju');
     //tambah stok baju
     Route::get('form_baju', 'tambahBaju');
     Route::post('simpan_baju', 'simpanBaju');
     //tambah kategori baju
-    Route::get('form_kategori_baju', 'tambahKategoriBaju');
+    Route::get('kategori_baju', 'tambahKategoriBaju');
     Route::post('simpan_kategori_baju', 'simpanKategoriBaju');
 
-    //buku
-    Route::get('riwayat_buku', 'riwayatBuku');
+    // table barang
+    //barang
+    Route::get('riwayat_barang', 'riwayatBarang');
     Route::get('stok_buku', 'stokBuku');
-
-    //tambah stok buku
-    Route::get('form_buku', 'tambahBuku');
-    Route::post('simpan_buku', 'simpanBuku');
-
+    // riwayat barang
+    Route::get('riwayat_merchandise', 'riwayatMerchandise');
+    Route::get('riwayat_buku', 'riwayatBuku');
+    Route::get('riwayat_barang', 'riwayatBarang');
+    //tambah stok barang
+    Route::get('form_barang', 'tambahBarang');
+    Route::post('simpan_barang', 'simpanBarang');
     //tambah kategori baju
-    Route::get('form_kategori_buku', 'tambahKategoriBuku');
-    Route::post('simpan_kategori_buku', 'simpanKategoriBuku');
+    Route::get('kategori_barang', 'tambahKategoriBarang');
+    Route::post('simpan_kategori_barang', 'simpanKategoriBarang');
 
 });
