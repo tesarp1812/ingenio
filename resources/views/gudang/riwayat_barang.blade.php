@@ -4,11 +4,12 @@
 <div class="container">
     <div class="card mt-4">
         <div class="card-header">
-          Riwayat Stok Buku Ingenio
+          Riwayat Barang
         </div>
         <div class="card-body">
-            <a class="btn btn-primary mb-3" href="/gudang">kembali</a>
-            <a class="btn btn-primary mb-3" href="/form_barang">Tambah Data</a>
+            <a class="btn btn-primary mb-3" href="/gudang">Home</a>
+            <a class="btn btn-info mb-3" href="/form_barang">Tambah Barang</a>
+            <a class="btn btn-primary mb-3" href="/form_baju">Tambah Baju</a>
             <div class="text-center mt-3">
                 <table id="myTable" class="table table-striped table-bordered">
                     <thead>
@@ -27,7 +28,13 @@
                         @foreach ($data as $d)
                             <tr>
                                 <th scope="row">{{ $d->id }}</th>
-                                <td>{{ $d->barang->nama_barang }}</td>
+                                <td>@if ($d->baju_id)
+                                    {{ ucwords($d->baju->nama_barang) }} {{ strtoupper($d->baju->ukuran) }}
+                                @elseif ($d->barang_id)
+                                    {{ ucwords($d->barang->nama_barang) }}
+                                @else
+                                    N/A
+                                @endif</td>
                                 <td>{{ $d->jumlah }}</td>
                                 {{-- <td>{{$d->barang->jenis}}</td> --}}
                                 <td>{{ $d->user->name }}</td>

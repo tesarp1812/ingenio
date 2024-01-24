@@ -22,7 +22,7 @@ class GudangController extends Controller
     // riwayat data masuk dan keluar baju
     public function riwayatBaju()
     {
-        $data = riwayat_baju::with('user', 'baju')->get();
+        $data = riwayat_barang::with('user', 'baju')->get();
         //dd($data);
         return view('gudang.riwayat_baju', compact('data'));
     }
@@ -40,14 +40,14 @@ class GudangController extends Controller
     public function simpanBaju(Request $request)
     {
         //dd($request->all());
-        riwayat_baju::create([
+        riwayat_barang::create([
             'baju_id' => $request->inputbaju,
             'jumlah' => $request->inputjumlah,
             'user_id' => $request->inputuser,
             'keterangan' => $request->inputket,
         ]);
 
-        return redirect('riwayat_baju');
+        return redirect('riwayat_barang');
     }
 
     //kategori baju
@@ -68,16 +68,11 @@ class GudangController extends Controller
         return redirect('form_baju');
     }
 
-
-
-
     // table barang
-
-
     // tampilan barang 
     public function riwayatBarang()
     {
-        $data = riwayat_barang::with('user', 'barang')->get();
+        $data = riwayat_barang::with('user', 'barang', 'baju')->get();
         //dd($data);
         return view('gudang.riwayat_barang', compact('data'));
     }
@@ -93,44 +88,17 @@ class GudangController extends Controller
         return view('gudang.riwayat_buku', compact('data'));
     }
 
-
-    public function riwayatMerchandise()
-    {
-        $data = riwayat_barang::with('user', 'barang')
-            ->whereHas('barang', function ($query) {
-                $query->where('jenis', '=', 'merchandise');
-            })->get();
-        //dd($data);
-        return view('gudang.riwayat_merchandise', compact('data'));
-    }
-
     public function stokBarang()
     {
-        // Query untuk bajus
-        $bajusQuery = riwayat_baju::join('bajus', 'bajus.id', '=', 'riwayat_bajus.baju_id')
-            ->select('bajus.nama_barang', 'bajus.ukuran', DB::raw('SUM(riwayat_bajus.jumlah) AS total'))
-            ->groupBy('bajus.nama_barang', 'bajus.ukuran');
-
-        // Query untuk barangs
-        $barangsQuery = riwayat_barang::join('barangs', 'barangs.id', '=', 'riwayat_barangs.barang_id')
-            ->select('barangs.nama_barang', DB::raw('SUM(riwayat_barangs.jumlah) AS total'))
-            ->groupBy('barangs.nama_barang');
-
-        // Dapatkan hasil query bajus dan barangs tanpa eksekusi
-        $bajusResults = $bajusQuery->get();
-        $barangsResults = $barangsQuery->get();
-
-        // Gabungkan hasil query menggunakan array_merge
-        $stok = array_merge($bajusResults->toArray(), $barangsResults->toArray());
+        
+        $stok = DB::table('riwayat_barang')
+        ->leftJoin('baju', 'baju.id', '=', 'riwayat_barang.baju_id')
+        ->leftJoin('barang', 'barang.id', '=', 'riwayat_barang.barang_id')
+        ->select('barang.nama_barang as barang', 'baju.nama_barang as baju', 'baju.ukuran', DB::raw('SUM(riwayat_barang.jumlah) AS total'))
+        ->groupBy('barang.nama_barang', 'baju.nama_barang', 'baju.ukuran')
+        ->get();
 
         //dd($stok);
-
-        // Mengembalikan response dalam format JSON
-        //return response()->json($combinedResults);
-
-
-
-
         return view('gudang.stok_barang', compact('stok'));
     }
 

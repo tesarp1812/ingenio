@@ -8,10 +8,11 @@ use Illuminate\Database\Eloquent\Model;
 class baju extends Model
 {
     use HasFactory;
+    protected $table = 'baju';
 
     public function riwayat()
     {
-        return $this->hasMany(Riwayat_Baju::class);
+        return $this->hasMany(riwayat_barang::class);
     }
     
     protected $fillable = [

@@ -7,8 +7,9 @@ use Illuminate\Database\Eloquent\Model;
 
 class riwayat_barang extends Model
 {
-
+    
     use HasFactory;
+    protected $table = 'riwayat_barang';
 
     public function user()
     {
@@ -19,6 +20,11 @@ class riwayat_barang extends Model
     public function barang()
     {
         return $this->belongsTo(barang::class);
+    }
+
+    public function baju()
+    {
+        return $this->belongsTo(baju::class);
     }
 
     protected $dates = ['created_at', 'updated_at'];
@@ -38,6 +44,7 @@ class riwayat_barang extends Model
 
     protected $fillable = [
         'barang_id',
+        'baju_id',
         'jumlah',
         'user_id',
         'keterangan'

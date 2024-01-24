@@ -27,6 +27,15 @@ class DatabaseSeeder extends Seeder
         $faker = Faker::create('id_id');
 
 
+        DB::table('users')->insert([
+            'name' => 'syahrul',
+            'email' => 'logistik@ingenioindonesia.co.id',
+            'password' => bcrypt('12345'),
+            'remember_token' => Str::random(10),
+            'email_verified_at' => now(),
+            'created_at' => now(),
+            'updated_at' => now(),
+        ]);
         // faker user
         for ($i = 0; $i < 2; $i++) {
             DB::table('users')->insert([
@@ -41,20 +50,20 @@ class DatabaseSeeder extends Seeder
         }
 
         // Seeder untuk Baju
-        $existingCombos = [];
+        $existingCombo = [];
 
         for ($i = 0; $i < 5; $i++) {
             do {
                 $jenisBaju = $faker->randomElement(['kemeja', 'kaos', 'polo', 'jaket']);
                 $ukuran = $faker->randomElement(['s', 'm', 'l', 'xl', 'xxl', 'xxxl']);
                 $combo = $jenisBaju . '-' . $ukuran;
-            } while (in_array($combo, $existingCombos));
+            } while (in_array($combo, $existingCombo));
 
-            // Tambahkan kombinasi ke array existingCombos
-            $existingCombos[] = $combo;
+            // Tambahkan kombinasi ke array existingCombo
+            $existingCombo[] = $combo;
 
             // Masukkan data ke dalam tabel 'bajus'
-            DB::table('bajus')->insert([
+            DB::table('baju')->insert([
                 'nama_barang' => $jenisBaju,
                 'ukuran' => $ukuran,
                 'created_at' => now(),
@@ -63,14 +72,14 @@ class DatabaseSeeder extends Seeder
         }
 
         // Seeder untuk Buku
-        DB::table('barangs')->insert([
+        DB::table('barang')->insert([
             'nama_barang' => 'UKMPPD',
             'jenis' => 'buku',
             'created_at' => now(),
             'updated_at' => now(),
         ]);
 
-        DB::table('barangs')->insert([
+        DB::table('barang')->insert([
             'nama_barang' => 'OSCE',
             'jenis' => 'buku',
             'created_at' => now(),
@@ -78,14 +87,14 @@ class DatabaseSeeder extends Seeder
         ]);
 
         // Seeder untuk Merchandise
-        DB::table('barangs')->insert([
+        DB::table('barang')->insert([
             'nama_barang' => 'payung',
             'jenis' => 'merchandise',
             'created_at' => now(),
             'updated_at' => now(),
         ]);
 
-        DB::table('barangs')->insert([
+        DB::table('barang')->insert([
             'nama_barang' => 'bantal',
             'jenis' => 'merchandise',
             'created_at' => now(),
@@ -94,11 +103,11 @@ class DatabaseSeeder extends Seeder
 
 
         //faker baju
-        for ($i = 0; $i < 150; $i++) {
+        for ($i = 0; $i < 50; $i++) {
             $userKepala = DB::table('users')->inRandomOrder()->first();
-            $baju = DB::table('bajus')->inRandomOrder()->first();
+            $baju = DB::table('baju')->inRandomOrder()->first();
 
-            DB::table('riwayat_bajus')->insert([
+            DB::table('riwayat_barang')->insert([
                 'baju_id' => $baju->id,
                 'jumlah' => $faker->numberBetween(-10, 30),
                 'user_id' => $userKepala->id,
@@ -109,11 +118,11 @@ class DatabaseSeeder extends Seeder
         }
 
         //faker barang
-        for ($i = 0; $i < 15; $i++) {
+        for ($i = 0; $i < 50; $i++) {
             $userKepala = DB::table('users')->inRandomOrder()->first();
-            $barang = DB::table('barangs')->inRandomOrder()->first();
+            $barang = DB::table('barang')->inRandomOrder()->first();
 
-            DB::table('riwayat_barangs')->insert([
+            DB::table('riwayat_barang')->insert([
                 'barang_id' => $barang->id,
                 'jumlah' => $faker->numberBetween(-10, 30),
                 'user_id' => $userKepala->id,

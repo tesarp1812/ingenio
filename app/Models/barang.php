@@ -9,6 +9,7 @@ class barang extends Model
 {
 
     use HasFactory;
+    protected $table = 'barang';
 
     public function user()
     {

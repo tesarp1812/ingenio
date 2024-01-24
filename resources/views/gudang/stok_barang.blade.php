@@ -8,7 +8,7 @@
             </div>
             <div class="card-body">
                 <a class="btn btn-primary mb-3" href="/gudang">kembali</a>
-                <a class="btn btn-primary mb-3" href="/riwayat_buku">Cek Riwayat Stok</a>
+                <a class="btn btn-primary mb-3" href="/riwayat_barang">Riwayat</a>
                 <div class="text-center mt-3">
                     <table id="myTable" class="table table-striped table-bordered">
                         <thead>
@@ -21,12 +21,13 @@
                             @foreach ($stok as $s)
                                 <tr>
                                     <td>
-                                        {{ ucwords($s['nama_barang']) }}
-                                        @if (isset($s['ukuran']))
-                                            - {{ strtoupper($s['ukuran']) }}
+                                        {{ ucwords($s->barang) }}
+                                        {{ ucwords($s->baju) }}
+                                        @if (isset($s->ukuran))
+                                            - {{ strtoupper($s->ukuran) }}
                                         @endif
                                     </td>
-                                    <td>{{ $s['total'] }}</td>
+                                    <td>{{ $s->total }}</td>
                                 </tr>
                             @endforeach
 
