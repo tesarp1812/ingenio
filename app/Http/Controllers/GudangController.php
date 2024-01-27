@@ -142,4 +142,10 @@ class GudangController extends Controller
 
         return redirect('riwayat_barang');
     }
+
+    public function paketOSCE()
+    {
+        $user = user::get();
+        return view ('gudang.paket_osce', compact('user'));
+    }
 }

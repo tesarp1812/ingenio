@@ -52,7 +52,7 @@
                     <div class="row">
     
                         <div class="col-md-6 col-lg-4 mb-3">
-                            <a href="/stok_barang" class="btn btn-primary btn-block">Paket OSCE</a>
+                            <a href="/paket_osce" class="btn btn-primary btn-block">Paket OSCE</a>
                         </div>
     
                         {{-- <div class="col-md-6 col-lg-4 mb-3">

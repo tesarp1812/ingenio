@@ -53,4 +53,6 @@ Route::controller(GudangController::class)->group(function () {
     Route::get('kategori_barang', 'tambahKategoriBarang');
     Route::post('simpan_kategori_barang', 'simpanKategoriBarang');
 
+    // form paket kirim
+    Route::get('paket_osce', 'paketOSCE');
 });
