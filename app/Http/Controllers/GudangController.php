@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Models\baju;
 use App\Models\barang;
+use App\Models\paket_kirim;
 use App\Models\riwayat_baju;
 use App\Models\riwayat_barang;
 use App\Models\User;
@@ -90,16 +91,83 @@ class GudangController extends Controller
 
     public function stokBarang()
     {
-        
-        $stok = DB::table('riwayat_barang')
-        ->leftJoin('baju', 'baju.id', '=', 'riwayat_barang.baju_id')
-        ->leftJoin('barang', 'barang.id', '=', 'riwayat_barang.barang_id')
-        ->select('barang.nama_barang as barang', 'baju.nama_barang as baju', 'baju.ukuran', DB::raw('SUM(riwayat_barang.jumlah) AS total'))
-        ->groupBy('barang.nama_barang', 'baju.nama_barang', 'baju.ukuran')
-        ->get();
 
-        //dd($stok);
+        $stok = DB::table('riwayat_barang')
+            ->leftJoin('baju', 'baju.id', '=', 'riwayat_barang.baju_id')
+            ->leftJoin('barang', 'barang.id', '=', 'riwayat_barang.barang_id')
+            ->select('barang.nama_barang as barang', 'baju.nama_barang as baju', 'baju.ukuran', DB::raw('SUM(riwayat_barang.jumlah) AS total'))
+            ->groupBy('barang.nama_barang', 'baju.nama_barang', 'baju.ukuran')
+            ->get();
+
+
+        //dd($stokMerchandise);
         return view('gudang.stok_barang', compact('stok'));
+    }
+
+    public function stokBaju()
+    {
+
+        $stokBaju = DB::table('riwayat_barang')
+            ->leftJoin('baju', 'baju.id', '=', 'riwayat_barang.baju_id')
+            ->select('baju.nama_barang as baju', 'baju.ukuran', DB::raw('SUM(riwayat_barang.jumlah) AS total'))
+            ->groupBy('baju.nama_barang', 'baju.ukuran')
+            ->get();
+
+        return view('gudang.stok_baju', compact('stokBaju'));
+    }
+
+    public function stokBuku(Request $request, $kategori = 'mandiri')
+{
+    $kategori = $request->input('kategori', $kategori);
+
+
+    // Logika pengambilan data berdasarkan kategori
+    if ($kategori == 'paket') {
+        $stokBuku = DB::table('riwayat_barang')
+        ->leftJoin('barang', 'barang.id', '=', 'riwayat_barang.barang_id')
+        ->where('barang.jenis', 'buku')
+        ->whereIn('barang.nama_barang', ['OSCE', 'UKMPPD'])
+        ->select('barang.nama_barang as barang', DB::raw('SUM(riwayat_barang.jumlah) AS total'))
+        ->groupBy('barang.nama_barang')
+        ->get();
+    } else {
+        $stokBuku = DB::table('riwayat_barang')
+        ->leftJoin('barang', 'barang.id', '=', 'riwayat_barang.barang_id')
+        ->where('barang.jenis', 'buku')
+        ->whereNotIn('barang.nama_barang', ['OSCE', 'UKMPPD'])
+        ->select('barang.nama_barang as barang', DB::raw('SUM(riwayat_barang.jumlah) AS total'))
+        ->groupBy('barang.nama_barang')
+        ->get();
+    }
+
+    return view('gudang.stok_buku', compact('stokBuku'));
+}
+
+
+    // public function stokBukuPaket($paket)
+    // {
+    //     $stokBuku = DB::table('riwayat_barang')
+    //         ->leftJoin('barang', 'barang.id', '=', 'riwayat_barang.barang_id')
+    //         ->where('barang.jenis', 'buku')
+    //         ->select('barang.nama_barang as barang', DB::raw('SUM(riwayat_barang.jumlah) AS total'))
+    //         ->groupBy('barang.nama_barang')
+    //         ->get();
+
+
+    //     return view('gudang.stok_buku', compact('stokBuku'));
+    // }
+
+    public function stokMerchandise()
+    {
+        $stokMerchandise = DB::table('riwayat_barang')
+            ->leftJoin('barang', 'barang.id', '=', 'riwayat_barang.barang_id')
+            ->where('barang.jenis', 'merchandise')
+            ->select('barang.nama_barang as barang', DB::raw('SUM(riwayat_barang.jumlah) AS total'))
+            ->groupBy('barang.nama_barang')
+            ->get();
+
+
+        return view('gudang.stok_merchandise', compact('stokMerchandise'));
     }
 
     // tambah barang buku & merchandise
@@ -143,9 +211,64 @@ class GudangController extends Controller
         return redirect('riwayat_barang');
     }
 
+    // paket osce
     public function paketOSCE()
     {
         $user = user::get();
-        return view ('gudang.paket_osce', compact('user'));
+        $baju = baju::get();
+        return view('gudang.paket_osce', compact('user', 'baju'));
+    }
+
+    public function simpanOSCE(Request $request)
+    {
+        //dd($request->all());
+        $paket = paket_kirim::create([
+            'nama_paket' => $request->inputNamaPaket,
+            'nama_penerima' => $request->inputNamaPenerima,
+            'alamat' => $request->inputAlamat,
+            'nomer' => $request->inputNomer,
+            'user_id' => $request->inputUser,
+            'keterangan' => $request->inputKeterangan
+        ]);
+
+        // Menggunakan ID yang dihasilkan paket
+        $paket_id = $paket->id;
+        $user_id = $request->inputUser;
+        $nama_penerima = $request->inputNamaPenerima;
+
+        // baju 
+        riwayat_barang::create([
+            'baju_id' => $request->inputBaju,
+            'jumlah' => -1,
+            'user_id' => $user_id,
+            'paket_id' => $paket_id,
+            'keterangan' => 'Pengiriman ke Babies, Penerima: ' . $nama_penerima
+        ]);
+
+        // OSCE
+        $osce = 'OSCE';
+        $barang = Barang::where('nama_barang', $osce)->firstOrFail();
+        // Lanjutkan dengan membuat riwayat_barang
+        riwayat_barang::create([
+            'barang_id' => $barang->id,
+            'jumlah' => -1,
+            'user_id' => $user_id,
+            'paket_id' => $paket_id,
+            'keterangan' => 'Pengiriman ke Babies, Penerima: ' . $nama_penerima
+        ]);
+
+        // notebook
+        $notebook = 'notebook';
+        $barang = Barang::where('nama_barang', $notebook)->firstOrFail();
+        // Lanjutkan dengan membuat riwayat_barang
+        riwayat_barang::create([
+            'barang_id' => $barang->id,
+            'jumlah' => -1,
+            'user_id' => $user_id,
+            'paket_id' => $paket_id,
+            'keterangan' => 'Pengiriman ke Babies, Penerima: ' . $nama_penerima
+        ]);
+
+        return redirect('gudang');
     }
 }

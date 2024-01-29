@@ -14,11 +14,13 @@ return new class extends Migration
         Schema::create('barang', function (Blueprint $table) {
             $table->id();
             $table->string('nama_barang');
-            $table->string('jenis');
+            $table->enum('jenis',['buku','merchandise']);
             $table->timestamps();
 
+            //relasi
+            //$table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
         });
-    }
+    } 
 
     /**
      * Reverse the migrations.

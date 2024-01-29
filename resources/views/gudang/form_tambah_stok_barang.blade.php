@@ -9,8 +9,9 @@
     </div>
     <div class="card-body">
         <a class="btn btn-secondary mb-3" href="{{ url()->previous() }}">kembali</a>
-        <a class="btn btn-primary mb-3" href="/kategori_barang">Tambah Kategori</a>
         <a class="btn btn-primary mb-3" href="/gudang">Gudang</a>
+        <a class="btn btn-primary mb-3" href="/kategori_barang">Tambah Kategori</a>
+        
 
         {{-- form --}}
         <div class=" mt-3">

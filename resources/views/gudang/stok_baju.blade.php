@@ -18,10 +18,9 @@
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach ($stok as $s)
+                        @foreach ($stokBaju as $s)
                             <tr>
                                 <td>
-                                    {{ ucwords($s->barang) }}
                                     {{ ucwords($s->baju) }}
                                     @if (isset($s->ukuran))
                                         - {{ strtoupper($s->ukuran) }}

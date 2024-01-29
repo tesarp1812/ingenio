@@ -17,7 +17,6 @@
                         @csrf
                         <div class="mb-3">
                             <label class="form-label">Barang</label>
-
                             <select class="form-select" aria-label="Default select example" name="inputbaju">
                                 <option selected disabled>pilih Barang</option>
                                 @foreach ($baju->sortBy(['baju', 'ukuran']) as $baju)
