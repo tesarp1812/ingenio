@@ -8,13 +8,6 @@
             </div>
             <div class="card-body">
                 <div class="text-center mt-3">
-                    <div class="mb-3">
-                        <label for="tanggal" class="form-label">Pilih Tanggal:</label>
-                        <input type="date" class="form-control" id="tanggal" name="tanggal">
-                    </div>
-                    <button type="button" class="btn btn-primary" id="btnFilter">Filter</button>
-                    <button type="button" class="btn btn-secondary" id="btnReset">Reset</button>
-
                     <table id="myTable" class="table table-striped table-bordered">
                         <thead>
                             <tr>

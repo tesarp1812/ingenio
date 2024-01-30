@@ -5,7 +5,7 @@
 <div class="container">
 <div class="card mt-4">
     <div class="card-header">
-      Tambah Stok Barang Ingenio
+      Tambah Stok Buku Ingenio
     </div>
     <div class="card-body">
         <a class="btn btn-primary mb-3" href="/kategori_barang">Tambah Kategori</a>

@@ -1,14 +1,12 @@
-@extends('layout')
+@extends('admin.layout')
 
-@section('body')
+@section('main')
     <div class="container">
         <div class="card mt-4">
             <div class="card-header">
                 Tambah Stok Baju Ingenio
             </div>
             <div class="card-body">
-                <a class="btn btn-secondary mb-3" href="{{ url()->previous() }}">kembali</a>
-                <a class="btn btn-primary mb-3" href="/gudang">Gudang</a>
                 <a class="btn btn-primary mb-3" href="/kategori_baju">Tambah Kategori</a>
 
                 {{-- form --}}

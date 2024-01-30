@@ -59,20 +59,18 @@
                               <li><a href="stok_baju" class="link-dark rounded">Baju</a></li>
                               <li><a href="stok_buku" class="link-dark rounded">Buku </a></li>
                               <li><a href="stok_merchandise" class="link-dark rounded">Merchandise</a></li>
-                              <li><a href="#" class="link-dark rounded">Annually</a></li>
                             </ul>
                           </div>
                         </li>
                         <li class="mb-1">
                           <button class="btn btn-toggle align-items-center rounded collapsed" data-bs-toggle="collapse" data-bs-target="#orders-collapse" aria-expanded="false">
-                            Orders
+                            Input Data
                           </button>
                           <div class="collapse" id="orders-collapse">
                             <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small ps-4">
-                              <li><a href="#" class="link-dark rounded">New</a></li>
-                              <li><a href="#" class="link-dark rounded">Processed</a></li>
-                              <li><a href="#" class="link-dark rounded">Shipped</a></li>
-                              <li><a href="#" class="link-dark rounded">Returned</a></li>
+                              <li><a href="form_baju" class="link-dark rounded">Baju</a></li>
+                              <li><a href="/form_buku" class="link-dark rounded">Buku</a></li>
+                              <li><a href="/form_merchandise" class="link-dark rounded">Merchandise</a></li>
                             </ul>
                           </div>
                         </li>
@@ -122,76 +120,47 @@
     {{-- datatables --}}
     <div class="container">
         <script>
-    $(document).ready(function() {
-        var dataTable = $('#myTable').DataTable({
-            dom: 'Blfrtip', // Show buttons and length menu
-            lengthMenu: [
-                [10, 25, 50, 100, -1], // Rows per page options
-                ['10', '25', '50', '100', 'All'] // Labels for the rows per page options
-            ],
-            buttons: [{
-                    extend: 'copy',
-                    exportOptions: {
-                        columns: ':not(.exclude-export)'
-                    }
-                },
-                {
-                    extend: 'excel',
-                    exportOptions: {
-                        columns: ':not(.exclude-export)'
-                    }
-                },
-                {
-                    extend: 'csv',
-                    exportOptions: {
-                        columns: ':not(.exclude-export)'
-                    }
-                },
-                {
-                    extend: 'pdf',
-                    exportOptions: {
-                        columns: ':not(.exclude-export)'
-                    }
-                },
-                {
-                    extend: 'print',
-                    exportOptions: {
-                        columns: ':not(.exclude-export)'
-                    }
-                }
-            ]
-        });
-
-        // Fungsi untuk menangani filter berdasarkan tanggal
-        function filterByDate() {
-            var selectedDate = $('#tanggal').val();
-
-            // Logika untuk melakukan filter berdasarkan tanggal ke server
-            // Update sesuai dengan kolom yang sesuai dengan tanggal pada tabel Anda
-            dataTable.columns(4).search(selectedDate).draw();
-        }
-
-        // Fungsi untuk mereset filter tanggal
-        function resetDateFilter() {
-            $('#tanggal').val('');
-
-            // Reset kolom pencarian tanggal dan gambar ulang DataTable
-            // Update sesuai dengan kolom yang sesuai dengan tanggal pada tabel Anda
-            dataTable.columns(4).search('').draw();
-        }
-
-        // Tambahkan event click untuk tombol filter
-        $('#btnFilter').on('click', function() {
-            filterByDate();
-        });
-
-        // Tambahkan event click untuk tombol reset
-        $('#btnReset').on('click', function() {
-            resetDateFilter();
-        });
-    });
-</script>
-
+            $(document).ready(function() {
+                $('#myTable').DataTable({
+                    dom: 'Blfrtip', // Show buttons and length menu
+                    lengthMenu: [
+                        [10, 25, 50, 100, -1], // Rows per page options
+                        ['10', '25', '50', '100', 'All'] // Labels for the rows per page options
+                    ],
+                    buttons: [{
+                            extend: 'copy',
+                            exportOptions: {
+                                columns: ':not(.exclude-export)'
+                            }
+                        },
+                        {
+                            extend: 'excel',
+                            exportOptions: {
+                                columns: ':not(.exclude-export)'
+                            }
+                        },
+                        {
+                            extend: 'csv',
+                            exportOptions: {
+                                columns: ':not(.exclude-export)'
+                            }
+                        },
+                        {
+                            extend: 'pdf',
+                            exportOptions: {
+                                columns: ':not(.exclude-export)'
+                            }
+                        },
+                        {
+                            extend: 'print',
+                            exportOptions: {
+                                columns: ':not(.exclude-export)'
+                            }
+                        }
+                    ]
+                });
+            });
+        </script>
         @yield('table')
     </div>
 

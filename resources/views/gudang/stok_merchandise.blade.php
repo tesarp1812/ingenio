@@ -4,7 +4,7 @@
 <div class="container">
     <div class="card mt-4">
         <div class="card-header">
-            Stok Barang Ingenio
+            Stok Merchandise Ingenio
         </div>
         <div class="card-body">
             <div class="text-center mt-3">

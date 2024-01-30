@@ -52,6 +52,8 @@ Route::controller(GudangController::class)->group(function () {
     Route::get('riwayat_barang', 'riwayatBarang');
     //tambah stok barang
     Route::get('form_barang', 'tambahBarang');
+    Route::get('form_buku', 'tambahBuku');
+    Route::get('form_merchandise', 'tambahMerchandise');
     Route::post('simpan_barang', 'simpanBarang');
     //tambah kategori baju
     Route::get('kategori_barang', 'tambahKategoriBarang');

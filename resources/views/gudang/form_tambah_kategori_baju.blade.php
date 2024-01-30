@@ -1,6 +1,6 @@
-@extends('layout')
+@extends('admin.layout')
 
-@section('body')
+@section('main')
 
 <div class="container">
 <div class="card mt-4">
@@ -8,8 +8,7 @@
       Tambah Kategori
     </div>
     <div class="card-body">
-        <a class="btn btn-secondary mb-3" href="{{ url()->previous() }}">kembali</a>
-        <a class="btn btn-primary mb-3" href="/gudang">Gudang</a>
+        <a class="btn btn-primary mb-3" href="/form_baju">Kembali</a>
 
         {{-- form --}}
         <div class=" mt-3">

@@ -180,6 +180,24 @@ class GudangController extends Controller
         return view('gudang.form_tambah_stok_barang', compact('user', 'barang'));
     }
 
+    // simpan buku
+    public function tambahBuku()
+    {
+        $user = user::get();
+        $barang = barang::where('jenis', 'buku')->get();
+
+        return view('gudang.form_tambah_stok_buku', compact('user', 'barang'));
+    }
+
+    // simpan merchandise
+    public function tambahMerchandise()
+    {
+        $user = user::get();
+        $barang = barang::where('jenis', 'merchandise')->get();
+
+        return view('gudang.form_tambah_stok_merchandise', compact('user', 'barang'));
+    }
+
     public function simpanBarang(Request $request)
     {
         //dd($request->all());
