@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\GudangController;
+use App\Http\Controllers\loginController;
 
 /*
 |--------------------------------------------------------------------------
@@ -18,12 +19,22 @@ Route::get('/', function () {
     return view('index');
 });
 
+// Tap link
+Route::get('/taplink', function (){
+    return view('taplink');
+});
+
 Route::get('/test', function () {
     return view('test');
 });
 
 Route::get('/admin', function () {
     return view('admin.layout');
+});
+
+Route::controller(loginController::class)->group(function () {
+    Route::get('/login', 'index');
+    Route::post('/login', 'authenticate');
 });
 
 Route::controller(GudangController::class)->group(function () {
