@@ -48,6 +48,8 @@
         </a>
     </div>
 
+    {{-- UKMPPD --}}
+
     <div class="mb-4" style="text-align: center;">
         ---------------------------
     </div>
@@ -107,47 +109,66 @@
         </div>
     </div>
 
-   
-            <h5 class="card-title" style="text-align: center;">LAYANAN BIMBINGAN UKMPPD</h5>
+    <div class="mb-3" style="text-align: center;">
+        ---------------------------
+    </div>
 
-            <div class="mb-2 dropdown-center" style="text-align: center;">
-                <button class="btn btn-primary dropdown-toggle" type="button" data-bs-toggle="dropdown"
-                    aria-expanded="false">
-                    <h5>INPUT JADWAL BIMBINGAN CBT UKMPPD</h5>
-                </button>
-                <ul class="dropdown-menu">
-                    <li><a class="dropdown-item"
-                            href="https://docs.google.com/spreadsheets/d/12uJPC7Nk2gElIKy6YJ9ee60fw8OycWQWk6aldYaS92c/edit#gid=710273041">INPUT
-                            JADWAL FASE INTENSIF DAN FASE CEPAT</a></li>
-                    <li><a class="dropdown-item"
-                            href="https://docs.google.com/spreadsheets/d/1tf3EURf-csgdDPbUXzrKFxdyWPuBW7liu33wsP5yg00/edit#gid=988120807">INPUT
-                            JADWAL FASE REVIEW</a></li>
-                    <li><a class="dropdown-item"
-                            href="https://api.whatsapp.com/send/?phone=6281358889123&text&type=phone_number&app_absent=0">KONSULTASI
-                            DENGAN TIM ADMIN TERKAIT JADWAL</a></li>
-                    <li><a class="dropdown-item"
-                            href="https://api.whatsapp.com/send/?phone=6281358889123&text&type=phone_number&app_absent=0">KONSULTASI
-                            DENGAN TIM ADMIN TERKAIT JADWAL</a></li>
-                </ul>
-            </div>
+    <h5 class="mb-3 card-title" style="text-align: center;">LAYANAN BIMBINGAN UKMPPD</h5>
 
-            <div class="mb-5 dropdown-center" style="text-align: center;">
-                <button class="btn btn-primary dropdown-toggle" type="button" data-bs-toggle="dropdown"
-                    aria-expanded="false">
-                    <h5>INPUT JADWAL BIMBINGAN OSCE</h5>
-                </button>
-                <ul class="dropdown-menu">
-                    <li><a class="dropdown-item"
-                            href="https://docs.google.com/spreadsheets/d/1mEhKVJQOrdDiK8n-p0bqzurG2Vi-tNxQBKsT42Fvn2g/edit#gid=988120807">INPUT
-                            INPUT JADWAL BIMBINGAN OSCE</a></li>
-                    <li><a class="dropdown-item"
-                            href="https://api.whatsapp.com/send/?phone=6281358889123&text&type=phone_number&app_absent=0">INPUT
-                            KONSULTASI DENGAN TIM ADMIN TERKAIT JADWAL</a></li>
-                    <li><a class="dropdown-item"
-                            href="https://api.whatsapp.com/send/?phone=6281358889123&text&type=phone_number&app_absent=0">KONSULTASI
-                            KONSULTASI DENGAN TIM ADMIN TERKAIT JADWAL</a></li>
-                </ul>
-            </div>
+    <div class="mb-2 dropdown-center" style="text-align: center;">
+        <button class="btn btn-primary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+            <h5>INPUT JADWAL BIMBINGAN CBT UKMPPD</h5>
+        </button>
+        <ul class="dropdown-menu">
+            <li><a class="dropdown-item"
+                    href="https://docs.google.com/spreadsheets/d/12uJPC7Nk2gElIKy6YJ9ee60fw8OycWQWk6aldYaS92c/edit#gid=710273041">INPUT
+                    JADWAL FASE INTENSIF DAN FASE CEPAT</a></li>
+            <li><a class="dropdown-item"
+                    href="https://docs.google.com/spreadsheets/d/1tf3EURf-csgdDPbUXzrKFxdyWPuBW7liu33wsP5yg00/edit#gid=988120807">INPUT
+                    JADWAL FASE REVIEW</a></li>
+            <li><a class="dropdown-item"
+                    href="https://api.whatsapp.com/send/?phone=6281358889123&text&type=phone_number&app_absent=0">KONSULTASI
+                    DENGAN TIM ADMIN TERKAIT JADWAL</a></li>
+            <li><a class="dropdown-item"
+                    href="https://api.whatsapp.com/send/?phone=6281358889123&text&type=phone_number&app_absent=0">KONSULTASI
+                    DENGAN TIM ADMIN TERKAIT JADWAL</a></li>
+        </ul>
+    </div>
+
+    <div class="mb-2 dropdown-center" style="text-align: center;">
+        <button class="btn btn-primary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+            <h5>INPUT JADWAL BIMBINGAN OSCE</h5>
+        </button>
+        <ul class="dropdown-menu">
+            <li><a class="dropdown-item"
+                    href="https://docs.google.com/spreadsheets/d/1mEhKVJQOrdDiK8n-p0bqzurG2Vi-tNxQBKsT42Fvn2g/edit#gid=988120807">INPUT
+                    INPUT JADWAL BIMBINGAN OSCE</a></li>
+            <li><a class="dropdown-item"
+                    href="https://api.whatsapp.com/send/?phone=6281358889123&text&type=phone_number&app_absent=0">INPUT
+                    KONSULTASI DENGAN TIM ADMIN TERKAIT JADWAL</a></li>
+            <li><a class="dropdown-item"
+                    href="https://api.whatsapp.com/send/?phone=6281358889123&text&type=phone_number&app_absent=0">KONSULTASI
+                    KONSULTASI DENGAN TIM ADMIN TERKAIT JADWAL</a></li>
+        </ul>
+    </div>
+
+    {{-- UKPPD INPUT JM --}}
+    <div class="mb-3 dropdown-center" style="text-align: center;">
+        <button class="btn btn-primary dropdown-toggle" type="button" data-bs-toggle="dropdown"
+            aria-expanded="false">
+            <h5>INPUT JURNAL MENGAJAR</h5>
+        </button>
+        <ul class="dropdown-menu">
+            <li><a class="dropdown-item" href="https://forms.gle/UA2m4VqkxwaPkT457">REGIO MALANG</a></li>
+            <li><a class="dropdown-item" href="https://forms.gle/xTDJwLBYE5bUQWN9A">REGIO JAKARTA</a></li>
+            <li><a class="dropdown-item" href="https://forms.gle/UA2m4VqkxwaPkT457">REGIO SURABAYA</a></li>
+            <li><a class="dropdown-item" href="https://forms.gle/tKAciiAPMTE7urNu6">REGIO BALI</a></li>
+        </ul>
+    </div>
+
+    <div class="mb-5" style="text-align: center;">
+        ---------------------------
+    </div>
 
 
 
@@ -156,7 +177,7 @@
         <div class="dropdown-center">
             <button class="btn btn-primary dropdown-toggle" type="button" data-bs-toggle="dropdown"
                 aria-expanded="false">
-                <h5>LAYANAN BIMBINGAN UKMP2DG</h5>
+                <h5>LAYANAN BIMBINGAN PREKLINIK KEDOKTERAN GIGI DAN UKMP2DG</h5>
             </button>
             <ul class="dropdown-menu">
                 <li><a class="dropdown-item"
@@ -173,7 +194,7 @@
         <div class="dropdown-center">
             <button class="btn btn-primary dropdown-toggle" type="button" data-bs-toggle="dropdown"
                 aria-expanded="false">
-                <h5>LAYANAN BIMBINGAN PREKLINIK DAN UKOM KEBIDANAN</h5>
+                <h5>LAYANAN BIMBINGAN PREKLINIK KEBIDANAN DAN UKOM KEBIDANAN</h5>
             </button>
             <ul class="dropdown-menu">
                 <li><a class="dropdown-item"
