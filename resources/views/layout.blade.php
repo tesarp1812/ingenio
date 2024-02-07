@@ -32,6 +32,42 @@
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
+            {{-- navbar --}}
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    @auth
+                        <li class="nav-item dropdown">
+                            <button class="btn dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+                                {{ auth()->user()->name }}
+                            </button>
+                            <ul class="dropdown-menu dropdown-menu">
+                                <li><a class="dropdown-item disabled" href="#">{{ auth()->user()->name }}</a></li>
+        
+                                {{-- route gudang --}}
+                                @auth
+                                    @if (auth()->user()->role === 'admin' || auth()->user()->role === 'General Affair')
+                                        <li><a class="dropdown-item" href="/gudang">Gudang</a></li>
+                                    @endif
+                                @endauth
+                                {{-- end --}}
+                                
+                                <form action="/logout" method="POST">
+                                    @csrf
+                                    <button type="submit" class="dropdown-item">Logout</button>
+                                </form>                        
+                        
+                            </ul>
+                        </li>
+                    @else
+                        <li class="nav-item">
+                            <a class="nav-link" href="/akses-tutor">Akses Tutor</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/login">login</a>
+                        </li>
+                    </ul>
+                @endauth
+            </div>
             @yield('navbar-content') <!-- Yield for Navbar Content -->
         </div>
     </nav>

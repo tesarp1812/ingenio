@@ -37,6 +37,9 @@
                         <img src="{{ asset('images/logo2.png') }}" alt="Logo" width="200"
                             class="d-inline-block align-text-top">
                     </a>
+                    <a class="navbar-brand mr-auto" href="/gudang">
+                      Menu Utama
+                  </a>
                     <ul class="list-unstyled ps-0">
                         <li class="mb-1">
                           <button class="btn btn-toggle align-items-center rounded collapsed" data-bs-toggle="collapse" data-bs-target="#home-collapse" aria-expanded="false">
@@ -62,6 +65,7 @@
                             </ul>
                           </div>
                         </li>
+                        
                         <li class="mb-1">
                           <button class="btn btn-toggle align-items-center rounded collapsed" data-bs-toggle="collapse" data-bs-target="#orders-collapse" aria-expanded="false">
                             Input Data
@@ -74,17 +78,32 @@
                             </ul>
                           </div>
                         </li>
-                        <li class="border-top my-3"></li>
+
+                        <li class="mb-1">
+                          <button class="btn btn-toggle align-items-center rounded collapsed" data-bs-toggle="collapse" data-bs-target="#paket-collapse" aria-expanded="false">
+                            Kirim Paket
+                          </button>
+                          <div class="collapse" id="paket-collapse">
+                            <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small ps-4">
+                              <li><a href="/paket_osce" class="link-dark rounded">Paket OSCE</a></li>
+                              <li><a href="/paket_cbt" class="link-dark rounded">Paket CBT</a></li>
+                              <li><a href="/form_merchandise" class="link-dark rounded">Merchandise</a></li>
+                            </ul>
+                          </div>
+                        </li>
+
+                       <li class="border-top my-3"></li>
                         <li class="mb-1">
                           <button class="btn btn-toggle align-items-center rounded collapsed" data-bs-toggle="collapse" data-bs-target="#account-collapse" aria-expanded="false">
-                            Account
+                            {{auth()->user()->name}} - {{auth()->user()->role}}
                           </button>
                           <div class="collapse" id="account-collapse">
                             <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small ps-4">
-                              <li><a href="#" class="link-dark rounded">New...</a></li>
-                              <li><a href="#" class="link-dark rounded">Profile</a></li>
-                              <li><a href="#" class="link-dark rounded">Settings</a></li>
-                              <li><a href="#" class="link-dark rounded">Sign out</a></li>
+                              <li><a href="/dashboard" class="link-dark rounded">Dashboard</a></li>
+                              <li><form action="/logout" method="POST">
+                                @csrf
+                                <button type="submit" class="dropdown-item">Logout</button>
+                            </form></li>
                             </ul>
                           </div>
                         </li>

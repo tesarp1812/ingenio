@@ -1,6 +1,6 @@
 @extends('layout')
 
-@section('table')
+@section('main')
     
 
 <div class="container">

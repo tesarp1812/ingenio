@@ -239,7 +239,7 @@ class GudangController extends Controller
 
     public function simpanOSCE(Request $request)
     {
-        dd($request->all());
+        //dd($request->all());
         $paket = paket_kirim::create([
             'nama_paket' => $request->inputNamaPaket,
             'nama_penerima' => $request->inputNamaPenerima,
@@ -287,6 +287,56 @@ class GudangController extends Controller
             'keterangan' => 'Pengiriman ke Babies, Penerima: ' . $nama_penerima
         ]);
 
-        return redirect('gudang.riwayat_barang');
+        return redirect('riwayat_barang');
+    }
+
+    // paket CBT
+    public function paketCBT()
+    {
+        $user = user::get();
+        $baju = baju::get();
+        return view('gudang.paket_cbt', compact('user', 'baju'));
+    }
+
+    public function simpanCBT(Request $request)
+    {
+        //dd($request->all());
+        $paket = paket_kirim::create([
+            'nama_paket' => $request->inputNamaPaket,
+            'nama_penerima' => $request->inputNamaPenerima,
+            'alamat' => $request->inputAlamat,
+            'nomer' => $request->inputNomer,
+            'user_id' => $request->inputUser,
+            'keterangan' => $request->inputKeterangan
+        ]);
+
+        // Menggunakan ID yang dihasilkan paket
+        $paket_id = $paket->id;
+        $user_id = $request->inputUser;
+        $nama_penerima = $request->inputNamaPenerima;
+
+        // baju 
+        riwayat_barang::create([
+            'baju_id' => $request->inputBaju,
+            'jumlah' => -1,
+            'user_id' => $user_id,
+            'paket_id' => $paket_id,
+            'keterangan' => 'Pengiriman ke Babies, Penerima: ' . $nama_penerima
+        ]);
+
+        // CBT
+        $cbt = 'CBT';
+        $barang = Barang::where('nama_barang', $cbt)->firstOrFail();
+        // Lanjutkan dengan membuat riwayat_barang
+        riwayat_barang::create([
+            'barang_id' => $barang->id,
+            'jumlah' => -1,
+            'user_id' => $user_id,
+            'paket_id' => $paket_id,
+            'keterangan' => 'Pengiriman ke Babies, Penerima: ' . $nama_penerima
+        ]);
+
+
+        return redirect('riwayat_barang');
     }
 }

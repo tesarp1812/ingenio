@@ -4,26 +4,22 @@
     <div class="container">
         <div class="card mt-4">
             <div class="card-header">
-                Pengiriman Paket OSCE
+                Pengiriman Paket CBT
             </div>
             <div class="card-body">
-                <a class="btn btn-secondary mb-3" href="{{ url()->previous() }}">kembali</a>
-
+                
                 {{-- form --}}
                 <div class=" mt-3">
-                    <form action="/simpan_osce" method="POST">
+                    <form action="/simpan_cbt" method="POST">
                         @csrf
 
                         <div class="mb-3">
                             <label class="form-label">Nama Paket</label>
-                            <input type="text" class="form-control" name="inputNamaPaket" value="Paket Osce" disabled>
-                            <input name="inputNamaPaket" value="Paket Osce" hidden>
+                            <input type="text" class="form-control" name="inputNamaPaket" value="Paket CBT" disabled>
+                            <input name="inputNamaPaket" value="Paket CBT" hidden>
 
                             <label class="form-label mt-3"></label>
-                            <input type="text" class="form-control" name="OSCE" value="Buku OSCE" disabled>
-
-                            <label class="form-label mt-3"></label>
-                            <input type="text" class="form-control" name="Notebook" value="NOTEBOOK" disabled>
+                            <input type="text" class="form-control" name="CBT" value="Buku CBT (5 Modul)" disabled>
 
                             <label class="form-label mt-3"></label>
                             <select class="form-select" aria-label="Default select example" name="inputBaju">
