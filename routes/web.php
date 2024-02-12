@@ -43,17 +43,6 @@ Route::controller(loginController::class)->group(function () {
         Route::post('/login', 'authenticate');
         Route::post('/logout', 'logout');
 });
- 
-// Route::middleware(['auth'])->group(function () {
-//     Route::controller(GudangController::class, 'index');
-
-//     // stok barang
-//     Route::get('stok_barang', [GudangController::class, 'stokBarang']);
-//     Route::get('stok_baju', [GudangController::class, 'stokBaju']);
-//     Route::get('stok_buku/{kategori?}', [GudangController::class, 'stokBuku'])->name('stok_buku');
-//     Route::get('stok_merchandise', [GudangController::class, 'stokMerchandise']);
-// });
-
 
 Route::controller(GudangController::class)->group(function () {
    Route::get('gudang', 'index')->middleware('auth');
