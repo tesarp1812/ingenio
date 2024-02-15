@@ -4,20 +4,6 @@
 @endsection
 
 @section('body')
-    <style>
-        body,
-        html {
-            height: 100%;
-            margin: 0;
-            padding: 0;
-            background-color: #ec890f;
-            /* Ganti dengan warna yang diinginkan */
-        }
-
-        .container-fluid {
-            height: 100vh;
-        }
-    </style>
 @section('main')
     {{-- carousel --}}
     <div class="myCarousel">
