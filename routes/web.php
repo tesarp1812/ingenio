@@ -35,7 +35,7 @@ Route::get('/admin', function () {
 
 Route::controller(HomeController::class)->group(function () {
     Route::get('/dashboard', 'dashboard')->middleware('auth');
-    Route::get('/reset-session', 'resetSession'); // reset session
+    Route::get('/reset-session', 'resetSession'); // reset session 
 });
 
 Route::controller(loginController::class)->group(function () {
@@ -83,4 +83,7 @@ Route::controller(GudangController::class)->group(function () {
 
     Route::get('paket_cbt', 'paketCBT')->middleware('auth');
     Route::post('simpan_cbt', 'simpanCBT')->middleware('auth');
+
+    // riwayat paket kirim
+    Route::get('riwayat_paket', 'riwayatPaketKirim')->middleware('auth');
 });

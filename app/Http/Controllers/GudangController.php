@@ -17,7 +17,14 @@ class GudangController extends Controller
     //index
     public function index()
     {
-        return view('gudang.index');
+        $stok = DB::table('riwayat_barang')
+            ->leftJoin('baju', 'baju.id', '=', 'riwayat_barang.baju_id')
+            ->leftJoin('barang', 'barang.id', '=', 'riwayat_barang.barang_id')
+            ->select('barang.nama_barang as barang', 'baju.nama_barang as baju', 'baju.ukuran', DB::raw('SUM(riwayat_barang.jumlah) AS total'))
+            ->groupBy('barang.nama_barang', 'baju.nama_barang', 'baju.ukuran')
+            ->get();
+
+        return view('gudang.index', compact('stok'));
     }
 
     // riwayat data masuk dan keluar baju
@@ -338,5 +345,15 @@ class GudangController extends Controller
 
 
         return redirect('riwayat_barang');
+
+        // riwayat paket kirim
+    }
+
+    public function riwayatPaketKirim()
+    {
+        $paket = paket_kirim::with('user')->get();
+        //dd($paket);
+
+        return view ('gudang.riwayat_paket', compact('paket'));
     }
 }

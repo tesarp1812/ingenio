@@ -46,13 +46,6 @@
                 <ul class="navbar-nav ms-auto">
                     @auth
 
-
-                        {{-- Dashboard --}}
-                        <li class="nav-item dropdown">
-                            {{-- sidebar button --}}
-                            <a href="/dashboard" class="btn btn-warning">Dashboard</a>
-                        </li>
-
                         <li class="nav-item dropdown">
                             {{-- sidebar button --}}
                             <button class="btn btn-warning" type="button" data-bs-toggle="offcanvas"
@@ -65,13 +58,15 @@
                                 {{ auth()->user()->name }}
                             </button>
                             <ul class="dropdown-menu dropdown-menu">
-                                <li><a class="dropdown-item disabled" href="#">{{ auth()->user()->name }} -
-                                        {{ auth()->user()->role }}</a></li>
+                                <li><a class="dropdown-item disabled" href="#"><i class="bi bi-person-fill"> {{ auth()->user()->name }} -
+                                    {{ auth()->user()->role }}</i></a></li>
+
+                                <li><a class="dropdown-item" href="/dashboard" ><i class="bi bi-house"> Dashboard</i></a></li>
 
                                 {{-- route gudang --}}
                                 @auth
                                     @if (auth()->user()->role === 'admin' || auth()->user()->role === 'General Affair')
-                                        <li><a class="dropdown-item" href="/gudang"> <i class="bi bi-box-seam"> Gudang</i></a>
+                                        <li><a class="dropdown-item" href="/gudang"><i class="bi bi-box-seam"> Gudang</i></a>
                                         </li>
                                     @endif
                                 @endauth
@@ -280,10 +275,7 @@
         </script>
         @yield('table')
     </div>
-
     {{-- button sidebar --}}
-
-
     @yield('body')
 </body>
 
