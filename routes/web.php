@@ -20,10 +20,16 @@ Route::get('/', function () {
     return view('index');
 });
 
-// Tap link
+// Tap link tutor
 Route::get('/akses-tutor', function (){
-    return view('layanan_tutor');
+    return view('taplink.layanan_tutor');
 });
+
+// Taplink Official
+Route::get('/akses-officials', function (){
+    return view('taplink.official_index');
+});
+
 
 Route::get('/test', function () {
     return view('test');
