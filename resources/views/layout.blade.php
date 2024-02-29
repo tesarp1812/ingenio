@@ -65,6 +65,9 @@
                         </li>
                     @else
                         <li class="nav-item">
+                            <a class="nav-link" href="/ingenio-store">Ingenio STORE</a>
+                        </li>
+                        <li class="nav-item">
                             <a class="nav-link" href="/akses-tutor">Akses Tutor</a>
                         </li>
                         <li class="nav-item">

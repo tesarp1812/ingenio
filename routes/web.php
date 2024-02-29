@@ -3,7 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\GudangController;
 use App\Http\Controllers\HomeController;
-use App\Http\Controllers\loginController;
+use App\Http\Controllers\LoginController;
 
 /*
 |--------------------------------------------------------------------------
@@ -86,4 +86,9 @@ Route::controller(GudangController::class)->group(function () {
 
     // riwayat paket kirim
     Route::get('riwayat_paket', 'riwayatPaketKirim')->middleware('auth');
+});
+
+// ingenio store
+Route::get('/ingenio-store', function () {
+    return view('store.index');
 });
