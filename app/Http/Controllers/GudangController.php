@@ -150,20 +150,6 @@ class GudangController extends Controller
     return view('gudang.stok_buku', compact('stokBuku'));
 }
 
-
-    // public function stokBukuPaket($paket)
-    // {
-    //     $stokBuku = DB::table('riwayat_barang')
-    //         ->leftJoin('barang', 'barang.id', '=', 'riwayat_barang.barang_id')
-    //         ->where('barang.jenis', 'buku')
-    //         ->select('barang.nama_barang as barang', DB::raw('SUM(riwayat_barang.jumlah) AS total'))
-    //         ->groupBy('barang.nama_barang')
-    //         ->get();
-
-
-    //     return view('gudang.stok_buku', compact('stokBuku'));
-    // }
-
     public function stokMerchandise()
     {
         $stokMerchandise = DB::table('riwayat_barang')
