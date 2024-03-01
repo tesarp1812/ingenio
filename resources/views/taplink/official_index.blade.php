@@ -2,6 +2,10 @@
 
 @section('head')
     <style>
+
+        body{
+            background-color: hsl(30, 4%, 69%)
+        }
         .tombol {
             text-decoration: none;
             width: 90%;
