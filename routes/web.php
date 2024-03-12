@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\GudangController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\loginController;
+use App\Http\Controllers\ScheduleController;
 
 /*
 |--------------------------------------------------------------------------
@@ -30,10 +31,15 @@ Route::get('/akses-officials', function (){
     return view('taplink.official_index');
 });
 
-
 Route::get('/test', function () {
     return view('test');
 });
+
+Route::get('/schedule', function () {
+    return view('schedule');
+});
+
+Route::post('/schedule', [ScheduleController::class, 'find_schedule']);
 
 Route::get('/admin', function () {
     return view('admin.layout');
