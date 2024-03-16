@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\GudangController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\KasokuController;
 use App\Http\Controllers\loginController;
 
 /*
@@ -44,52 +45,76 @@ Route::controller(HomeController::class)->group(function () {
     Route::get('/reset-session', 'resetSession'); // reset session 
 });
 
-Route::controller(loginController::class)->group(function () {
-        Route::get('/login', 'index')->name('login')->middleware('guest');
+// login controller
+Route::controller(LoginController::class)->middleware('guest')->group(function () {
+        Route::get('/login', 'index')->name('login');
         Route::post('/login', 'authenticate');
         Route::post('/logout', 'logout');
 });
 
-Route::controller(GudangController::class)->group(function () {
-   Route::get('gudang', 'index')->middleware('auth');
+// Kasoku controller
+Route::controller(KasokuController::class)->group(function () {
+    Route::get('/kasoku', 'index');
+    Route::get('/kasoku/request', 'request');
+    Route::post('/input_request_kasoku', 'inputRequest');
+    Route::get('/kasoku/request/list', 'kasokuRequest');
+
+    // update status to process
+    Route::get('/update/status/{id}', 'updateStatus');
+    Route::get('kasoku/status/update/{id}', 'updateStatusProses');
+    Route::put('kasoku/status/update/{id}', 'updateStatusProses');
+
+    //update status to done
+    
+
+    Route::get('/kasoku/stock', 'stock');
+    Route::get('/kasoku/stock/input', 'inputStock');
+    Route::post('/kasoku/stock/input/save', 'saveInputStock');
+});
+
+Route::controller(GudangController::class)->middleware('auth')->group(function () {
+   Route::get('gudang', 'index');
 
     // stok barang
-    Route::get('stok_barang', 'stokBarang')->middleware('auth');
-    Route::get('stok_baju', 'stokBaju')->middleware('auth');
-    Route::get('stok_buku/{kategori?}', 'stokBuku')->name('stok_buku')->middleware('auth');
-    Route::get('stok_merchandise', 'stokMerchandise')->middleware('auth');
+    Route::get('stok_barang', 'stokBarang');
+    Route::get('stok_baju', 'stokBaju');
+    Route::get('stok_buku/{kategori?}', 'stokBuku')->name('stok_buku');
+    Route::get('stok_merchandise', 'stokMerchandise');
 
     //tambah stok baju
-    Route::get('form_baju', 'tambahBaju')->middleware('auth');
-    Route::post('simpan_baju', 'simpanBaju')->middleware('auth');
+    Route::get('form_baju', 'tambahBaju');
+    Route::post('simpan_baju', 'simpanBaju');
     //tambah kategori baju
-    Route::get('kategori_baju', 'tambahKategoriBaju')->middleware('auth');
-    Route::post('simpan_kategori_baju', 'simpanKategoriBaju')->middleware('auth');
+    Route::get('kategori_baju', 'tambahKategoriBaju');
+    Route::post('simpan_kategori_baju', 'simpanKategoriBaju');
 
     // table barang
     //barang
-    Route::get('riwayat_barang', 'riwayatBarang')->middleware('auth');
-    Route::get('stok_buku', 'stokBuku')->middleware('auth');
+    Route::get('riwayat_barang', 'riwayatBarang');
+    Route::get('stok_buku', 'stokBuku');
     // riwayat barang
-    Route::get('riwayat_merchandise', 'riwayatMerchandise')->middleware('auth');
-    Route::get('riwayat_buku', 'riwayatBuku')->middleware('auth');
-    Route::get('riwayat_barang', 'riwayatBarang')->middleware('auth');
+    Route::get('riwayat_merchandise', 'riwayatMerchandise');
+    Route::get('riwayat_buku', 'riwayatBuku');
+    Route::get('riwayat_barang', 'riwayatBarang');
     //tambah stok barang
-    Route::get('form_barang', 'tambahBarang')->middleware('auth');
-    Route::get('form_buku', 'tambahBuku')->middleware('auth');
-    Route::get('form_merchandise', 'tambahMerchandise')->middleware('auth');
-    Route::post('simpan_barang', 'simpanBarang')->middleware('auth');
+    Route::get('form_barang', 'tambahBarang');
+    Route::get('form_buku', 'tambahBuku');
+    Route::get('form_merchandise', 'tambahMerchandise');
+    Route::post('simpan_barang', 'simpanBarang');
     //tambah kategori baju
-    Route::get('kategori_barang', 'tambahKategoriBarang')->middleware('auth');
-    Route::post('simpan_kategori_barang', 'simpanKategoriBarang')->middleware('auth');
+    Route::get('kategori_barang', 'tambahKategoriBarang');
+    Route::post('simpan_kategori_barang', 'simpanKategoriBarang');
 
     // form paket kirim
-    Route::get('paket_osce', 'paketOSCE')->middleware('auth');
-    Route::post('simpan_osce', 'simpanOSCE')->middleware('auth');
+    Route::get('paket_osce', 'paketOSCE');
+    Route::post('simpan_osce', 'simpanOSCE');
 
-    Route::get('paket_cbt', 'paketCBT')->middleware('auth');
-    Route::post('simpan_cbt', 'simpanCBT')->middleware('auth');
+    Route::get('paket_cbt', 'paketCBT');
+    Route::post('simpan_cbt', 'simpanCBT');
 
     // riwayat paket kirim
-    Route::get('riwayat_paket', 'riwayatPaketKirim')->middleware('auth');
+    Route::get('riwayat_paket', 'riwayatPaketKirim');
+
+    // list statut request kasoku
+    Route::get('gudang/kasoku/list', 'listRequest');
 });
