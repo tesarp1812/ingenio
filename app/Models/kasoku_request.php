@@ -5,11 +5,9 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class riwayat_barang extends Model
+class kasoku_request extends Model
 {
-    
     use HasFactory;
-    protected $table = 'riwayat_barang';
 
     public function user()
     {
@@ -25,27 +23,13 @@ class riwayat_barang extends Model
     {
         return $this->belongsTo(baju::class);
     }
-
-    protected $dates = ['created_at', 'updated_at'];
-
-    // ambil jam
-    public function getJamCreatedAtAttribute()
-    {
-        return $this->created_at->format('H:i');
-    }
-
-    //ambil date format dd-mm-yyyy
-    public function getFormattedCreatedAtAttribute()
-    {
-        return $this->created_at->format('d-m-Y');
-    }
-
-
+    
     protected $fillable = [
         'barang_id',
         'baju_id',
-        'jumlah',
-        'user_id',
-        'keterangan'
+        'qty',
+        'status',
+        'desc',
+        'user_id'
     ];
 }
