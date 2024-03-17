@@ -13,6 +13,7 @@
                 </div>
                 <div class="card-body">
                     <h5 class="card-title">Selamat Datang {{ auth()->user()->name }}</h5>
+                    <label for="">test</label>
                     <p class="card-text">semangat menjalani hari ini</p>
                     {{-- route gudang (GA,Admin) --}}
                     @auth
@@ -20,7 +21,7 @@
                             <a href="/gudang" class="btn btn-primary"><i class="bi bi-box-seam"> Gudang</i></a>
                         @endif
 
-                        @if (auth()->user()->role === 'admin' || auth()->user()->role === 'General Affair')
+                        @if (auth()->user()->role === 'admin' || auth()->user()->role === 'General Affair' || auth()->user()->role === 'kasoku')
                             <a href="/kasoku" class="btn btn-primary"><i class="bi bi-box-seam"> Kasoku</i></a>
                         @endif
                     @endauth

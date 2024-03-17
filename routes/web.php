@@ -46,8 +46,8 @@ Route::controller(HomeController::class)->group(function () {
 });
 
 // login controller
-Route::controller(LoginController::class)->middleware('guest')->group(function () {
-        Route::get('/login', 'index')->name('login');
+Route::controller(LoginController::class)->group(function () {
+        Route::get('/login', 'index')->middleware('guest')->name('login');
         Route::post('/login', 'authenticate');
         Route::post('/logout', 'logout');
 });

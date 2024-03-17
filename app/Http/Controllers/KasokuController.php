@@ -44,7 +44,7 @@ class KasokuController extends Controller
         ]);
 
 
-        return redirect('/kasoku/request/list');
+        return redirect('/gudang/kasoku/list');
     }
 
     public function kasokuRequest()
