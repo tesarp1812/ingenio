@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
+use App\Models\form_zoom_respons;
+use App\Models\zoom_respons;
 use Illuminate\Http\Request;
 use PhpOffice\PhpSpreadsheet\Spreadsheet;
 use PhpOffice\PhpSpreadsheet\Writer\Xlsx;
@@ -227,5 +229,33 @@ class ScheduleController extends Controller
         // clearing memory
         $spreadsheet->disconnectWorksheets();
         unset($spreadsheet);
+    }
+
+    public function formSchedule ()
+    {
+        return view ('zoom.form_schedule');
+    }
+
+    public function saveSchedule (Request $request)
+    {
+        zoom_respons::create([
+            'user_id' => $request->inputUser,
+            'region_id' => $request->inputRegion,
+            'is_online' => $request->inputIsOnline,
+            'activity_type_id' => $request->inputActivityType,
+            'class_name' => $request->inputClass,
+            'start_date' => $request->inputStartDate,
+            'start_time' => $request->inputStartTime,
+            'end_time' => $request->inputEndTime,
+            'whatsapp' => $request->inputWA,
+            'zoom_account_id' => $request->inputZoomID,
+            'login_url' => $request->inputLogin,
+            'claim_host' => $request->inputHost,
+            'zoom_account_id' => $request->inputIdZoom,
+            'login_url' => $request->inputLogin,
+            'claim_host' => $request->inputHost,
+        ]);
+
+        return redirect ('/form_schedule');
     }
 }

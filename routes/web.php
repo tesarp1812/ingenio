@@ -39,8 +39,6 @@ Route::get('/schedule', function () {
     return view('schedule');
 });
 
-Route::post('/schedule', [ScheduleController::class, 'find_schedule']);
-
 Route::get('/admin', function () {
     return view('admin.layout');
 });
@@ -55,6 +53,14 @@ Route::controller(loginController::class)->group(function () {
         Route::post('/login', 'authenticate');
         Route::post('/logout', 'logout');
 });
+
+Route::controller(ScheduleController::class)->group(function () {
+    Route::get('/schedule', 'find_schedule');
+    Route::get('/reset-session', 'resetSession'); 
+    Route::get('/form_schedule', 'formSchedule');
+    Route::post('/form_schedule/input', 'saveSchedule');
+});
+
 
 Route::controller(GudangController::class)->group(function () {
    Route::get('gudang', 'index')->middleware('auth');

@@ -11,21 +11,25 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('form_zoom_respons', function (Blueprint $table) {
+        Schema::create('zoom_respons', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('user_id');
             $table->unsignedBigInteger('region_id');
-            $table->enum('activity_type', ['online', 'offline']);
+            $table->enum('is_online', ['true', 'false']);
+            $table->unsignedBigInteger('activity_type_id');
             $table->string('class_name');
             $table->date('start_date');
             $table->time('start_time');
             $table->time('end_time');
             $table->integer('whatsapp');
             $table->unsignedBigInteger('zoom_account_id');
+            $table->string('login_url');
+            $table->integer('claim_host');
             $table->timestamps();
 
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->foreign('region_id')->references('id')->on('regions')->onDelete('cascade');
+            $table->foreign('activity_type_id')->references('id')->on('activity_types')->onDelete('cascade');
             $table->foreign('zoom_account_id')->references('id')->on('zoom_accounts')->onDelete('cascade');
         });
     }
@@ -35,6 +39,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('form_zoom_respons');
+        Schema::dropIfExists('zoom_respons');
     }
 };
