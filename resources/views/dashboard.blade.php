@@ -19,10 +19,6 @@
                         @if (auth()->user()->role === 'admin' || auth()->user()->role === 'General Affair')
                             <a href="/gudang" class="btn btn-primary"><i class="bi bi-box-seam"> Gudang</i></a>
                         @endif
-
-                        @if (auth()->user()->role === 'admin' || auth()->user()->role === 'General Affair')
-                            <a href="/kasoku" class="btn btn-primary"><i class="bi bi-box-seam"> Kasoku</i></a>
-                        @endif
                     @endauth
                 </div>
             </div>

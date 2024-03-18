@@ -16,6 +16,7 @@ class riwayat_barang extends Model
         return $this->belongsTo(User::class);
     }
 
+
     public function barang()
     {
         return $this->belongsTo(barang::class);

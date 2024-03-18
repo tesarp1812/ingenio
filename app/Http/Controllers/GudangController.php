@@ -342,17 +342,4 @@ class GudangController extends Controller
 
         return view ('gudang.riwayat_paket', compact('paket'));
     }
-
-    public function listRequest()
-    {
-        $list_req = DB::table('kasoku_requests')
-            ->leftJoin('baju', 'baju.id', '=', 'kasoku_requests.baju_id')
-            ->leftJoin('barang', 'barang.id', '=', 'kasoku_requests.barang_id')
-            ->leftJoin('users', 'users.id', '=', 'kasoku_requests.user_id')
-            ->select('barang.nama_barang as barang', 'baju.nama_barang as baju', 'baju.ukuran', 'kasoku_requests.qty', 'kasoku_requests.status', 'kasoku_requests.desc', 'kasoku_requests.id', 'users.name')
-            ->groupBy('barang.nama_barang', 'baju.nama_barang', 'baju.ukuran', 'kasoku_requests.qty', 'kasoku_requests.status', 'kasoku_requests.desc', 'kasoku_requests.id', 'users.name')
-            ->get();
-
-        return view('gudang.status_request_kasoku', compact('list_req'));
-    }
 }
