@@ -4,130 +4,172 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Bootstrap demo</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <title>Ingenio</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://getbootstrap.com/docs/5.3/assets/css/docs.css" rel="stylesheet">
+
+    <!-- Bootstrap CSS datatable -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link href="https://cdn.datatables.net/1.11.5/css/jquery.dataTables.min.css" rel="stylesheet">
+
+    <!-- DataTables Buttons CSS -->
+    <link rel="stylesheet" href="https://cdn.datatables.net/buttons/2.1.0/css/buttons.dataTables.min.css">
+
+    {{-- boostraps icon cdn --}}
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+
+    @yield('name')
 </head>
 
 <body>
 
-
-    <nav class="navbar sticky-top bg-body-tertiary">
-        <div class="container-fluid">
-            <a class="navbar-brand" href="#">Ingenio Store</a>
-            <ul class="nav nav-pills">
-                <li class="nav-item">
-                    <a class="nav-link" href="#scrollspyHeading1">First</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#scrollspyHeading2">Second</a>
-                </li>
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button"
-                        aria-expanded="false">Dropdown</a>
-                    <ul class="dropdown-menu">
-                        <li><a class="dropdown-item" href="#scrollspyHeading3">Third</a></li>
-                        <li><a class="dropdown-item" href="#scrollspyHeading4">Fourth</a></li>
-                        <li><a class="dropdown-item" href="#scrollspyHeading5">Fifth</a></li>
-                        <li><a class="dropdown-item" href="#scrollspyHeading6">six</a></li>
-                        <li>
-                            <hr class="dropdown-divider">
-                        </li>
-                        <li><a class="dropdown-item" href="#scrollspyHeading7">seven</a></li>
-                        <li><a class="dropdown-item" href="#scrollspyHeading8">eight</a></li>
-                    </ul>
-                </li>
-            </ul>
+    <nav class="navbar navbar-expand-lg navbar-light bg-warning">
+        <div class="container">
+            <a class="navbar-brand" href="/">
+                <img src="{{ asset('images/logo2.png') }}" alt="Logo" width="200"
+                    class="d-inline-block align-text-top">
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            {{-- navbar --}}
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="#catalog-section">Catalog</a>
+                    </li>
+                    <li class="nav-item">
+                        <button type="button" class="btn btn-warning">
+                            <i class="bi bi-basket"></i> <span class="badge text-bg-secondary">4</span>
+                        </button>
+                    </li>
+                </ul>
+            </div>
+            @yield('navbar-content') <!-- Yield for Navbar Content -->
         </div>
     </nav>
 
+    <main>
+        <div class="myCarousel">
+            <div id="carouselExampleAutoplaying" class="carousel slide" data-bs-ride="carousel">
+                <div class="carousel-inner">
+                    <div class="carousel-item active">
+                        <img src="{{ asset('images/OP CLASS UKMPPD BATCH 2 2024.png') }}" class="d-block w-100"
+                            alt="">
+                    </div>
+                    <div class="carousel-item">
+                        <img src="{{ asset('images/OP CLASS UKMPPD BATCH 3 2024.png') }}" class="d-block w-100"
+                            alt="">
+                    </div>
+                    <div class="carousel-item">
+                        <img src="{{ asset('images/OP CLASS UKMPPD BATCH 4 2024.png') }}" class="d-block w-100"
+                            alt="">
+                    </div>
+                </div>
+                <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleAutoplaying"
+                    data-bs-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Previous</span>
+                </button>
+                <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleAutoplaying"
+                    data-bs-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Next</span>
+                </button>
+            </div>
 
-    {{-- scroll spy --}}
+            <!-- Katalog Barang -->
+            <section id="catalog-section">
+                <div class="container mt-4">
+                    <h2 class="mb-4">Catalog</h2>
+                    <div class="row">
+                        <div class="col-md-4 mb-3">
+                            <div class="card">
+                                <img src="{{ asset('images/ukmppd.jpeg') }}" class="card-img-top" alt="Product 1">
+                                <div class="card-body">
+                                    <h5 class="card-title">Product 1</h5>
+                                    <p class="card-text">Description of Product 1.</p>
+                                    <!-- Button trigger modal -->
+                                    <button type="button" class="btn btn-primary" data-bs-toggle="modal"
+                                        data-bs-target="#exampleModal">
+                                        <i class="bi bi-bag-plus-fill"> Checkout</i>
+                                    </button>
 
-    <div data-bs-spy="scroll" data-bs-target="#navbar-example2" data-bs-root-margin="0px 0px -40%"
-        data-bs-smooth-scroll="true" class="scrollspy-example bg-body-tertiary p-3 rounded-2" tabindex="0">
-
-
-        <h4 id="scrollspyHeading1">Buku CBT Ingenio 2024 Jilid 1</h4>
-        <p>Sebuah petang yang senyap dan tenang di pedesaan, dihiasi oleh kilauan warna oranye dan merah matahari
-            terbenam yang menggantung rendah di ufuk barat. Angin sepoi-sepoi membawa aroma harum dari ladang hijau yang
-            bergelombang seperti lautan yang damai. Desiran daun-daun pohon menemani suara gemericik air dari sebuah
-            sungai kecil yang mengalir dengan lembut di sisi jalan setapak. Di kejauhan, gunung-ganang menjulang gagah,
-            melukiskan siluet megahnya dengan gradasi warna yang memukau. Sembari duduk di tepi bukit, mata ini menyatu
-            dengan keindahan alam, sementara pikiran merenung jauh ke dalam, membiarkan waktu berlalu dengan ketenangan
-            yang hanya ditemukan di pelukan alam.</p>
-
-        <hr class="featurette-divider">
-
-        <h4 id="scrollspyHeading2">Buku CBT Ingenio 2024 Jilid 2</h4>
-        <p>Sebuah petang yang senyap dan tenang di pedesaan, dihiasi oleh kilauan warna oranye dan merah matahari
-            terbenam yang menggantung rendah di ufuk barat. Angin sepoi-sepoi membawa aroma harum dari ladang hijau yang
-            bergelombang seperti lautan yang damai. Desiran daun-daun pohon menemani suara gemericik air dari sebuah
-            sungai kecil yang mengalir dengan lembut di sisi jalan setapak. Di kejauhan, gunung-ganang menjulang gagah,
-            melukiskan siluet megahnya dengan gradasi warna yang memukau. Sembari duduk di tepi bukit, mata ini menyatu
-            dengan keindahan alam, sementara pikiran merenung jauh ke dalam, membiarkan waktu berlalu dengan ketenangan
-            yang hanya ditemukan di pelukan alam.</p>
-
-        <hr class="featurette-divider">
-
-        <h4 id="scrollspyHeading3">Buku CBT Ingenio 2024 Jilid 3</h4>
-        <p>Sebuah petang yang senyap dan tenang di pedesaan, dihiasi oleh kilauan warna oranye dan merah matahari
-            terbenam yang menggantung rendah di ufuk barat. Angin sepoi-sepoi membawa aroma harum dari ladang hijau yang
-            bergelombang seperti lautan yang damai. Desiran daun-daun pohon menemani suara gemericik air dari sebuah
-            sungai kecil yang mengalir dengan lembut di sisi jalan setapak. Di kejauhan, gunung-ganang menjulang gagah,
-            melukiskan siluet megahnya dengan gradasi warna yang memukau. Sembari duduk di tepi bukit, mata ini menyatu
-            dengan keindahan alam, sementara pikiran merenung jauh ke dalam, membiarkan waktu berlalu dengan ketenangan
-            yang hanya ditemukan di pelukan alam.</p>
-        <h4 id="scrollspyHeading4">Buku CBT Ingenio 2024 Jilid 4</h4>
-        <p>Sebuah petang yang senyap dan tenang di pedesaan, dihiasi oleh kilauan warna oranye dan merah matahari
-            terbenam yang menggantung rendah di ufuk barat. Angin sepoi-sepoi membawa aroma harum dari ladang hijau yang
-            bergelombang seperti lautan yang damai. Desiran daun-daun pohon menemani suara gemericik air dari sebuah
-            sungai kecil yang mengalir dengan lembut di sisi jalan setapak. Di kejauhan, gunung-ganang menjulang gagah,
-            melukiskan siluet megahnya dengan gradasi warna yang memukau. Sembari duduk di tepi bukit, mata ini menyatu
-            dengan keindahan alam, sementara pikiran merenung jauh ke dalam, membiarkan waktu berlalu dengan ketenangan
-            yang hanya ditemukan di pelukan alam.</p>
-        <h4 id="scrollspyHeading5">Buku CBT Ingenio 2024 Jilid 5</h4>
-        <p>Sebuah petang yang senyap dan tenang di pedesaan, dihiasi oleh kilauan warna oranye dan merah matahari
-            terbenam yang menggantung rendah di ufuk barat. Angin sepoi-sepoi membawa aroma harum dari ladang hijau yang
-            bergelombang seperti lautan yang damai. Desiran daun-daun pohon menemani suara gemericik air dari sebuah
-            sungai kecil yang mengalir dengan lembut di sisi jalan setapak. Di kejauhan, gunung-ganang menjulang gagah,
-            melukiskan siluet megahnya dengan gradasi warna yang memukau. Sembari duduk di tepi bukit, mata ini menyatu
-            dengan keindahan alam, sementara pikiran merenung jauh ke dalam, membiarkan waktu berlalu dengan ketenangan
-            yang hanya ditemukan di pelukan alam.</p>
-
-            <h4 id="scrollspyHeading6">Buku CBT Ingenio 2024 Jilid 6</h4>
-        <p>Sebuah petang yang senyap dan tenang di pedesaan, dihiasi oleh kilauan warna oranye dan merah matahari
-            terbenam yang menggantung rendah di ufuk barat. Angin sepoi-sepoi membawa aroma harum dari ladang hijau yang
-            bergelombang seperti lautan yang damai. Desiran daun-daun pohon menemani suara gemericik air dari sebuah
-            sungai kecil yang mengalir dengan lembut di sisi jalan setapak. Di kejauhan, gunung-ganang menjulang gagah,
-            melukiskan siluet megahnya dengan gradasi warna yang memukau. Sembari duduk di tepi bukit, mata ini menyatu
-            dengan keindahan alam, sementara pikiran merenung jauh ke dalam, membiarkan waktu berlalu dengan ketenangan
-            yang hanya ditemukan di pelukan alam.</p>
-
-            <h4 id="scrollspyHeading7">Buku OSCE Ingenio 2024 Jilid 1</h4>
-        <p>Sebuah petang yang senyap dan tenang di pedesaan, dihiasi oleh kilauan warna oranye dan merah matahari
-            terbenam yang menggantung rendah di ufuk barat. Angin sepoi-sepoi membawa aroma harum dari ladang hijau yang
-            bergelombang seperti lautan yang damai. Desiran daun-daun pohon menemani suara gemericik air dari sebuah
-            sungai kecil yang mengalir dengan lembut di sisi jalan setapak. Di kejauhan, gunung-ganang menjulang gagah,
-            melukiskan siluet megahnya dengan gradasi warna yang memukau. Sembari duduk di tepi bukit, mata ini menyatu
-            dengan keindahan alam, sementara pikiran merenung jauh ke dalam, membiarkan waktu berlalu dengan ketenangan
-            yang hanya ditemukan di pelukan alam.</p>
-
-            <h4 id="scrollspyHeading8">Buku OSCE Ingenio 2024 Jilid 2</h4>
-        <p>Sebuah petang yang senyap dan tenang di pedesaan, dihiasi oleh kilauan warna oranye dan merah matahari
-            terbenam yang menggantung rendah di ufuk barat. Angin sepoi-sepoi membawa aroma harum dari ladang hijau yang
-            bergelombang seperti lautan yang damai. Desiran daun-daun pohon menemani suara gemericik air dari sebuah
-            sungai kecil yang mengalir dengan lembut di sisi jalan setapak. Di kejauhan, gunung-ganang menjulang gagah,
-            melukiskan siluet megahnya dengan gradasi warna yang memukau. Sembari duduk di tepi bukit, mata ini menyatu
-            dengan keindahan alam, sementara pikiran merenung jauh ke dalam, membiarkan waktu berlalu dengan ketenangan
-            yang hanya ditemukan di pelukan alam.</p>
-
-
-    </div>
+                                    <!-- Modal -->
+                                    <div class="modal fade" id="exampleModal" tabindex="-1"
+                                        aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                        <div class="modal-dialog">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title
+                                                    </h1>
+                                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                        aria-label="Close"></button>
+                                                </div>
+                                                <div class="modal-body">
+                                                    Untuk Pembelian bisa menghubungi pihak admin ingenio indonesia yang tertera dibawah ini 
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button type="button" class="btn btn-secondary"
+                                                        data-bs-dismiss="modal">Tutup</button>
+                                                    <button type="button" class="btn btn-primary" onclick="openWhatsAppChat('+6282143260751')"><i class="bi bi-whatsapp"> Hubungi Admin</i></button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4 mb-3">
+                            <div class="card">
+                                <img src="{{ asset('images/product2.jpg') }}" class="card-img-top" alt="Product 2">
+                                <div class="card-body">
+                                    <h5 class="card-title">Product 2</h5>
+                                    <p class="card-text">Description of Product 2.</p>
+                                    <a href="#" class="btn btn-primary">View Details</a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4 mb-3">
+                            <div class="card">
+                                <img src="{{ asset('images/product3.jpg') }}" class="card-img-top" alt="Product 3">
+                                <div class="card-body">
+                                    <h5 class="card-title">Product 3</h5>
+                                    <p class="card-text">Description of Product 3.</p>
+                                    <a href="#" class="btn btn-primary">View Details</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+        </div>
+        </section>
+    </main>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous">
     </script>
+
+<script>
+    function openWhatsAppChat(phoneNumber) {
+            // Ubah nomor telepon sesuai kebutuhan
+            var whatsappNumber = phoneNumber;
+
+            // Ubah teks pesan sesuai kebutuhan
+            var message = encodeURIComponent("Halo, saya ingin bertanya tentang produk Anda.");
+
+            // Buat URL WhatsApp dengan nomor telepon dan pesan default (opsional)
+            var whatsappUrl = 'https://api.whatsapp.com/send?phone=' + whatsappNumber + '&text=' + message;
+
+            // Buka URL WhatsApp dalam tab atau jendela baru
+            window.open(whatsappUrl, '_blank');
+        }
+</script>
+
+
+
 </body>
 
 </html>
