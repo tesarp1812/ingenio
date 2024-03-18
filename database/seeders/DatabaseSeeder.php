@@ -26,12 +26,46 @@ class DatabaseSeeder extends Seeder
 
         $faker = Faker::create('id_id');
 
+        //role superadmin
+        DB::table('roles')->insert([
+            'id' => '1',
+            'roles' => 'Super Admin',
+        ]);
+
+        DB::table('roles')->insert([
+            'id' => '2',
+            'roles' => 'Admin',
+        ]);
+
+        DB::table('roles')->insert([
+            'id' => '3',
+            'roles' => 'General Affair',
+        ]);
+
+        DB::table('roles')->insert([
+            'id' => '4',
+            'roles' => 'Tutor',
+        ]);
+
+        // super admin
+        DB::table('users')->insert([
+            'name' => 'Tama',
+            'email' => 'super@ingenio.id',
+            'password' => bcrypt('supergariskeras'),
+            'role_id' => '1',
+            'remember_token' => Str::random(10),
+            'email_verified_at' => now(),
+            'created_at' => now(),
+            'updated_at' => now(),
+        ]);
+
+
         // syahrul
         DB::table('users')->insert([
             'name' => 'syahrul',
             'email' => 'logistik@ingenioindonesia.co.id',
             'password' => bcrypt('12345'),
-            'role' => 'General Affair',
+            'role_id' => '3',
             'remember_token' => Str::random(10),
             'email_verified_at' => now(),
             'created_at' => now(),
@@ -43,7 +77,7 @@ class DatabaseSeeder extends Seeder
             'name' => 'niam',
             'email' => 'logistik2@ingenioindonesia.co.id',
             'password' => bcrypt('12345'),
-            'role' => 'General Affair',
+            'role_id' => '3',
             'remember_token' => Str::random(10),
             'email_verified_at' => now(),
             'created_at' => now(),
@@ -55,7 +89,7 @@ class DatabaseSeeder extends Seeder
             'name' => 'andhika',
             'email' => 'logistik3@ingenioindonesia.co.id',
             'password' => bcrypt('12345'),
-            'role' => 'General Affair',
+            'role_id' => '3',
             'remember_token' => Str::random(10),
             'email_verified_at' => now(),
             'created_at' => now(),
