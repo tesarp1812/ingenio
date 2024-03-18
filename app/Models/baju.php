@@ -14,11 +14,6 @@ class baju extends Model
     {
         return $this->hasMany(riwayat_barang::class);
     }
-
-    public function kasoku_history()
-    {
-        return $this->hasMany(kasoku_stock::class);
-    }
     
     protected $fillable = [
         'nama_barang',

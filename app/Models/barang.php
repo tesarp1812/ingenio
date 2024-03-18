@@ -15,11 +15,6 @@ class barang extends Model
     {
         return $this->belongsTo(User::class);
     }
-    
-    public function kasoku_history()
-    {
-        return $this->hasMany(kasoku_request::class);
-    }
 
     protected $dates = ['created_at', 'updated_at'];
 

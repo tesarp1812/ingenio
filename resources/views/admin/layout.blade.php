@@ -25,7 +25,7 @@
     {{-- boostraps icon cdn --}}
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
 
-    @yield('head')
+    @yield('name')
 </head>
 
 <body class="d-flex flex-column min-vh-100">
@@ -52,7 +52,6 @@
                                 data-bs-target="#offcanvasWithBothOptions" aria-controls="offcanvasWithBothOptions">Menu
                                 Gudang</button>
                         </li>
-                        
 
                         <li class="nav-item dropdown">
                             <button class="btn dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
@@ -229,10 +228,6 @@
     <script src="https://cdn.datatables.net/buttons/2.1.0/js/dataTables.buttons.min.js"></script>
     <script src="https://cdn.datatables.net/buttons/2.1.0/js/buttons.html5.min.js"></script>
     <script src="https://cdn.datatables.net/buttons/2.1.0/js/buttons.print.min.js"></script>
-    {{-- sweet alert --}}
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    <script>@yield('script')</script>
-
 
     {{-- datatables --}}
     <div class="container">
