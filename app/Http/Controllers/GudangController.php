@@ -150,20 +150,6 @@ class GudangController extends Controller
     return view('gudang.stok_buku', compact('stokBuku'));
 }
 
-
-    // public function stokBukuPaket($paket)
-    // {
-    //     $stokBuku = DB::table('riwayat_barang')
-    //         ->leftJoin('barang', 'barang.id', '=', 'riwayat_barang.barang_id')
-    //         ->where('barang.jenis', 'buku')
-    //         ->select('barang.nama_barang as barang', DB::raw('SUM(riwayat_barang.jumlah) AS total'))
-    //         ->groupBy('barang.nama_barang')
-    //         ->get();
-
-
-    //     return view('gudang.stok_buku', compact('stokBuku'));
-    // }
-
     public function stokMerchandise()
     {
         $stokMerchandise = DB::table('riwayat_barang')
@@ -355,5 +341,18 @@ class GudangController extends Controller
         //dd($paket);
 
         return view ('gudang.riwayat_paket', compact('paket'));
+    }
+
+    public function listRequest()
+    {
+        $list_req = DB::table('kasoku_requests')
+            ->leftJoin('baju', 'baju.id', '=', 'kasoku_requests.baju_id')
+            ->leftJoin('barang', 'barang.id', '=', 'kasoku_requests.barang_id')
+            ->leftJoin('users', 'users.id', '=', 'kasoku_requests.user_id')
+            ->select('barang.nama_barang as barang', 'baju.nama_barang as baju', 'baju.ukuran', 'kasoku_requests.qty', 'kasoku_requests.status', 'kasoku_requests.desc', 'kasoku_requests.id', 'users.name')
+            ->groupBy('barang.nama_barang', 'baju.nama_barang', 'baju.ukuran', 'kasoku_requests.qty', 'kasoku_requests.status', 'kasoku_requests.desc', 'kasoku_requests.id', 'users.name')
+            ->get();
+
+        return view('gudang.status_request_kasoku', compact('list_req'));
     }
 }

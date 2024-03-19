@@ -1,8 +1,6 @@
-@extends('layout')
+@extends('admin.layout')
 
-
-
-@section('body')
+@section('main')
     {{-- card dashboard login --}}
     <div class="container text-center">
         <div class="w-100 p-3">
@@ -12,17 +10,18 @@
                         style="max-width: 250px;">
                 </div>
                 <div class="card-body">
-                    <h5 class="card-title">Selamat Datang {{ auth()->user()->name }}</h5>
-                    <label for="">test</label>
-                    <p class="card-text">semangat menjalani hari ini</p>
                     {{-- route gudang (GA,Admin) --}}
                     @auth
-                        @if (auth()->user()->role === 'admin' || auth()->user()->role === 'General Affair')
-                            <a href="/gudang" class="btn btn-primary"><i class="bi bi-box-seam"> Gudang</i></a>
+                        @if (auth()->user()->role === 'admin' || auth()->user()->role === 'General Affair' || auth()->user()->role === 'kasoku')
+                            <a href="/kasoku/stock" class="btn btn-primary"><i class="bi bi-box-seam"> Stock</i></a>
                         @endif
 
                         @if (auth()->user()->role === 'admin' || auth()->user()->role === 'General Affair' || auth()->user()->role === 'kasoku')
-                            <a href="/kasoku" class="btn btn-primary"><i class="bi bi-box-seam"> Kasoku</i></a>
+                            <a href="/kasoku/stock/input" class="btn btn-primary"><i class="bi bi-box-seam"> Input Stock</i></a>
+                        @endif
+
+                        @if (auth()->user()->role === 'admin' || auth()->user()->role === 'General Affair' || auth()->user()->role === 'kasoku')
+                            <a href="/kasoku/request/list" class="btn btn-primary"><i class="bi bi-box-seam"> Permintaan</i></a>
                         @endif
                     @endauth
                 </div>

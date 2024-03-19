@@ -20,7 +20,7 @@
     {{-- boostraps icon cdn --}}
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
 
-    @yield('name')
+    @yield('head')
 </head>
 
 <body>
@@ -64,6 +64,9 @@
                             </ul>
                         </li>
                     @else
+                        <li class="nav-item">
+                            <a class="nav-link" href="/akses-officials">Akses Officials</a>
+                        </li>
                         <li class="nav-item">
                             <a class="nav-link" href="/ingenio-store">Ingenio STORE</a>
                         </li>

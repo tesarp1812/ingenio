@@ -5,20 +5,23 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class barang extends Model
+class kasoku_history extends Model
 {
-
     use HasFactory;
-    protected $table = 'barang';
-
+    
     public function user()
     {
         return $this->belongsTo(User::class);
     }
-    
-    public function kasoku_history()
+
+    public function barang()
     {
-        return $this->hasMany(kasoku_request::class);
+        return $this->belongsTo(barang::class);
+    }
+
+    public function baju()
+    {
+        return $this->belongsTo(baju::class);
     }
 
     protected $dates = ['created_at', 'updated_at'];
@@ -37,7 +40,10 @@ class barang extends Model
 
 
     protected $fillable = [
-        'nama_barang',
-        'jenis'
+        'barang_id',
+        'baju_id',
+        'qty',
+        'user_id',
+        'keterangan'
     ];
 }
