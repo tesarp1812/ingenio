@@ -123,3 +123,9 @@ Route::controller(GudangController::class)->middleware('auth')->group(function (
 Route::get('/ingenio-store', function () {
     return view('store.index');
 });
+
+Route::domain('store.ingenio.id')->group(function () {
+    Route::get('/', function () {
+        return view('store.index');
+    });
+});
