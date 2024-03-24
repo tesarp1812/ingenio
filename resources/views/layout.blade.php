@@ -39,6 +39,15 @@
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ms-auto">
                     @auth
+
+                        @php
+                            $gudang = ['1', '3'];
+                            $kasoku = ['1', '3'];
+                            $userId = auth()->id();
+                        @endphp
+
+
+
                         <li class="nav-item dropdown">
                             <button class="btn dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
                                 {{ auth()->user()->name }}
@@ -48,12 +57,17 @@
 
                                 {{-- route gudang --}}
                                 @auth
-                                    @if (auth()->user()->role === 'admin' || auth()->user()->role === 'General Affair')
+                                    @if (in_array(auth()->user()->role_id, $gudang))
                                         <li><a class="dropdown-item" href="/gudang"><i class="bi bi-box-seam"> Gudang</i></a>
                                         </li>
                                     @endif
                                 @endauth
                                 {{-- end --}}
+
+                                {{-- Menu Profile --}}
+                                <li><a class="dropdown-item" href="/profile"><i class="bi bi-box-seam"> Profile</i></a></li>
+                                <li><a class="dropdown-item" href="/dashboard"><i class="bi bi-box-seam"> Dashboard</i></a></li>
+
 
                                 <form action="/logout" method="POST">
                                     @csrf
@@ -64,6 +78,9 @@
                             </ul>
                         </li>
                     @else
+                        <li class="nav-item">
+                            <a class="nav-link" href="/ingenio-store">Ingenio STORE</a>
+                        </li>
                         <li class="nav-item">
                             <a class="nav-link" href="/akses-officials">Akses Officials</a>
                         </li>

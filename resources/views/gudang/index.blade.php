@@ -39,7 +39,7 @@
         <div class="container">
             <div class="card mt-4">
                 <div class="card-header">
-                    Menu Kirim Paket
+                    Menu Kirim Paket & Kasoku
                 </div>
                 <div class="card-body">
                     <div class="row">
@@ -51,9 +51,19 @@
                         <div class="col-md-6 col-lg-4 mb-3">
                             <a href="/paket_cbt" class="btn btn-primary btn-block">Paket CBT</a>
                         </div>
+
+                        <div class="col-md-6 col-lg-4 mb-3">
+                            <a href="/kasoku/request" class="btn btn-primary btn-block">Kasoku Request</a>
+                        </div>
+
+                        <div class="col-md-6 col-lg-4 mb-3">
+                            <a href="/gudang/kasoku/list" class="btn btn-primary btn-block">Status Request Kasoku</a>
+                        </div>
                     </div>
                 </div>
             </div>
+
+            {{-- menu Kasoku --}}
 
             {{-- live stock --}}
             @section('table')
