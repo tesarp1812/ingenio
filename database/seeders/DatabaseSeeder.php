@@ -184,7 +184,6 @@ class DatabaseSeeder extends Seeder
         for ($i = 0; $i < 50; $i++) {
             $userKepala = DB::table('users')->inRandomOrder()->first();
             $barang = DB::table('barang')->inRandomOrder()->first();
-<<<<<<< HEAD
 
             DB::table('riwayat_barang')->insert([
                 'barang_id' => $barang->id,
@@ -237,7 +236,6 @@ class DatabaseSeeder extends Seeder
             'name' => 'Bali'
         ]);
 
-=======
 
             DB::table('riwayat_barang')->insert([
                 'barang_id' => $barang->id,
@@ -248,7 +246,6 @@ class DatabaseSeeder extends Seeder
                 'updated_at' => now(),
             ]);
         }
->>>>>>> main
 
         // seeder multimedia
         DB::table('status_designs')->insert([
@@ -303,4 +300,3 @@ class DatabaseSeeder extends Seeder
         ]);
         
     }
-}
