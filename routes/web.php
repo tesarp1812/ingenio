@@ -119,13 +119,15 @@ Route::controller(GudangController::class)->middleware('auth')->group(function (
     Route::get('gudang/kasoku/list', 'listRequest');
 });
 
-// ingenio store
-Route::get('/ingenio-store', function () {
-    return view('store.index');
-});
-
+// Route for subdomain "store.ingenio.id"
 Route::domain('store.ingenio.id')->group(function () {
     Route::get('/', function () {
         return view('store.index');
     });
 });
+
+// Route for regular domain
+Route::get('/ingenio-store', function () {
+    return view('store.index');
+});
+
