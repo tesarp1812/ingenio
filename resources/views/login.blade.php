@@ -1,53 +1,94 @@
 @extends('layout')
 
-@section('navbar-content')
+@section('head')
+    <style>
+        body {
+            background-color: #DCDCDC;
 
+        }
+
+        .card {
+            margin-bottom: 1.5rem;
+            box-shadow: 0 1px 15px 1px rgba(52, 40, 104, .08);
+        }
+
+        .card {
+            position: relative;
+            display: -ms-flexbox;
+            display: flex;
+            -ms-flex-direction: column;
+            flex-direction: column;
+            min-width: 0;
+            word-wrap: break-word;
+            background-color: #fff;
+            background-clip: border-box;
+            border: 1px solid #e5e9f2;
+            border-radius: .2rem;
+        }
+    </style>
 @endsection
 
 @section('body')
-<div class="container-sm" style="margin-top: 100px">
-    <div class="card"  >
-        <div class="card-header">
-            Featured
-        </div>
-        <div class="row justify-content-center" style="margin-top: 15px">
-            <div class="col-lg-6">
-                @if (session()->has('loginError'))
-                    <div class="alert alert-danger alert-dismissible fade show" role="alert">
-                        {{ session('loginError') }}
-                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    <div class="container h-100">
+        <div class="row h-100">
+            <div class="col-sm-10 col-md-8 col-lg-6 mx-auto d-table h-100">
+                <div class="d-table-cell align-middle">
+
+                    <div class="text-center mt-4">
+                        <h1 class="h2">Halo official Ingenio & Tutor</h1>
+                        <p class="lead">
+                            Silahkan Login untuk Masuk ke Apps
+                        </p>
                     </div>
-                @endif
 
-                <main class="form-registration">
-                    <h1 class="h3 mb-3 fw-normal text-center">Login</h1>
-                    <form action="/login" method="POST">
-                        @csrf
-                        
-                        <div class="form-floating mb-3">
-                            <input type="email" class="form-control @error('email') is-invalid @enderror"
-                                name="email" id="email" required value="{{ old('email') }}"
-                                placeholder="name@example.com" style="width: 95%; box-sizing: border-box; margin: 0 0 0 2%; padding: 10px;"  autofocus>
-                                <label for="email" style="width: 95%; box-sizing: border-box; margin: 0 0 0 2%; padding: 10px;">Email address</label>
-                            {{-- <div class="invalid-feedback">
-                                {{ $message }}
-                            </div> --}}
+                    <div class="card">
+                        <div class="card-body">
+                            @if (session()->has('loginError'))
+                                <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                                    {{ session('loginError') }}
+                                    <button type="button" class="btn-close" data-bs-dismiss="alert"
+                                        aria-label="Close"></button>
+                                </div>
+                            @endif
+                            <div class="m-sm-4">
+                                <div class="text-center">
+                                    <img src="https://bootdey.com/img/Content/avatar/avatar6.png" alt="Andrew Jones"
+                                        class="img-fluid rounded-circle" width="132" height="132">
+                                </div>
+                                <form action="/login" method="POST">
+                                    @csrf
+                                    <div class="form-group">
+                                        <label>Email</label>
+                                        <input class="form-control form-control-lg @error('email') is-invalid @enderror"
+                                            type="email" name="email" required value="{{ old('email') }}"
+                                            placeholder="email@ingenioindonesia.co.id" autofocus>
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Password</label>
+                                        <input class="form-control form-control-lg" type="password" name="password"
+                                            placeholder="Enter your password">
+                                        <smalsl>
+                                            <a href="pages-reset-password.html">Forgot password?</a>
+                                        </small>
+                                    </div>
+                                    <div>
+                                        <div class="custom-control custom-checkbox align-items-center">
+                                            <input type="checkbox" class="custom-control-input" value="remember-me"
+                                                name="remember-me" checked="">
+                                            <label class="custom-control-label text-small">Remember me next time</label>
+                                        </div>
+                                    </div>
+                                    <div class="text-center mt-3">
+                                        <button type="submit" href="index.html" class="btn btn-lg btn-primary">Sign in</button>
+                                        <!-- <button type="submit" class="btn btn-lg btn-primary">Sign in</button> -->
+                                    </div>
+                                </form>
+                            </div>
                         </div>
-                        <div class="form-floating mb-3">
-                            <input type="password" class="form-control rounded-bottom" name="password"
-                                id="password" required placeholder="Password" style="width: 95%; box-sizing: border-box; margin: 0 0 0 2%; padding: 10px;">
-                            <label for="password" style="width: 95%; box-sizing: border-box; margin: 0 0 0 2%; padding: 10px;">Password</label>
-                        </div>
+                    </div>
 
-                        <button class="w-9 btn btn-lg btn-warning mt-3" type="submit" style="margin: 0 0 0 20%" >Login</button>
-                    </form>
-
-                    <small class="d-block mt-4" style="margin: 0 0 5% 20%">Belum Punya Akun? <a class="text-danger" href="/register">Daftar
-                            Sekarang!</a></small>
-                </main>
+                </div>
             </div>
         </div>
     </div>
-</div>
-
 @endsection

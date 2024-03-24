@@ -19,7 +19,7 @@ class UserSeeder extends Seeder
             'name' => 'Admin Kasoku',
             'email' => 'kasoku1@ingenioindonesia.co.id',
             'password' => Hash::make('12345'), 
-            'role' => 'kasoku',
+            'role_id' => '5',
             'remember_token' => Str::random(10), 
             'email_verified_at' => now(),
             'created_at' => now(),

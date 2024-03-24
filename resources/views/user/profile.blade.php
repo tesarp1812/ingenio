@@ -139,8 +139,6 @@
             width: 300px;
             height: 300px;
         }
-
-        
     </style>
 @endsection
 
@@ -152,57 +150,25 @@
                     <div class="card card-style1 border-0">
                         <div class="card-body p-1-9 p-sm-2-3 p-md-6 p-lg-7">
                             <div class="row align-items-center">
-                                <div class="col-lg-6 mb-4 mb-lg-0">
-                                    <img class="img-logo" src="{{ asset('images/karakter.png') }}" alt="...">
-                                </div>
                                 <div class="col-lg-6 px-xl-10">
-                                    <div class="bg-secondary d-lg-inline-block py-1-9 px-1-9 px-sm-6 mb-1-9 rounded">
-                                        <h3 class="h2 text-white mb-0">{{ auth()->user()->name }}</h3>
-                                        <span class="text-primary">{{ auth()->user()->role->roles }}</span>
-                                    </div>
+                                    <h2 class="mb-5">Update Profile User</h2>
                                     <ul class="list-unstyled mb-1-9">
                                         <li class="mb-2 mb-xl-3 display-28"><span
-                                                class="display-26 text-secondary me-2 font-weight-600">Position:</span>
-                                            {{ auth()->user()->role->roles }}</li>
+                                                class="display-26 text-secondary me-2 font-weight-600">Nama :</span>
+                                            <input class="form-control" type="text" value="{{ auth()->user()->name }}">
+                                        </li>
 
-                                        <li class="mb-2 mb-xl-3 display-28"><span
-                                                class="display-26 text-secondary me-2 font-weight-600">Email:</span>
-                                            {{ auth()->user()->email }}</li>
+                                        <li class="mb-5 mb-xl-3 display-28"><span
+                                                class="display-26 text-secondary me-2 font-weight-600">Email :</span>
+                                            <input class="form-control" type="text" value="{{ auth()->user()->email }}">
+                                        </li>
 
-                                        <li class="mb-2 mb-xl-3 display-28"><span
-                                                class="display-26 text-secondary me-2 font-weight-600">
-                                                <a href="/profile" class="btn btn-primary"><i class="bi bi-box-seam"> Update
-                                                        Profile</i></a>
-                                            </span></li>
-
-                                            <li class="mb-2 mb-xl-3 display-28"><span
-                                                class="display-26 text-secondary me-2 font-weight-600">
-                                                <a href="/password" class="btn btn-primary"><i class="bi bi-box-seam"> Ganti Password</i></a>
-                                            </span></li>
+                                        <li class="mb-2 mb-xl-3 display-28">
+                                            <a href="{{ URL::previous() }}" class="btn btn-primary">Kembali</a>
+                                        </li>
                                     </ul>
                                 </div>
                             </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-12 mb-4 mb-sm-5">
-                    <div>
-                        <span class="section-title text-primary mb-3 mb-sm-4">Fitur Apps</span>
-                        <div class="container">
-                            @auth
-                                @php
-                                    $gudang = ['1', '3'];
-                                    $kasoku = ['1', '3'];
-                                @endphp
-
-                                @if (in_array(auth()->user()->role_id, $gudang))
-                                    <a href="/gudang" class="btn btn-primary btn-lg"><i class="bi bi-box-seam"> Gudang</i></a>
-                                @endif
-
-                                @if (in_array(auth()->user()->role_id, $gudang))
-                                    <a href="/kasoku" class="btn btn-primary btn-lg"><i class="bi bi-box-seam"> Kasoku</i></a>
-                                @endif
-                            @endauth
                         </div>
                     </div>
                 </div>

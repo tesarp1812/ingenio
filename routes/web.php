@@ -50,6 +50,10 @@ Route::controller(LoginController::class)->group(function () {
         Route::get('/login', 'index')->middleware('guest')->name('login');
         Route::post('/login', 'authenticate');
         Route::post('/logout', 'logout');
+
+        Route::get('/profile', 'profile');
+
+        Route::get('/password', 'password');
 });
 
 // Kasoku controller

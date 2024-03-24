@@ -10,6 +10,8 @@ use Illuminate\Support\Str;
 use Faker\Factory as Faker;
 use Faker\Provider\Fakecar;
 
+use function PHPSTORM_META\type;
+
 class DatabaseSeeder extends Seeder
 {
     /**
@@ -45,6 +47,11 @@ class DatabaseSeeder extends Seeder
         DB::table('roles')->insert([
             'id' => '4',
             'roles' => 'Tutor',
+        ]);
+
+        DB::table('roles')->insert([
+            'id' => '5',
+            'roles' => 'Kasoku',
         ]);
 
         // super admin
@@ -188,5 +195,57 @@ class DatabaseSeeder extends Seeder
             ]);
         }
 
+        // seeder multimedia
+        DB::table('status_designs')->insert([
+            'name' => 'pending',
+            'created_at' => now(),
+            'updated_at' => now(),
+        ]);
+        DB::table('status_designs')->insert([
+            'name' => 'process',
+            'created_at' => now(),
+            'updated_at' => now(),
+        ]);
+        DB::table('status_designs')->insert([
+            'name' => 'process overload',
+            'created_at' => now(),
+            'updated_at' => now(),
+        ]);
+        DB::table('status_designs')->insert([
+            'name' => 'revision',
+            'created_at' => now(),
+            'updated_at' => now(),
+        ]);
+        DB::table('status_designs')->insert([
+            'name' => 'accepted',
+            'created_at' => now(),
+            'updated_at' => now(),
+        ]);
+        DB::table('status_designs')->insert([
+            'name' => 'done',
+            'created_at' => now(),
+            'updated_at' => now(),
+        ]);
+        
+        // seeder type_design
+        DB::table('type_designs')->insert([
+            'id' => '1',
+            'type' => 'video',
+            'created_at' => now(),
+            'updated_at' => now(),
+        ]);
+        DB::table('type_designs')->insert([
+            'id' => '2',
+            'type' => 'desain',
+            'created_at' => now(),
+            'updated_at' => now(),
+        ]);
+        DB::table('type_designs')->insert([
+            'id' => '3',
+            'type' => 'foto',
+            'created_at' => now(),
+            'updated_at' => now(),
+        ]);
+        
     }
 }
