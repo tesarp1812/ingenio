@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
+use App\Models\activity_type;
 use App\Models\form_zoom_respons;
+use App\Models\regions;
 use App\Models\zoom_respons;
 use Illuminate\Http\Request;
 use PhpOffice\PhpSpreadsheet\Spreadsheet;
@@ -233,7 +235,10 @@ class ScheduleController extends Controller
 
     public function formSchedule ()
     {
-        return view ('zoom.form_schedule');
+        $activity = activity_type::get();
+        $region = regions::get();
+        //dd($activity);
+        return view ('zoom.form_schedule', compact('activity','region'));
     }
 
     public function saveSchedule (Request $request)
