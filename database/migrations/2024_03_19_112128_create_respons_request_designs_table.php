@@ -21,7 +21,7 @@ return new class extends Migration
             $table->date('deadline');
             $table->enum('is_cito', ['cito','not']);
             $table->integer('whatsapp');
-            $table->unsignedBigInteger('status_id');
+            $table->unsignedBigInteger('status_id')->default('1');
             $table->string('word_file_path');
             $table->timestamps();
 

@@ -5,6 +5,7 @@ use App\Http\Controllers\GudangController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\KasokuController;
 use App\Http\Controllers\LoginController;
+use App\Http\Controllers\MultimediaController;
 
 /*
 |--------------------------------------------------------------------------
@@ -69,11 +70,14 @@ Route::controller(KasokuController::class)->group(function () {
     Route::put('kasoku/status/update/{id}', 'updateStatusProses');
 
     //update status to done
-    
-
     Route::get('/kasoku/stock', 'stock');
     Route::get('/kasoku/stock/input', 'inputStock');
     Route::post('/kasoku/stock/input/save', 'saveInputStock');
+});
+
+Route::controller(MultimediaController::class)->group(function () {
+    Route::get('/multimedia/form_request', 'responDesign');
+    Route::post('/multimedia/form_request/input', 'inputResponsDesign');
 });
 
 Route::controller(GudangController::class)->middleware('auth')->group(function () {

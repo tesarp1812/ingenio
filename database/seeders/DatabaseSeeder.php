@@ -246,6 +246,42 @@ class DatabaseSeeder extends Seeder
             'created_at' => now(),
             'updated_at' => now(),
         ]);
+        // sub type seeder
+        DB::table('type_designs')->insert([
+            'type' => 'reel',
+            'parent_type_id' => 1,
+            'created_at' => now(),
+            'updated_at' => now(),
+        ]);
+        DB::table('type_designs')->insert([
+            'type' => 'promo',
+            'parent_type_id' => 1,
+            'created_at' => now(),
+            'updated_at' => now(),
+        ]);
+        DB::table('type_designs')->insert([
+            'type' => 'feed',
+            'parent_type_id' => 2,
+            'created_at' => now(),
+            'updated_at' => now(),
+        ]);
+        DB::table('type_designs')->insert([
+            'type' => 'story',
+            'parent_type_id' => 2,
+            'created_at' => now(),
+            'updated_at' => now(),
+        ]);DB::table('type_designs')->insert([
+            'type' => 'dokumentasi',
+            'parent_type_id' => 3,
+            'created_at' => now(),
+            'updated_at' => now(),
+        ]);
+        DB::table('type_designs')->insert([
+            'type' => 'profile',
+            'parent_type_id' => 3,
+            'created_at' => now(),
+            'updated_at' => now(),
+        ]);
         
     }
 }
