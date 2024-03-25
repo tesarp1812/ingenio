@@ -232,10 +232,7 @@ class DatabaseSeeder extends Seeder
         ]);
 
         //seeder akun zoom
-        DB::table('zoom_accountss')->insert([
-            'name' => 'Bali'
-        ]);
-
+       
 
             DB::table('riwayat_barang')->insert([
                 'barang_id' => $barang->id,
@@ -245,9 +242,8 @@ class DatabaseSeeder extends Seeder
                 'created_at' => $faker->dateTimeInInterval($startDate = '- 7 days', $interval = '+ 1 days', $timezone = null),
                 'updated_at' => now(),
             ]);
-        }
 
-        // seeder multimedia
+            // seeder multimedia
         DB::table('status_designs')->insert([
             'name' => 'pending',
             'created_at' => now(),
@@ -298,5 +294,5 @@ class DatabaseSeeder extends Seeder
             'created_at' => now(),
             'updated_at' => now(),
         ]);
-        
+        }
     }
