@@ -32,9 +32,12 @@ Route::get('/akses-officials', function (){
     return view('taplink.official_index');
 });
 
-
 Route::get('/test', function () {
     return view('test');
+});
+
+Route::get('/schedule', function () {
+    return view('schedule');
 });
 
 Route::get('/admin', function () {
@@ -56,6 +59,16 @@ Route::controller(LoginController::class)->group(function () {
 
         Route::get('/password', 'password');
 });
+
+// schedule class
+Route::controller(ScheduleController::class)->group(function () {
+    Route::get('/schedule', 'index');
+    Route::get('/schedule/find', 'find_schedule');
+    Route::get('/reset-session', 'resetSession'); 
+    Route::get('/schedule/form_schedule', 'formSchedule');
+    Route::post('/schedule/form_schedule/input', 'saveSchedule');
+});
+
 
 // Kasoku controller
 Route::controller(KasokuController::class)->group(function () {

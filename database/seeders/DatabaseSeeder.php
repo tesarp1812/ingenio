@@ -195,7 +195,55 @@ class DatabaseSeeder extends Seeder
             ]);
         }
 
-        // seeder multimedia
+        // send data activity 
+        DB::table('activity_types')->insert([
+            'name' => 'preklinik',
+            'description' => '2 jam'
+        ]);
+        DB::table('activity_types')->insert([
+            'name' => 'preklinik',
+            'description' => '4 jam'
+        ]);
+        DB::table('activity_types')->insert([
+            'name' => 'UKMPPD/UKMPDG',
+            'description' => '4 jam'
+        ]);
+        DB::table('activity_types')->insert([
+            'name' => 'UKMPPD/UKMPDG',
+            'description' => '8 jam'
+        ]);
+        DB::table('activity_types')->insert([
+            'name' => 'PPDS',
+            'description' => '8 jam'
+        ]);
+
+        //seeder region
+        DB::table('regions')->insert([
+            'name' => 'Malang'
+        ]);
+        DB::table('regions')->insert([
+            'name' => 'Jakarta'
+        ]);
+        DB::table('regions')->insert([
+            'name' => 'Surabaya'
+        ]);
+        DB::table('regions')->insert([
+            'name' => 'Bali'
+        ]);
+
+        //seeder akun zoom
+       
+
+            DB::table('riwayat_barang')->insert([
+                'barang_id' => $barang->id,
+                'jumlah' => $faker->numberBetween(-10, 30),
+                'user_id' => $userKepala->id,
+                'keterangan' => $faker->randomElement(['kirim', 'masuk']),
+                'created_at' => $faker->dateTimeInInterval($startDate = '- 7 days', $interval = '+ 1 days', $timezone = null),
+                'updated_at' => now(),
+            ]);
+
+            // seeder multimedia
         DB::table('status_designs')->insert([
             'name' => 'pending',
             'created_at' => now(),

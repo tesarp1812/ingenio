@@ -15,26 +15,15 @@ class MultimediaController extends Controller
 
     public function index()
     {
-        $requests = respons_request_design::select(
-            'users.name as name',
-            'type_designs.type as type_td',
-            'td2.type as type_td2',
-            'respons_request_designs.size',
-            'respons_request_designs.duration',
-            'respons_request_designs.description',
-            'respons_request_designs.deadline',
-            'respons_request_designs.is_cito',
-            'respons_request_designs.whatsapp',
-            'status_designs.name as status_name',
-            'respons_request_designs.word_file'
-        )
+        $requests = DB::table('respons_request_designs')
+            ->leftJoin('type_designs as td2', 'type_designs.id', '=', 'td2.parent_type_id')
             ->join('users', 'users.id', '=', 'respons_request_designs.user_id')
-            ->join('type_designs', 'type_designs.id', '=', 'respons_request_designs.type_design_id')
-            ->join('status_designs', 'status_designs.id', '=', 'respons_request_designs.status_id')
-            ->leftJoin('type_designs as td2', 'td2.id', '=', 'type_designs.parent_type_id')
+            ->select('users.name as name', 'type_designs.type as type_td', 'td2.type as type_td2', 'respons_request_designs.size', 'respons_request_designs.duration', 'respons_request_designs.description', 'respons_request_designs.deadline', 'respons_request_designs.is_cito', 'respons_request_designs.whatsapp', 'status_designs.name as status_name', 'respons_request_designs.word_file')
+            ->leftJoin('status_designs', 'status_designs.id', '=', 'respons_request_designs.status_id')
             ->get();
-    
-        //dd($requests);
+
+
+        dd($requests);
         return view('multimedia.index');
     }
 

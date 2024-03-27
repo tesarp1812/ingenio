@@ -533,7 +533,7 @@
 
     <div class="mb-3" style="text-align: center;">
         <a href="https://account.mekari.com/users/sign_in?client_id=3ozGzJjjJrERyXUG&return_to=L2F1dGgvP2NsaWVudF9pZD0zb3pHekpqakpyRVJ5WFVHJnJlc3BvbnNlX3R5cGU9Y29kZSZzY29wZT1zc286cHJvZmlsZQ%3D%3D"
-            class="btn btn-primary"
+            class="btn btn-acordion"
             style="width: 40%; box-sizing: border-box; margin: 0 0 20px 0; padding: 10px; height:">
             <h6>QONTAK</h6>
         </a>
@@ -541,14 +541,14 @@
 
     <div class="mb-2" style="text-align: center;">
         <div class="dropdown-center">
-            <button class="btn btn-primary tombol dropdown-toggle" type="button" data-bs-toggle="dropdown"
+            <button class="btn btn-acordion tombol dropdown-toggle" type="button" data-bs-toggle="dropdown"
                 aria-expanded="false" style="width: 40%; box-sizing: border-box; margin: 0 0 20px 0; padding: 10px; height:">
                 <h5>TRYOUT</h5>
             </button>
             <ul class="dropdown-menu">
-                <li><a class="dropdown-item" href="https://www.e-ujian.com/web/index">DATA
+                <li><a class="dropdown-item btn-acordion" href="https://www.e-ujian.com/web/index">DATA
                         Website Try Out Khusus Buat Peserta Kerjasama / Peserta Berkebutuhan Khusus</a></li>
-                <li><a class="dropdown-item" href="https://tryout.ingenioindonesia.id/">ABSEN
+                <li><a class="dropdown-item btn-acordion" href="https://tryout.ingenioindonesia.id/">ABSEN
                         Website Try Out Khusus Buat Peserta Kerjasama / Peserta Berkebutuhan Khusus</a></li>
             </ul>
         </div>
@@ -556,14 +556,14 @@
 
     <div class="mb-3" style="text-align: center;">
         <a href="https://docs.google.com/spreadsheets/d/1meuww1-fw-T_sGJI-1HASZw-7gsNVit3j8EP4jSzojI/edit?usp=sharing"
-            class="btn btn-primary"
+            class="btn btn-acordion"
             style="width: 40%; box-sizing: border-box; margin: 0 0 20px 0; padding: 10px; height:">
             <h6>ZOOM INGENIO INDONESIA</h6>
         </a>
     </div>
 
     <div class="mb-3" style="text-align: center;">
-        <a href="https://genesis.lionparcel.com" class="btn btn-primary"
+        <a href="https://genesis.lionparcel.com" class="btn btn-acordion"
             style="width: 40%; box-sizing: border-box; margin: 0 0 20px 0; padding: 10px; height:">
             <h6>GENESIS LION PARCEL</h6>
         </a>
@@ -571,15 +571,15 @@
 
     <div class="mb-3" style="text-align: center;">
         <a href="https://docs.google.com/forms/d/e/1FAIpQLSd1WwDK-H0q46jbnMnTLbKnJ9w9S0pffQh5J7jqSb8zI4ayMQ/viewform"
-            class="btn btn-primary"
+            class="btn btn-acordion"
             style="width: 40%; box-sizing: border-box; margin: 0 0 20px 0; padding: 10px; height:">
             <h6>LAPORAN EVALUASI BULANAN</h6>
         </a>
     </div>
 
-    <div class="mb-3" style="text-align: center;">
+    <div class="mb-3 " style="text-align: center;">
         <a href="https://docs.google.com/forms/d/e/1FAIpQLSfbSbj-QESJNp8zrVkn7AoZ2nqkSAV5gK-51zcHVbyg2-EBtQ/viewform"
-            class="btn btn-primary"
+            class="btn btn-acordion"
             style="width: 40%; box-sizing: border-box; margin: 0 0 20px 0; padding: 10px; height:">
             <h6>FORMULIR ABSENSI RAPAT INGENIO INDONESIA</h6>
         </a>
