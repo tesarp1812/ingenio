@@ -60,11 +60,13 @@ Route::controller(LoginController::class)->group(function () {
         Route::get('/password', 'password');
 });
 
+// schedule class
 Route::controller(ScheduleController::class)->group(function () {
-    Route::get('/schedule', 'find_schedule');
+    Route::get('/schedule', 'index');
+    Route::get('/schedule/find', 'find_schedule');
     Route::get('/reset-session', 'resetSession'); 
-    Route::get('/form_schedule', 'formSchedule');
-    Route::post('/form_schedule/input', 'saveSchedule');
+    Route::get('/schedule/form_schedule', 'formSchedule');
+    Route::post('/schedule/form_schedule/input', 'saveSchedule');
 });
 
 

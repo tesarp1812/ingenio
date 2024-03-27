@@ -7,10 +7,11 @@
         <div class="row">
             <div class="col-xl-8">
                 <!-- Account details card-->
+                <a href="/schedule" class="btn btn-primary">Kembali</a>
                 <div class="card mb-4">
                     <div class="card-header">Pemesanan Kelas Online & Offline</div>
                     <div class="card-body">
-                        <form action="/form_schedule/input" method="POST">
+                        <form action="/schedule/form_schedule/input" method="POST">
                             @csrf
                             <!-- Form Group (username)-->
                             <div class="mb-3">

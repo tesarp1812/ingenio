@@ -191,16 +191,21 @@
                         <div class="container">
                             @auth
                                 @php
-                                    $gudang = ['1', '3'];
-                                    $kasoku = ['1', '3'];
+                                    $gudang = ['1', '3']; // superadmin, General Affair
+                                    $kasoku = ['1', '5']; // superadmin, Kasoku
+                                    $scheduleClass = ['1','4']; // superadmin, Tutor
                                 @endphp
 
                                 @if (in_array(auth()->user()->role_id, $gudang))
                                     <a href="/gudang" class="btn btn-primary btn-lg"><i class="bi bi-box-seam"> Gudang</i></a>
                                 @endif
 
-                                @if (in_array(auth()->user()->role_id, $gudang))
+                                @if (in_array(auth()->user()->role_id,$kasoku))
                                     <a href="/kasoku" class="btn btn-primary btn-lg"><i class="bi bi-box-seam"> Kasoku</i></a>
+                                @endif
+
+                                @if (in_array(auth()->user()->role_id, $scheduleClass))
+                                    <a href="/schedule" class="btn btn-primary btn-lg"><i class="bi bi-box-seam"> Pemesanan Kelas</i></a>
                                 @endif
                             @endauth
                         </div>

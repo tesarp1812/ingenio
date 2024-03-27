@@ -233,12 +233,17 @@ class ScheduleController extends Controller
         unset($spreadsheet);
     }
 
+    public function index()
+    {
+        return view ('scheduleClass.index');
+    }
+
     public function formSchedule ()
     {
         $activity = activity_type::get();
         $region = regions::get();
         //dd($activity);
-        return view ('zoom.form_schedule', compact('activity','region'));
+        return view ('scheduleClass.form_schedule', compact('activity','region'));
     }
 
     public function saveSchedule (Request $request)

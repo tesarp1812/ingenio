@@ -1,4 +1,4 @@
-@extends('admin.layout')
+@extends('layout')
 
 @section('main')
     {{-- card dashboard login --}}
@@ -12,15 +12,18 @@
                 <div class="card-body">
                     {{-- route gudang (GA,Admin) --}}
                     @auth
-                        @if (auth()->user()->role === 'admin' || auth()->user()->role === 'General Affair' || auth()->user()->role === 'kasoku')
+                        @php
+                            $kasoku = ['1', '5'];
+                        @endphp
+                        @if (in_array(auth()->user()->role_id, $kasoku))
                             <a href="/kasoku/stock" class="btn btn-primary"><i class="bi bi-box-seam"> Stock</i></a>
                         @endif
 
-                        @if (auth()->user()->role === 'admin' || auth()->user()->role === 'General Affair' || auth()->user()->role === 'kasoku')
+                        @if (in_array(auth()->user()->role_id, $kasoku))
                             <a href="/kasoku/stock/input" class="btn btn-primary"><i class="bi bi-box-seam"> Input Stock</i></a>
                         @endif
 
-                        @if (auth()->user()->role === 'admin' || auth()->user()->role === 'General Affair' || auth()->user()->role === 'kasoku')
+                        @if (in_array(auth()->user()->role_id, $kasoku))
                             <a href="/kasoku/request/list" class="btn btn-primary"><i class="bi bi-box-seam"> Permintaan</i></a>
                         @endif
                     @endauth
@@ -67,38 +70,39 @@
                         </thead>
                         <tbody>
                             @foreach ($list_req as $list)
-                                @if ( $list->status !== 'done'&& $list->status !== 'accepted')
-                                <tr>
-                                    <td>
-                                        {{ $list->barang }}
-                                        {{ $list->baju }}
-                                        @if (isset($s->ukuran))
-                                            - {{ strtoupper($s->ukuran) }}
-                                        @endif
-                                    </td>
-                                    <td>{{ $list->qty }}</td>
-                                    <td>{{ $list->name }}</td>
-                                    <td>{{ $list->desc }}</td>
-                                    <td>{{ $list->status }}</td>
-                                    {{-- <td><a href="/update/status/{{ $list->id }}"> Ubah Status</a></td> --}}
-                                    <td>
-                                        @if ($list->status === 'request')
-                                            <form action="/kasoku/status/update/{{ $list->id }}" method="POST">
-                                                @csrf
-                                                @method('PUT')
-                                                <input type="hidden" value="process" name="inputStatus">
-                                                <button type="submit" class="btn btn-primary" onclick="myFunction()">proses</button>
-                                            </form>
-                                        @elseif($list->status === 'process')
-                                            <form action="/kasoku/status/update/{{ $list->id }}" method="POST">
-                                                @csrf
-                                                @method('PUT')
-                                                <input type="hidden" value="done" name="inputStatus">
-                                                <button type="submit" class="btn btn-success">done</button>
-                                            </form>
-                                        @endif
-                                    </td>
-                                </tr>
+                                @if ($list->status !== 'done' && $list->status !== 'accepted')
+                                    <tr>
+                                        <td>
+                                            {{ $list->barang }}
+                                            {{ $list->baju }}
+                                            @if (isset($s->ukuran))
+                                                - {{ strtoupper($s->ukuran) }}
+                                            @endif
+                                        </td>
+                                        <td>{{ $list->qty }}</td>
+                                        <td>{{ $list->name }}</td>
+                                        <td>{{ $list->desc }}</td>
+                                        <td>{{ $list->status }}</td>
+                                        {{-- <td><a href="/update/status/{{ $list->id }}"> Ubah Status</a></td> --}}
+                                        <td>
+                                            @if ($list->status === 'request')
+                                                <form action="/kasoku/status/update/{{ $list->id }}" method="POST">
+                                                    @csrf
+                                                    @method('PUT')
+                                                    <input type="hidden" value="process" name="inputStatus">
+                                                    <button type="submit" class="btn btn-primary"
+                                                        onclick="myFunction()">proses</button>
+                                                </form>
+                                            @elseif($list->status === 'process')
+                                                <form action="/kasoku/status/update/{{ $list->id }}" method="POST">
+                                                    @csrf
+                                                    @method('PUT')
+                                                    <input type="hidden" value="done" name="inputStatus">
+                                                    <button type="submit" class="btn btn-success">done</button>
+                                                </form>
+                                            @endif
+                                        </td>
+                                    </tr>
                                 @endif
                             @endforeach
                         </tbody>

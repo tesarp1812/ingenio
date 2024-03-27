@@ -1,4 +1,4 @@
-@extends('admin.layout')
+@extends('layout')
 
 @section('main')
     {{-- card dashboard login --}}
@@ -12,15 +12,18 @@
                 <div class="card-body">
                     {{-- route gudang (GA,Admin) --}}
                     @auth
-                        @if (auth()->user()->role === 'admin' || auth()->user()->role === 'General Affair' || auth()->user()->role === 'kasoku')
+                    @php
+                        $kasoku = ['1', '5'];
+                    @endphp
+                        @if (in_array(auth()->user()->role_id, $kasoku))
                             <a href="/kasoku/stock" class="btn btn-primary"><i class="bi bi-box-seam"> Stock</i></a>
                         @endif
 
-                        @if (auth()->user()->role === 'admin' || auth()->user()->role === 'General Affair' || auth()->user()->role === 'kasoku')
+                        @if (in_array(auth()->user()->role_id, $kasoku))
                             <a href="/kasoku/stock/input" class="btn btn-primary"><i class="bi bi-box-seam"> Input Stock</i></a>
                         @endif
 
-                        @if (auth()->user()->role === 'admin' || auth()->user()->role === 'General Affair' || auth()->user()->role === 'kasoku')
+                        @if (in_array(auth()->user()->role_id, $kasoku))
                             <a href="/kasoku/request/list" class="btn btn-primary"><i class="bi bi-box-seam"> Permintaan</i></a>
                         @endif
                     @endauth
