@@ -7,7 +7,6 @@ use Illuminate\Support\Facades\DB;
 use App\Models\baju;
 use App\Models\barang;
 use App\Models\paket_kirim;
-use App\Models\riwayat_baju;
 use App\Models\riwayat_barang;
 use App\Models\User;
 use Carbon\Carbon;

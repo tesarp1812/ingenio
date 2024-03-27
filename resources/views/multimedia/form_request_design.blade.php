@@ -73,6 +73,7 @@
                             <input class="form-control" type="file" id="formFile" name="inputWord">
                         </div>
 
+                        <input type="text"name="inputStatus" value="1" hidden>
 
                         <button type="submit" class="btn btn-primary">Submit</button>
                     </form>
@@ -81,20 +82,5 @@
         </div>
     </div>
 
-    <script>
-        document.getElementById("typeSelect").addEventListener("change", function() {
-            var selectedType = this.value;
-            var videoInput = document.getElementById("duration");
-
-            // Reset nilai input jika tersembunyi
-            videoInput.value = "";
-
-            // Tampilkan atau sembunyikan input berdasarkan pilihan
-            if (selectedType.includes("video")) {
-                videoInput.style.display = "block";
-            } else {
-                videoInput.style.display = "none";
-            }
-        });
-    </script>
+    
 @endsection

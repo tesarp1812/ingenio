@@ -9,6 +9,21 @@ class respons_request_design extends Model
 {
     use HasFactory;
 
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
+
+    public function statusDesign()
+    {
+        return $this->belongsTo(status_design::class);
+    }
+
+    public function typeDesign()
+    {
+        return $this->belongsTo(type_design::class);
+    }
+
     protected $fillable = [
         'user_id',
         'type_design_id',
@@ -19,6 +34,6 @@ class respons_request_design extends Model
         'is_cito',
         'whatsapp',
         'status_id',
-        'word_file_path'
+        'word_file'
     ];
 }

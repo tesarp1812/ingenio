@@ -76,6 +76,7 @@ Route::controller(KasokuController::class)->group(function () {
 });
 
 Route::controller(MultimediaController::class)->group(function () {
+    Route::get('/multimedia', 'index');
     Route::get('/multimedia/form_request', 'responDesign');
     Route::post('/multimedia/form_request/input', 'inputResponsDesign');
 });

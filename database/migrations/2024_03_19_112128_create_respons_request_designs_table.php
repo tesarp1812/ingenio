@@ -19,10 +19,10 @@ return new class extends Migration
             $table->string('duration')->nullable();
             $table->string('description');
             $table->date('deadline');
-            $table->enum('is_cito', ['cito','not']);
+            $table->enum('is_cito', ['true','false']);
             $table->integer('whatsapp');
             $table->unsignedBigInteger('status_id')->default('1');
-            $table->string('word_file_path');
+            $table->string('word_file');
             $table->timestamps();
 
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
