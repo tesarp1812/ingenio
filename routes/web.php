@@ -6,6 +6,7 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\KasokuController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\MultimediaController;
+use App\Http\Controllers\ScheduleController;
 
 /*
 |--------------------------------------------------------------------------
