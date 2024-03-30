@@ -7,10 +7,7 @@ use App\Http\Controllers\KasokuController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\MultimediaController;
 use App\Http\Controllers\ScheduleController;
-<<<<<<< HEAD
 
-=======
->>>>>>> a81ae2c (fix form)
 /*
 |--------------------------------------------------------------------------
 | Web Routes
