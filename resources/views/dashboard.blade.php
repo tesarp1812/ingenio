@@ -194,6 +194,7 @@
                                     $gudang = ['1', '3']; // superadmin, General Affair
                                     $kasoku = ['1', '5']; // superadmin, Kasoku
                                     $scheduleClass = ['1','4']; // superadmin, Tutor
+                                    $multimedia = ['1','6'];
                                 @endphp
 
                                 @if (in_array(auth()->user()->role_id, $gudang))
@@ -206,6 +207,10 @@
 
                                 @if (in_array(auth()->user()->role_id, $scheduleClass))
                                     <a href="/schedule" class="btn btn-primary btn-lg"><i class="bi bi-box-seam"> Pemesanan Kelas</i></a>
+                                @endif
+
+                                @if (in_array(auth()->user()->role_id, $multimedia))
+                                    <a href="/multimedia" class="btn btn-primary btn-lg"><i class="bi bi-box-seam"> Multimedia</i></a>
                                 @endif
                             @endauth
                         </div>

@@ -231,7 +231,7 @@
     <script src="https://cdn.datatables.net/buttons/2.1.0/js/buttons.print.min.js"></script>
     {{-- sweet alert --}}
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    <script>@yield('script')</script>
+    
 
 
     {{-- datatables --}}

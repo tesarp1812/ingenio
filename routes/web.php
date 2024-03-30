@@ -7,7 +7,10 @@ use App\Http\Controllers\KasokuController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\MultimediaController;
 use App\Http\Controllers\ScheduleController;
+<<<<<<< HEAD
 
+=======
+>>>>>>> a81ae2c (fix form)
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -93,6 +96,9 @@ Route::controller(MultimediaController::class)->group(function () {
     Route::get('/multimedia', 'index');
     Route::get('/multimedia/form_request', 'responDesign');
     Route::post('/multimedia/form_request/input', 'inputResponsDesign');
+
+    // Route for downloading files
+    Route::get('/multimedia/download/{filename}', 'downloadFile')->name('multimedia.download');
 });
 
 Route::controller(GudangController::class)->middleware('auth')->group(function () {
