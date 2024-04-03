@@ -62,13 +62,6 @@ class KasokuController extends Controller
         return view('kasoku.list_request_kasoku', compact('list_req'));
     }
 
-    public function updateStatus($id)
-    {
-        $updateStatus = kasoku_request::get()->where('id', $id)->first();
-        //dd($updateStatus);
-        return view('kasoku.form_status', compact('updateStatus'));
-    }
-
     public function updateStatusProses(Request $request, $id)
     {
         $updateStatusProses = kasoku_request::find($id);

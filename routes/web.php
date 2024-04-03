@@ -79,7 +79,6 @@ Route::controller(KasokuController::class)->group(function () {
     Route::get('/kasoku/request/list', 'kasokuRequest');
 
     // update status to process
-    Route::get('/update/status/{id}', 'updateStatus');
     Route::get('kasoku/status/update/{id}', 'updateStatusProses');
     Route::put('kasoku/status/update/{id}', 'updateStatusProses');
 
@@ -89,6 +88,7 @@ Route::controller(KasokuController::class)->group(function () {
     Route::post('/kasoku/stock/input/save', 'saveInputStock');
 });
 
+// multimedia apps
 Route::controller(MultimediaController::class)->group(function () {
     Route::get('/multimedia', 'index');
     Route::get('/multimedia/form_request', 'responDesign');
@@ -96,6 +96,10 @@ Route::controller(MultimediaController::class)->group(function () {
 
     // Route for downloading files
     Route::get('/multimedia/download/{filename}', 'downloadFile')->name('multimedia.download');
+
+    // update status design
+    Route::get('/multimedia/status/update/{$id}', 'updateStatusDesign');
+    Route::put('/multimedia/status/update/{$id}', 'updateStatusDesign');
 });
 
 Route::controller(GudangController::class)->middleware('auth')->group(function () {

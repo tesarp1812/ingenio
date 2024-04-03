@@ -4,7 +4,7 @@
 <div class="container">
     <div class="card mt-4">
         <div class="card-header">
-            Stok Barang Ingenio
+            List Request Kasoku
         </div>
         <div class="card-body">
             <a class="btn btn-primary mb-3" href="/gudang">kembali</a>

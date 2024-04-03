@@ -8,6 +8,7 @@ use App\Models\respons_request_design;
 use App\Models\type_design;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Session;
 
 class MultimediaController extends Controller
 {
@@ -17,6 +18,7 @@ class MultimediaController extends Controller
     {
         $requests = DB::table('respons_request_designs')
             ->select(
+                'respons_request_designs.id',
                 'users.name',
                 'parent_type.type as type1',
                 'type_designs.type as type2',
@@ -96,5 +98,21 @@ class MultimediaController extends Controller
             'description' => $request->inputDescription,
             'status_id' => $request->inputStatus
         ]);
+    }
+
+    
+    public function updateStatusDesign(Request $request, $id)
+    {
+        $updateStatusDesign = respons_request_design::find($id);
+
+        dd($request->all());
+        $updateStatusDesign->id = $request->id;
+        $updateStatusDesign->statusDesign = $request->updateStatus;
+        $updateStatusDesign->save();
+
+        Session::flash('process', 'Berhasil Mengubah Status Permintaan Ke Proses');
+        Session::flash('done', 'Status Permintaan Sudah Selesai');
+        
+        return redirect('/multimedia');
     }
 }

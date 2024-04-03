@@ -36,6 +36,7 @@
                                                 <th scope="col">Deadline</th>
                                                 <th scope="col">Whatsapp</th>
                                                 <th scope="col">Status Design</th>
+                                                <th scope="col">Aksi</th>
                                                 <th scope="col">File</th>
                                             </tr>
                                         </thead>
@@ -50,8 +51,59 @@
                                                     <td>{{ $req->deadline }}</td>
                                                     <td>{{ $req->whatsapp }}</td>
                                                     <td>{{ $req->status }}</td>
+                                                    @auth
+                                                        <td>
+                                                            @php
+                                                                $admin = ['1', '6'];
+                                                                $user = ['4'];
+                                                            @endphp
+                                                            {{-- role admin --}}
+                                                            @if (in_array(auth()->user()->role_id, $admin))
+                                                                {{-- status pending -> proccess --}}
+                                                                @if ($req->status === 'pending')
+                                                                <form action="/multimedia/status/update/{{ $req->id }}" method="POST">
+                                                                    @csrf
+                                                                    @method('PUT')
+                                                                    <input type="hidden" value="process" name="updateStatus">
+                                                                    <button type="submit" class="btn btn-primary">Proses</button>
+                                                                </form>
+                                                                @elseif ($req->status === 'process')
+                                                                    {{-- status proccess -> accepted / design has complete --}}
+                                                                    <form action="">
+                                                                        @csrf
+                                                                        @method('PUT')
+                                                                        <input type="text" value="accepted" hidden>
+                                                                        <button type="submit"
+                                                                            class="btn btn-primary">Accepted</button>
+                                                                    </form>
+                                                                @endif
+                                                                {{-- role user non admin --}}
+                                                            @elseif (in_array(auth()->user()->role_id, $user))
+                                                                @if ($req->status === 'accepted')
+                                                                    <form action="">
+                                                                        @csrf
+                                                                        @method('PUT')
+                                                                        <input type="text" value="" hidden>
+                                                                        <button type="submit"
+                                                                            class="btn btn-primary">Accepted</button>
+                                                                    </form>
+                                                                @elseif ($req->status === 'accepted')
+                                                                    <form action="">
+                                                                        @csrf
+                                                                        @method('PUT')
+                                                                        <input type="text" value="revision" hidden>
+                                                                        <button type="submit"
+                                                                            class="btn btn-primary">Revisi</button>
+                                                                    </form>
+                                                                @endif
+                                                            @endif
+                                                        </td>
+                                                    @else
+                                                        <td>{{ $req->status }}</td>
+                                                    @endauth
                                                     <td>
-                                                        <a href="/multimedia/download/{{ $req->word_file }}" download>{{ $req->word_file }}</a>
+                                                        <a href="/multimedia/download/{{ $req->word_file }}"
+                                                            download>{{ $req->word_file }}</a>
                                                     </td>
                                                 </tr>
                                             @endforeach

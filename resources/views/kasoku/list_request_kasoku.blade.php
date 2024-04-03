@@ -90,8 +90,7 @@
                                                     @csrf
                                                     @method('PUT')
                                                     <input type="hidden" value="process" name="inputStatus">
-                                                    <button type="submit" class="btn btn-primary"
-                                                        onclick="myFunction()">proses</button>
+                                                    <button type="submit" class="btn btn-primary">proses</button>
                                                 </form>
                                             @elseif($list->status === 'process')
                                                 <form action="/kasoku/status/update/{{ $list->id }}" method="POST">
