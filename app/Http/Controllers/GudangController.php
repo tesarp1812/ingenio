@@ -9,6 +9,7 @@ use App\Models\barang;
 use App\Models\paket_kirim;
 use App\Models\riwayat_barang;
 use App\Models\User;
+use App\Models\kasoku_request;
 use Carbon\Carbon;
 
 class GudangController extends Controller
@@ -123,31 +124,31 @@ class GudangController extends Controller
     }
 
     public function stokBuku(Request $request, $kategori = 'mandiri')
-{
-    $kategori = $request->input('kategori', $kategori);
+    {
+        $kategori = $request->input('kategori', $kategori);
 
 
-    // Logika pengambilan data berdasarkan kategori
-    if ($kategori == 'paket') {
-        $stokBuku = DB::table('riwayat_barang')
-        ->leftJoin('barang', 'barang.id', '=', 'riwayat_barang.barang_id')
-        ->where('barang.jenis', 'buku')
-        ->whereIn('barang.nama_barang', ['OSCE', 'UKMPPD'])
-        ->select('barang.nama_barang as barang', DB::raw('SUM(riwayat_barang.jumlah) AS total'))
-        ->groupBy('barang.nama_barang')
-        ->get();
-    } else {
-        $stokBuku = DB::table('riwayat_barang')
-        ->leftJoin('barang', 'barang.id', '=', 'riwayat_barang.barang_id')
-        ->where('barang.jenis', 'buku')
-        ->whereNotIn('barang.nama_barang', ['OSCE', 'UKMPPD'])
-        ->select('barang.nama_barang as barang', DB::raw('SUM(riwayat_barang.jumlah) AS total'))
-        ->groupBy('barang.nama_barang')
-        ->get();
+        // Logika pengambilan data berdasarkan kategori
+        if ($kategori == 'paket') {
+            $stokBuku = DB::table('riwayat_barang')
+                ->leftJoin('barang', 'barang.id', '=', 'riwayat_barang.barang_id')
+                ->where('barang.jenis', 'buku')
+                ->whereIn('barang.nama_barang', ['OSCE', 'UKMPPD'])
+                ->select('barang.nama_barang as barang', DB::raw('SUM(riwayat_barang.jumlah) AS total'))
+                ->groupBy('barang.nama_barang')
+                ->get();
+        } else {
+            $stokBuku = DB::table('riwayat_barang')
+                ->leftJoin('barang', 'barang.id', '=', 'riwayat_barang.barang_id')
+                ->where('barang.jenis', 'buku')
+                ->whereNotIn('barang.nama_barang', ['OSCE', 'UKMPPD'])
+                ->select('barang.nama_barang as barang', DB::raw('SUM(riwayat_barang.jumlah) AS total'))
+                ->groupBy('barang.nama_barang')
+                ->get();
+        }
+
+        return view('gudang.stok_buku', compact('stokBuku'));
     }
-
-    return view('gudang.stok_buku', compact('stokBuku'));
-}
 
     public function stokMerchandise()
     {
@@ -339,19 +340,54 @@ class GudangController extends Controller
         $paket = paket_kirim::with('user')->get();
         //dd($paket);
 
-        return view ('gudang.riwayat_paket', compact('paket'));
+        return view('gudang.riwayat_paket', compact('paket'));
     }
 
-    public function listRequest()
+    public function listRequest(Request $request)
     {
-        $list_req = DB::table('kasoku_requests')
-            ->leftJoin('baju', 'baju.id', '=', 'kasoku_requests.baju_id')
-            ->leftJoin('barang', 'barang.id', '=', 'kasoku_requests.barang_id')
-            ->leftJoin('users', 'users.id', '=', 'kasoku_requests.user_id')
-            ->select('barang.nama_barang as barang', 'baju.nama_barang as baju', 'baju.ukuran', 'kasoku_requests.qty', 'kasoku_requests.status', 'kasoku_requests.desc', 'kasoku_requests.id', 'users.name')
-            ->groupBy('barang.nama_barang', 'baju.nama_barang', 'baju.ukuran', 'kasoku_requests.qty', 'kasoku_requests.status', 'kasoku_requests.desc', 'kasoku_requests.id', 'users.name')
-            ->get();
 
+        $selected_status = $request->input('status');
+
+        $list_req = DB::table('kasoku_requests')
+        ->leftJoin('baju', 'baju.id', '=', 'kasoku_requests.baju_id')
+        ->leftJoin('barang', 'barang.id', '=', 'kasoku_requests.barang_id')
+        ->leftJoin('users', 'users.id', '=', 'kasoku_requests.user_id')
+        ->select('barang.id as barang_id', 'baju.id as baju_id', 'barang.nama_barang as barang', 'baju.nama_barang as baju', 'baju.ukuran', 'kasoku_requests.qty', 'kasoku_requests.status', 'kasoku_requests.desc', 'kasoku_requests.id', 'users.name')
+        ->when($selected_status === 'request', function ($query) {
+            // Jika status yang dipilih adalah 'request', tambahkan kondisi where
+            return $query->where('kasoku_requests.status', 'request');
+        })
+        ->when($selected_status === 'process', function ($query) {
+            // Jika status yang dipilih adalah 'process', tambahkan kondisi where
+            return $query->where('kasoku_requests.status', 'process');
+        })
+        ->when($selected_status === 'done', function ($query) {
+            // Jika status yang dipilih adalah 'done', tambahkan kondisi where
+            return $query->where('kasoku_requests.status', 'done');
+        })
+        ->groupBy('barang.id', 'baju.id', 'barang.nama_barang', 'baju.nama_barang', 'baju.ukuran', 'kasoku_requests.qty', 'kasoku_requests.status', 'kasoku_requests.desc', 'kasoku_requests.id', 'users.name')
+        ->get();
+        //dd($list_req);
         return view('gudang.status_request_kasoku', compact('list_req'));
+    }
+
+    public function requestAccept(Request $request, $id)
+    {
+        DB::transaction(function () use ($request, $id) {
+            // Update status di tabel kasoku_requests
+            kasoku_request::where('id', $id)->update(['status' => 'accepted']);
+
+            // Menambahkan data baru ke tabel riwayat_barang
+            riwayat_barang::create([
+                'barang_id' => $request->barang_id,
+                'baju_id' => $request->baju_id,
+                'jumlah' => $request->qty,
+                'user_id' => $request->user_id,
+                'keterangan' => $request->desc,
+                'status' => 'accepted'
+            ]);
+        });
+
+        return redirect()->back()->with('success', 'Permintaan diterima.');
     }
 }

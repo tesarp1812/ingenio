@@ -70,7 +70,7 @@
                         </thead>
                         <tbody>
                             @foreach ($list_req as $list)
-                                @if ($list->status !== 'done' && $list->status !== 'accepted')
+                                @if ($list->status !== 'done' )
                                     <tr>
                                         <td>
                                             {{ $list->barang }}

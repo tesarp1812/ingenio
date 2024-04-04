@@ -145,8 +145,11 @@ Route::controller(GudangController::class)->middleware('auth')->group(function (
     // riwayat paket kirim
     Route::get('riwayat_paket', 'riwayatPaketKirim');
 
-    // list statut request kasoku
+    // list status request kasoku
     Route::get('gudang/kasoku/list', 'listRequest');
+    // update status & stock 
+    Route::put('/gudang/status_stock/update/{id}', 'requestAccept');
+    
 });
 
 // Route for subdomain "store.ingenio.id"

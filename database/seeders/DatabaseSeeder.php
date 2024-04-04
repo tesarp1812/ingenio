@@ -106,94 +106,94 @@ class DatabaseSeeder extends Seeder
         
 
         // Seeder untuk Baju
-        $existingCombo = [];
+        // $existingCombo = [];
 
-        for ($i = 0; $i < 5; $i++) {
-            do {
-                $jenisBaju = $faker->randomElement(['kemeja', 'kaos', 'polo', 'jaket']);
-                $ukuran = $faker->randomElement(['s', 'm', 'l', 'xl', 'xxl', 'xxxl']);
-                $combo = $jenisBaju . '-' . $ukuran;
-            } while (in_array($combo, $existingCombo));
+        // for ($i = 0; $i < 5; $i++) {
+        //     do {
+        //         $jenisBaju = $faker->randomElement(['kemeja', 'kaos', 'polo', 'jaket']);
+        //         $ukuran = $faker->randomElement(['s', 'm', 'l', 'xl', 'xxl', 'xxxl']);
+        //         $combo = $jenisBaju . '-' . $ukuran;
+        //     } while (in_array($combo, $existingCombo));
 
-            // Tambahkan kombinasi ke array existingCombo
-            $existingCombo[] = $combo;
+        //     // Tambahkan kombinasi ke array existingCombo
+        //     $existingCombo[] = $combo;
 
-            // Masukkan data ke dalam tabel 'bajus'
-            DB::table('baju')->insert([
-                'nama_barang' => $jenisBaju,
-                'ukuran' => $ukuran,
-                'created_at' => now(),
-                'updated_at' => now(),
-            ]);
-        }
+        //     // Masukkan data ke dalam tabel 'bajus'
+        //     DB::table('baju')->insert([
+        //         'nama_barang' => $jenisBaju,
+        //         'ukuran' => $ukuran,
+        //         'created_at' => now(),
+        //         'updated_at' => now(),
+        //     ]);
+        // }
 
         // Seeder untuk Buku
-        DB::table('barang')->insert([
-            'nama_barang' => 'UKMPPD',
-            'jenis' => 'buku',
-            'created_at' => now(),
-            'updated_at' => now(),
-        ]);
+        // DB::table('barang')->insert([
+        //     'nama_barang' => 'UKMPPD',
+        //     'jenis' => 'buku',
+        //     'created_at' => now(),
+        //     'updated_at' => now(),
+        // ]);
 
-        DB::table('barang')->insert([
-            'nama_barang' => 'OSCE',
-            'jenis' => 'buku',
-            'created_at' => now(),
-            'updated_at' => now(),
-        ]);
+        // DB::table('barang')->insert([
+        //     'nama_barang' => 'OSCE',
+        //     'jenis' => 'buku',
+        //     'created_at' => now(),
+        //     'updated_at' => now(),
+        // ]);
 
-        DB::table('barang')->insert([
-            'nama_barang' => 'notebook',
-            'jenis' => 'buku',
-            'created_at' => now(),
-            'updated_at' => now(),
-        ]);
+        // DB::table('barang')->insert([
+        //     'nama_barang' => 'notebook',
+        //     'jenis' => 'buku',
+        //     'created_at' => now(),
+        //     'updated_at' => now(),
+        // ]);
 
-        // Seeder untuk Merchandise
-        DB::table('barang')->insert([
-            'nama_barang' => 'payung',
-            'jenis' => 'merchandise',
-            'created_at' => now(),
-            'updated_at' => now(),
-        ]);
+        // // Seeder untuk Merchandise
+        // DB::table('barang')->insert([
+        //     'nama_barang' => 'payung',
+        //     'jenis' => 'merchandise',
+        //     'created_at' => now(),
+        //     'updated_at' => now(),
+        // ]);
 
-        DB::table('barang')->insert([
-            'nama_barang' => 'bantal',
-            'jenis' => 'merchandise',
-            'created_at' => now(),
-            'updated_at' => now(),
-        ]);
+        // DB::table('barang')->insert([
+        //     'nama_barang' => 'bantal',
+        //     'jenis' => 'merchandise',
+        //     'created_at' => now(),
+        //     'updated_at' => now(),
+        // ]);
 
 
-        //faker baju
-        for ($i = 0; $i < 50; $i++) {
-            $userKepala = DB::table('users')->inRandomOrder()->first();
-            $baju = DB::table('baju')->inRandomOrder()->first();
+        // //faker baju
+        // for ($i = 0; $i < 50; $i++) {
+        //     $userKepala = DB::table('users')->inRandomOrder()->first();
+        //     $baju = DB::table('baju')->inRandomOrder()->first();
 
-            DB::table('riwayat_barang')->insert([
-                'baju_id' => $baju->id,
-                'jumlah' => $faker->numberBetween(-10, 30),
-                'user_id' => $userKepala->id,
-                'keterangan' => $faker->randomElement(['kirim', 'masuk']),
-                'created_at' => $faker->dateTimeInInterval($startDate = '- 7 days', $interval = '+ 1 days', $timezone = null),
-                'updated_at' => now(),
-            ]);
-        }
+        //     DB::table('riwayat_barang')->insert([
+        //         'baju_id' => $baju->id,
+        //         'jumlah' => $faker->numberBetween(-10, 30),
+        //         'user_id' => $userKepala->id,
+        //         'keterangan' => $faker->randomElement(['kirim', 'masuk']),
+        //         'created_at' => $faker->dateTimeInInterval($startDate = '- 7 days', $interval = '+ 1 days', $timezone = null),
+        //         'updated_at' => now(),
+        //     ]);
+        // }
 
-        //faker barang
-        for ($i = 0; $i < 50; $i++) {
-            $userKepala = DB::table('users')->inRandomOrder()->first();
-            $barang = DB::table('barang')->inRandomOrder()->first();
+        // //faker barang
+        // for ($i = 0; $i < 50; $i++) {
+        //     $userKepala = DB::table('users')->inRandomOrder()->first();
+        //     $barang = DB::table('barang')->inRandomOrder()->first();
 
-            DB::table('riwayat_barang')->insert([
-                'barang_id' => $barang->id,
-                'jumlah' => $faker->numberBetween(-10, 30),
-                'user_id' => $userKepala->id,
-                'keterangan' => $faker->randomElement(['kirim', 'masuk']),
-                'created_at' => $faker->dateTimeInInterval($startDate = '- 7 days', $interval = '+ 1 days', $timezone = null),
-                'updated_at' => now(),
-            ]);
-        }
+        //     DB::table('riwayat_barang')->insert([
+        //         'barang_id' => $barang->id,
+        //         'jumlah' => $faker->numberBetween(-10, 30),
+        //         'user_id' => $userKepala->id,
+        //         'keterangan' => $faker->randomElement(['kirim', 'masuk']),
+        //         'created_at' => $faker->dateTimeInInterval($startDate = '- 7 days', $interval = '+ 1 days', $timezone = null),
+        //         'updated_at' => now(),
+        //     ]);
+        // }
 
         // send data activity 
         DB::table('activity_types')->insert([
@@ -231,17 +231,16 @@ class DatabaseSeeder extends Seeder
             'name' => 'Bali'
         ]);
 
-        //seeder akun zoom
        
 
-            DB::table('riwayat_barang')->insert([
-                'barang_id' => $barang->id,
-                'jumlah' => $faker->numberBetween(-10, 30),
-                'user_id' => $userKepala->id,
-                'keterangan' => $faker->randomElement(['kirim', 'masuk']),
-                'created_at' => $faker->dateTimeInInterval($startDate = '- 7 days', $interval = '+ 1 days', $timezone = null),
-                'updated_at' => now(),
-            ]);
+            // DB::table('riwayat_barang')->insert([
+            //     'barang_id' => $barang->id,
+            //     'jumlah' => $faker->numberBetween(-10, 30),
+            //     'user_id' => $userKepala->id,
+            //     'keterangan' => $faker->randomElement(['kirim', 'masuk']),
+            //     'created_at' => $faker->dateTimeInInterval($startDate = '- 7 days', $interval = '+ 1 days', $timezone = null),
+            //     'updated_at' => now(),
+            // ]);
 
             // seeder multimedia
         DB::table('status_designs')->insert([
