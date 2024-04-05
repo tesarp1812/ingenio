@@ -508,10 +508,10 @@
                         {{-- product 7 --}}
                         <div class="col-md-4 mb-3">
                             <div class="card">
-                                <img src="{{ asset('images/buku/osce/Depan Materi.png') }}"
-                                    class="card-img-top" alt="Product 7">
+                                <img src="{{ asset('images/buku/osce/Depan Materi.png') }}" class="card-img-top"
+                                    alt="Product 7">
                                 <div class="card-body">
-                                    <h5 class="card-title">Modul Checklist UKMPPD OSCE 
+                                    <h5 class="card-title">Modul Checklist UKMPPD OSCE
                                         Ingenio Indonesia
                                     </h5>
                                     <p class="card-text"></p>
@@ -520,6 +520,7 @@
                                         data-bs-target="#exampleModal7">
                                         <i class="bi bi-bag-plus-fill"> Checkout</i>
                                     </button>
+                                    <button id="showAlertButton" class="btn btn-primary">Show Alert</button>
 
                                     <!-- Modal -->
                                     <div class="modal fade" id="exampleModal7" tabindex="-1"
@@ -527,7 +528,8 @@
                                         <div class="modal-dialog">
                                             <div class="modal-content">
                                                 <div class="modal-header">
-                                                    <h1 class="modal-title fs-5" id="exampleModalLabel">Modul Checklist UKMPPD OSCE 
+                                                    <h1 class="modal-title fs-5" id="exampleModalLabel">Modul
+                                                        Checklist UKMPPD OSCE
                                                         Ingenio Indonesia</h1>
                                                     <button type="button" class="btn-close" data-bs-dismiss="modal"
                                                         aria-label="Close"></button>
@@ -587,6 +589,24 @@
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous">
+    </script>
+
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+    <script>
+        // Function to show a simple success alert
+        function showSuccessAlert() {
+            Swal.fire(
+                'Success!',
+                'Your action was successful!',
+                'success'
+            );
+        }
+
+        // Bind click event to the button to trigger the alert
+        document.getElementById('showAlertButton').addEventListener('click', function() {
+            showSuccessAlert();
+        });
     </script>
 
     <script>

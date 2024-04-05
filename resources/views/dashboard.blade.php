@@ -194,7 +194,7 @@
                                     $gudang = ['1', '3']; // superadmin, General Affair
                                     $kasoku = ['1', '5']; // superadmin, Kasoku
                                     $scheduleClass = ['1','4']; // superadmin, Tutor
-                                    $multimedia = ['1','6'];
+                                    $multimedia = ['1','4','6']; // superadmin, Tutor, Multimedia
                                 @endphp
 
                                 @if (in_array(auth()->user()->role_id, $gudang))

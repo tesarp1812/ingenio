@@ -10,6 +10,7 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
 
+
 class MultimediaController extends Controller
 {
     //
@@ -105,14 +106,14 @@ class MultimediaController extends Controller
     {
         $updateStatusDesign = respons_request_design::find($id);
 
-        dd($request->all());
+        //dd($request->all());
         $updateStatusDesign->id = $request->id;
-        $updateStatusDesign->statusDesign = $request->updateStatus;
+        $updateStatusDesign->status_id = $request->updateStatus;
         $updateStatusDesign->save();
 
-        Session::flash('process', 'Berhasil Mengubah Status Permintaan Ke Proses');
-        Session::flash('done', 'Status Permintaan Sudah Selesai');
         
-        return redirect('/multimedia');
+        return redirect('/multimedia')
+        ->with('success_process', 'Request Design Diproses')
+        ->with('success_accepted', 'Status berubah menjadi Accepted');
     }
 }

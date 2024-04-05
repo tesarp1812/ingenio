@@ -21,6 +21,8 @@
 
     {{-- boostraps icon cdn --}}
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <!-- Include SweetAlert CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
     @yield('head')
 </head>
@@ -68,7 +70,8 @@
 
                                 {{-- Menu Profile --}}
                                 <li><a class="dropdown-item" href="/profile"><i class="bi bi-box-seam"> Profile</i></a></li>
-                                <li><a class="dropdown-item" href="/dashboard"><i class="bi bi-box-seam"> Dashboard</i></a></li>
+                                <li><a class="dropdown-item" href="/dashboard"><i class="bi bi-box-seam"> Dashboard</i></a>
+                                </li>
 
 
                                 <form action="/logout" method="POST">
@@ -104,72 +107,74 @@
     </main>
 
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
-    integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous">
-</script>
+    <!-- Bootstrap Bundle JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 
-<!-- DataTables initialization script -->
-<!-- Memuat jQuery terlebih dahulu -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-<!-- Kemudian baru memuat script DataTables -->
-<script src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.min.js"></script>
-<!-- DataTables Buttons JS -->
-<script src="https://cdn.datatables.net/buttons/2.1.0/js/dataTables.buttons.min.js"></script>
-<script src="https://cdn.datatables.net/buttons/2.1.0/js/buttons.html5.min.js"></script>
-<script src="https://cdn.datatables.net/buttons/2.1.0/js/buttons.print.min.js"></script>
-{{-- sweet alert --}}
-<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <!-- jQuery -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+    <!-- DataTables -->
+    <script src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.min.js"></script>
+
+    <!-- DataTables Buttons -->
+    <script src="https://cdn.datatables.net/buttons/2.1.0/js/dataTables.buttons.min.js"></script>
+    <script src="https://cdn.datatables.net/buttons/2.1.0/js/buttons.html5.min.js"></script>
+    <script src="https://cdn.datatables.net/buttons/2.1.0/js/buttons.print.min.js"></script>
+
+    <!-- SweetAlert2 -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
 
 
-{{-- datatables --}}
-<div class="container">
-    <script>
-        $(document).ready(function() {
-            $('#myTable').DataTable({
-                dom: 'Blfrtip', // Show buttons and length menu
-                lengthMenu: [
-                    [10, 25, 50, 100, -1], // Rows per page options
-                    ['10', '25', '50', '100', 'All'] // Labels for the rows per page options
-                ],
-                buttons: [{
-                        extend: 'copy',
-                        exportOptions: {
-                            columns: ':not(.exclude-export)'
+    {{-- datatables --}}
+    <div class="container">
+        <script>
+            $(document).ready(function() {
+                $('#myTable').DataTable({
+                    dom: 'Blfrtip', // Show buttons and length menu
+                    lengthMenu: [
+                        [10, 25, 50, 100, -1], // Rows per page options
+                        ['10', '25', '50', '100', 'All'] // Labels for the rows per page options
+                    ],
+                    buttons: [{
+                            extend: 'copy',
+                            exportOptions: {
+                                columns: ':not(.exclude-export)'
+                            }
+                        },
+                        {
+                            extend: 'excel',
+                            exportOptions: {
+                                columns: ':not(.exclude-export)'
+                            }
+                        },
+                        {
+                            extend: 'csv',
+                            exportOptions: {
+                                columns: ':not(.exclude-export)'
+                            }
+                        },
+                        {
+                            extend: 'pdf',
+                            exportOptions: {
+                                columns: ':not(.exclude-export)'
+                            }
+                        },
+                        {
+                            extend: 'print',
+                            exportOptions: {
+                                columns: ':not(.exclude-export)'
+                            }
                         }
-                    },
-                    {
-                        extend: 'excel',
-                        exportOptions: {
-                            columns: ':not(.exclude-export)'
-                        }
-                    },
-                    {
-                        extend: 'csv',
-                        exportOptions: {
-                            columns: ':not(.exclude-export)'
-                        }
-                    },
-                    {
-                        extend: 'pdf',
-                        exportOptions: {
-                            columns: ':not(.exclude-export)'
-                        }
-                    },
-                    {
-                        extend: 'print',
-                        exportOptions: {
-                            columns: ':not(.exclude-export)'
-                        }
-                    }
-                ]
+                    ]
+                });
             });
-        });
-    </script>
-    @yield('table')
-</div>
-{{-- button sidebar --}}
-@yield('body')
+        </script>
+        @yield('table')
+    </div>
+
+    {{-- button sidebar --}}
+    @yield('body')
 </body>
 
 </html>
