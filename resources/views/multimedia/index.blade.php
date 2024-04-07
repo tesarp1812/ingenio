@@ -18,6 +18,14 @@
                 'success'
             );
         </script>
+    @elseif(session('error'))
+    <script>
+        Swal.fire(
+            'error!',
+            '{{ session('error') }}',
+            'error'
+        );
+    </script>
     @endif
     {{-- card dashboard login --}}
     <div class="container text-center">
@@ -30,6 +38,9 @@
                 <div class="card-body">
                     <a href="/multimedia/form_request" class="btn btn-primary"><i class="bi bi-box-seam"> Form Request
                             Design</i></a>
+                    <div>
+
+                    </div>
                 @section('table')
                     <div class="container">
                         <div class="card mt-4">
@@ -49,8 +60,8 @@
                                                 <th scope="col">Deadline</th>
                                                 <th scope="col">Whatsapp</th>
                                                 <th scope="col">Status Design</th>
-                                                <th scope="col">Aksi</th>
                                                 <th scope="col">File</th>
+                                                <th scope="col">Aksi</th>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -72,34 +83,88 @@
                                                             <td>{{ $req->whatsapp }}</td>
                                                             <td>{{ $req->status }}</td>
                                                             <td>
-                                                                {{-- Admin actions --}}
-                                                                @if ($req->status === 'pending')
-                                                                    <form
-                                                                        action="/multimedia/status/update/{{ $req->id }}"
-                                                                        method="POST">
-                                                                        @csrf
-                                                                        @method('PUT')
-                                                                        <input type="hidden" value="2"
-                                                                            name="updateStatus">
-                                                                        <button type="submit"
-                                                                            class="btn btn-primary">Proses</button>
-                                                                    </form>
-                                                                @elseif ($req->status === 'process')
-                                                                    <form
-                                                                        action="/multimedia/status/update/{{ $req->id }}"
-                                                                        method="POST">
-                                                                        @csrf
-                                                                        @method('PUT')
-                                                                        <input type="hidden" value="5"
-                                                                            name="updateStatus">
-                                                                        <button type="submit"
-                                                                            class="btn btn-primary">Accepted</button>
-                                                                    </form>
-                                                                @endif
-                                                            </td>
-                                                            <td>
                                                                 <a href="/multimedia/download/{{ $req->word_file }}"
                                                                     download>{{ $req->word_file }}</a>
+                                                            </td>
+                                                            <td>
+                                                                {{-- Admin actions --}}
+                                                                @if ($req->status === 'pending')
+                                                                    <!-- Button trigger modal -->
+                                                                    <button type="button" class="btn btn-primary"
+                                                                        data-bs-toggle="modal" data-bs-target="#processDesign">
+                                                                        Proses Design
+                                                                    </button>
+                                                                    <!-- Modal -->
+                                                                    <div class="modal fade" id="processDesign" tabindex="-1" aria-labelledby="processDesignLabel" aria-hidden="true">
+                                                                        <div class="modal-dialog">
+                                                                            <div class="modal-content">
+                                                                                <div class="modal-header">
+                                                                                    <h1 class="modal-title fs-5" id="exampleModalLabel">Proses Design</h1>
+                                                                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                                                </div>
+                                                                                <form action="/multimedia/status/update/{{ $req->id }}" method="POST">
+                                                                                    <div class="modal-body">
+                                                                                        @csrf
+                                                                                        @method('PUT')
+                                                                                        <input type="hidden" value="2" name="updateStatus">
+                                                                                        <input type="hidden" value="{{ $req->id }}" name="inputRespon">
+                                                                                        <input type="hidden" value="2" name="inputStatus">
+                                                                                        <div class="mb-3">
+                                                                                            <label for="inputuser" class="form-label">Pilih Pengguna</label>
+                                                                                            <select class="form-select" aria-label="Pilih Pengguna" name="inputUser" required>
+                                                                                                <option selected disabled>Pilih Pengguna</option>
+                                                                                                @foreach ($users as $user)
+                                                                                                    <option value="{{ $user->id }}">{{ $user->name }}</option>
+                                                                                                @endforeach
+                                                                                            </select>
+                                                                                        </div>
+                                                                                        <div class="mb-3">
+                                                                                            <label for="inputDescription" class="form-label">Deskripsi</label>
+                                                                                            <input type="text" class="form-control" id="inputDescription" name="inputDescription" required>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                    <div class="modal-footer">
+                                                                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Tutup</button>
+                                                                                        <button type="submit" class="btn btn-primary">Simpan Perubahan</button>
+                                                                                    </div>
+                                                                                </form>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                    {{-- process to accepted --}}
+                                                                @elseif ($req->status === 'process')
+                                                                    <!-- Button trigger modal -->
+                                                                    <button type="button" class="btn btn-primary"
+                                                                        data-bs-toggle="modal" data-bs-target="#processAccepted">
+                                                                        Accepted
+                                                                    </button>
+                                                                    <!-- Modal -->
+                                                                    <div class="modal fade" id="processAccepted" tabindex="-1" aria-labelledby="processAcceptedLabel" aria-hidden="true">
+                                                                        <div class="modal-dialog">
+                                                                            <div class="modal-content">
+                                                                                <div class="modal-header">
+                                                                                    <h1 class="modal-title fs-5" id="exampleModalLabel">Design Selesai</h1>
+                                                                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                                                </div>
+                                                                                <form action="/multimedia/status/update/{{ $req->id }}" method="POST">
+                                                                                    <div class="modal-body">
+                                                                                        @csrf
+                                                                                        @method('PUT')
+                                                                                        <input type="hidden" value="5" name="updateStatus">
+                                                                                        <input type="hidden" value="{{ $req->id }}" name="inputRespon">
+                                                                                        <input type="hidden" value="5" name="inputStatus">
+                                                                                        <input type="hidden" value="{{ auth()->user()->id }}" name="inputUser">
+                                                                                        <p>Apa design anda sudah selesai ?</p>
+                                                                                    </div>
+                                                                                    <div class="modal-footer">
+                                                                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Tutup</button>
+                                                                                        <button type="submit" class="btn btn-primary">Simpan Perubahan</button>
+                                                                                    </div>
+                                                                                </form>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                @endif
                                                             </td>
                                                         </tr>
                                                     @elseif (in_array(auth()->user()->role_id, $user))
@@ -115,15 +180,19 @@
                                                                 <td>{{ $req->whatsapp }}</td>
                                                                 <td>{{ $req->status }}</td>
                                                                 <td>
-                                                                     {{-- User actions --}}
-                                                                     @if ($req->status === 'accepted')
-                                                                    <div class="dropdown">
-                                                                        <button class="btn btn-primary dropdown-toggle"
-                                                                            type="button" data-bs-toggle="dropdown"
-                                                                            aria-expanded="false">
-                                                                            Design Status
-                                                                        </button>
-                                                                       
+                                                                    <a href="/multimedia/download/{{ $req->word_file }}"
+                                                                        download>{{ $req->word_file }}</a>
+                                                                </td>
+                                                                <td>
+                                                                    {{-- User actions --}}
+                                                                    @if ($req->status === 'accepted')
+                                                                        <div class="dropdown">
+                                                                            <button class="btn btn-primary dropdown-toggle"
+                                                                                type="button" data-bs-toggle="dropdown"
+                                                                                aria-expanded="false">
+                                                                                Design Status
+                                                                            </button>
+
                                                                             <ul class="dropdown-menu">
                                                                                 <li>
                                                                                     <form
@@ -149,29 +218,25 @@
                                                                                             class="btn">Revisi</button>
                                                                                     </form>
                                                                                 </li>
-                                                                            @endif
-                                                                        </ul>
-                                                                    </div>
-                                                                </td>
-                                                                <td>
-                                                                    <a href="/multimedia/download/{{ $req->word_file }}"
-                                                                        download>{{ $req->word_file }}</a>
-                                                                </td>
-                                                            </tr>
-                                                        @endif
-                                                    @endif
-                                                @endforeach
-                                            @endauth
-                                        </tbody>
-                                    </table>
-                                </div>
+                                                                    @endif
+                                                                    </ul>
+                                    </div>
+                                    </td>
+                                    </tr>
+                                    @endif
+                                    @endif
+                                    @endforeach
+                                @endauth
+                                </tbody>
+                                </table>
                             </div>
                         </div>
                     </div>
-                @endsection
-            </div>
+                </div>
+            @endsection
         </div>
     </div>
+</div>
 </div>
 @endsection
 @endsection

@@ -38,8 +38,15 @@ class MultimediaController extends Controller
             ->leftJoin('type_designs as parent_type', 'type_designs.parent_type_id', '=', 'parent_type.id')
             ->get();
 
+        $users = User::select('users.id', 'users.name')
+            ->join('roles', 'roles.id', '=', 'users.role_id')
+            ->where('roles', '=', 'Multimedia')
+            ->get();
+
+        //dd($user);
+
         //dd($requests);
-        return view('multimedia.index', compact('requests'));
+        return view('multimedia.index', compact('requests', 'users'));
     }
 
     public function downloadFile($filename)
@@ -101,19 +108,31 @@ class MultimediaController extends Controller
         ]);
     }
 
-    
-    public function updateStatusDesign(Request $request, $id)
-    {
-        $updateStatusDesign = respons_request_design::find($id);
+public function updateStatusDesign(Request $request, $id)
+{
+    try {
+        DB::beginTransaction();
 
-        //dd($request->all());
-        $updateStatusDesign->id = $request->id;
+        $updateStatusDesign = respons_request_design::find($id);
         $updateStatusDesign->status_id = $request->updateStatus;
         $updateStatusDesign->save();
 
-        
+        history_design::create([
+            'respons_id' => $request->inputRespon,
+            'user_id' => $request->inputUser,
+            'description' => $request->inputDescription,
+            'status_id' => $request->inputStatus
+        ]);
+
+        DB::commit();
+
         return redirect('/multimedia')
-        ->with('success_process', 'Request Design Diproses')
-        ->with('success_accepted', 'Status berubah menjadi Accepted');
+            ->with('success_process', 'Request Design Diproses')
+            ->with('success_accepted', 'Status berubah menjadi Accepted');
+    } catch (\Exception $e) {
+        DB::rollBack();
+        return redirect()->back()->with('error', 'Gagal memproses request design: ' . $e->getMessage());
     }
+}
+
 }

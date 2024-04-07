@@ -8,6 +8,7 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
 use PhpParser\Node\Expr\FuncCall;
+use App\Models\role;
 
 class User extends Authenticatable
 {

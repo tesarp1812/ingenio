@@ -33,25 +33,25 @@ class DatabaseSeeder extends Seeder
             'id' => '1',
             'roles' => 'Super Admin',
         ]);
-
         DB::table('roles')->insert([
             'id' => '2',
             'roles' => 'Admin',
         ]);
-
         DB::table('roles')->insert([
             'id' => '3',
             'roles' => 'General Affair',
         ]);
-
         DB::table('roles')->insert([
             'id' => '4',
             'roles' => 'Tutor',
         ]);
-
         DB::table('roles')->insert([
             'id' => '5',
             'roles' => 'Kasoku',
+        ]);
+        DB::table('roles')->insert([
+            'id' => '6',
+            'roles' => 'Multimedia',
         ]);
 
         // super admin
@@ -98,6 +98,38 @@ class DatabaseSeeder extends Seeder
             'password' => bcrypt('12345'),
             'role_id' => '3',
             'remember_token' => Str::random(10),
+            'email_verified_at' => now(),
+            'created_at' => now(),
+            'updated_at' => now(),
+        ]);
+
+        DB::table('users')->insert([
+            'name' => 'tutor',
+            'email' => 'tutor@ingenioindonesia.co.id',
+            'password' => Hash::make('12345'), 
+            'role_id' => '4',
+            'remember_token' => Str::random(10), 
+            'email_verified_at' => now(),
+            'created_at' => now(),
+            'updated_at' => now(),
+        ]);
+
+        DB::table('users')->insert([
+            'name' => 'Pandu',
+            'email' => 'pandu@ingenioindonesia.co.id',
+            'password' => Hash::make('12345'), 
+            'role_id' => '6',
+            'remember_token' => Str::random(10), 
+            'email_verified_at' => now(),
+            'created_at' => now(),
+            'updated_at' => now(),
+        ]);
+        DB::table('users')->insert([
+            'name' => 'Yusuf',
+            'email' => 'yusuf@ingenioindonesia.co.id',
+            'password' => Hash::make('12345'), 
+            'role_id' => '6',
+            'remember_token' => Str::random(10), 
             'email_verified_at' => now(),
             'created_at' => now(),
             'updated_at' => now(),

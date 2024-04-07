@@ -15,20 +15,20 @@ class UserSeeder extends Seeder
     public function run(): void
     {
         // Tambahkan data pengguna ke dalam tabel users
-        DB::table('users')->insert([
-            'name' => 'tutor',
-            'email' => 'tutor@ingenioindonesia.co.id',
-            'password' => Hash::make('12345'), 
-            'role_id' => '4',
-            'remember_token' => Str::random(10), 
-            'email_verified_at' => now(),
-            'created_at' => now(),
-            'updated_at' => now(),
-        ]);
+        // DB::table('users')->insert([
+        //     'name' => 'tutor',
+        //     'email' => 'tutor@ingenioindonesia.co.id',
+        //     'password' => Hash::make('12345'), 
+        //     'role_id' => '4',
+        //     'remember_token' => Str::random(10), 
+        //     'email_verified_at' => now(),
+        //     'created_at' => now(),
+        //     'updated_at' => now(),
+        // ]);
 
         DB::table('users')->insert([
-            'name' => 'Pandu',
-            'email' => 'Pandu@ingenioindonesia.co.id',
+            'name' => 'Yusuf',
+            'email' => 'Yusuf@ingenioindonesia.co.id',
             'password' => Hash::make('12345'), 
             'role_id' => '6',
             'remember_token' => Str::random(10), 
