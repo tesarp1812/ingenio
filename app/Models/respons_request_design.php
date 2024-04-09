@@ -24,6 +24,11 @@ class respons_request_design extends Model
         return $this->belongsTo(type_design::class);
     }
 
+    public function historyDesign()
+    {
+        return $this->hasMany(history_design::class);
+    }
+
     protected $fillable = [
         'user_id',
         'type_design_id',

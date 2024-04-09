@@ -72,7 +72,7 @@ Route::controller(ScheduleController::class)->group(function () {
 
 
 // Kasoku controller
-Route::controller(KasokuController::class)->group(function () {
+Route::controller(KasokuController::class)->middleware('auth')->group(function () {
     Route::get('/kasoku', 'index');
     Route::get('/kasoku/request', 'request');
     Route::post('/input_request_kasoku', 'inputRequest');
@@ -88,7 +88,7 @@ Route::controller(KasokuController::class)->group(function () {
 });
 
 // multimedia apps
-Route::controller(MultimediaController::class)->group(function () {
+Route::controller(MultimediaController::class)->middleware('auth')->group(function () {
     Route::get('/multimedia', 'index');
     Route::get('/multimedia/form_request', 'responDesign');
     Route::post('/multimedia/form_request/input', 'inputResponsDesign');
@@ -98,6 +98,9 @@ Route::controller(MultimediaController::class)->group(function () {
 
     // update status design
     Route::put('/multimedia/status/update/{id}', 'updateStatusDesign');
+
+    // Task design
+    Route::get('/multimedia/task', 'taskDesign');
 });
 
 Route::controller(GudangController::class)->middleware('auth')->group(function () {

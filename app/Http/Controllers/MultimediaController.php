@@ -36,7 +36,8 @@ class MultimediaController extends Controller
             ->join('status_designs', 'status_designs.id', '=', 'respons_request_designs.status_id')
             ->join('type_designs', 'type_designs.id', '=', 'respons_request_designs.type_design_id')
             ->leftJoin('type_designs as parent_type', 'type_designs.parent_type_id', '=', 'parent_type.id')
-            ->get();
+            ->orderBy('respons_request_designs.is_cito')
+            ->paginate(10);
 
         $users = User::select('users.id', 'users.name')
             ->join('roles', 'roles.id', '=', 'users.role_id')
@@ -108,31 +109,55 @@ class MultimediaController extends Controller
         ]);
     }
 
-public function updateStatusDesign(Request $request, $id)
-{
-    try {
-        DB::beginTransaction();
+    public function updateStatusDesign(Request $request, $id)
+    {
+        try {
+            DB::beginTransaction();
 
-        $updateStatusDesign = respons_request_design::find($id);
-        $updateStatusDesign->status_id = $request->updateStatus;
-        $updateStatusDesign->save();
+            $updateStatusDesign = respons_request_design::find($id);
+            $updateStatusDesign->status_id = $request->updateStatus;
+            $updateStatusDesign->save();
 
-        history_design::create([
-            'respons_id' => $request->inputRespon,
-            'user_id' => $request->inputUser,
-            'description' => $request->inputDescription,
-            'status_id' => $request->inputStatus
-        ]);
+            history_design::create([
+                'respons_id' => $request->inputRespon,
+                'user_id' => $request->inputUser,
+                'description' => $request->inputDescription,
+                'status_id' => $request->inputStatus
+            ]);
 
-        DB::commit();
+            DB::commit();
 
-        return redirect('/multimedia')
-            ->with('success_process', 'Request Design Diproses')
-            ->with('success_accepted', 'Status berubah menjadi Accepted');
-    } catch (\Exception $e) {
-        DB::rollBack();
-        return redirect()->back()->with('error', 'Gagal memproses request design: ' . $e->getMessage());
+            return redirect('/multimedia')
+                ->with('success_process', 'Request Design Diproses')
+                ->with('success_accepted', 'Status berubah menjadi Accepted');
+        } catch (\Exception $e) {
+            DB::rollBack();
+            return redirect()->back()->with('error', 'Gagal memproses request design: ' . $e->getMessage());
+        }
     }
-}
 
+    public function taskDesign()
+    {
+        $taskDesign = DB::table('history_designs')
+            ->select(
+                'users.name as user_name',
+                'parent_type.type as type1',
+                'type_designs.type as type2',
+                'respons_request_designs.size',
+                'respons_request_designs.duration',
+                'respons_request_designs.deadline',
+                'respons_request_designs.whatsapp',
+                'respons_request_designs.word_file',
+                'status_designs.name as status',
+            )
+            ->join('respons_request_designs', 'respons_request_designs.id', '=', 'history_designs.respons_id')
+            ->join('users', 'users.id', '=', 'history_designs.user_id')
+            ->join('status_designs', 'status_designs.id', '=', 'history_designs.status_id')
+            ->leftJoin('type_designs', 'type_designs.id', '=', 'respons_request_designs.type_design_id')
+            ->leftJoin('type_designs as parent_type', 'type_designs.parent_type_id', '=', 'parent_type.id')
+            ->get();
+
+        //dd($taskDesign);
+        return view('multimedia.task_design', compact('taskDesign'));
+    }
 }

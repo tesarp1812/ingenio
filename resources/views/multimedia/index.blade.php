@@ -38,9 +38,16 @@
                 <div class="card-body">
                     <a href="/multimedia/form_request" class="btn btn-primary"><i class="bi bi-box-seam"> Form Request
                             Design</i></a>
-                    <div>
-
-                    </div>
+                    @auth
+                    @php
+                        $multimedia = ['1', '6'];
+                    @endphp
+                    @if (in_array(auth()->user()->role_id, $multimedia))
+                    <a href="/multimedia/task" class="btn btn-primary"><i class="bi bi-box-seam"> Task Design</i></a>
+                    @endif
+                    @endauth
+                <div>
+                </div>
                 @section('table')
                     <div class="container">
                         <div class="card mt-4">
@@ -49,7 +56,7 @@
                             </div>
                             <div class="card-body">
                                 <div class="text-center mt-3">
-                                    <table id="myTable" class="table table-striped table-bordered">
+                                    <table id="" class="table table-striped table-bordered">
                                         <thead>
                                             <tr>
                                                 <th scope="col">Nama Pemesan</th>
@@ -78,7 +85,12 @@
                                                             <td>{{ $req->type1 }} - {{ $req->type2 }}</td>
                                                             <td>{{ $req->size }}</td>
                                                             <td>{{ $req->duration }}</td>
-                                                            <td>{{ $req->description }}</td>
+                                                            <td>
+                                                                {{ $req->description }}
+                                                                @if($req->is_cito === "true")
+                                                                <span class="badge badge-success">Cito</span>
+                                                                @endif
+                                                            </td>
                                                             <td>{{ $req->deadline }}</td>
                                                             <td>{{ $req->whatsapp }}</td>
                                                             <td>{{ $req->status }}</td>
@@ -153,6 +165,7 @@
                                                                                         <input type="hidden" value="5" name="updateStatus">
                                                                                         <input type="hidden" value="{{ $req->id }}" name="inputRespon">
                                                                                         <input type="hidden" value="5" name="inputStatus">
+                                                                                        <input type="hidden" name="inputDescription" value="Diselesaikan oleh {{ auth()->user()->id }}">
                                                                                         <input type="hidden" value="{{ auth()->user()->id }}" name="inputUser">
                                                                                         <p>Apa design anda sudah selesai ?</p>
                                                                                     </div>
