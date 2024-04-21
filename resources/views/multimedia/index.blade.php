@@ -119,11 +119,12 @@
                                                                                         @csrf
                                                                                         @method('PUT')
                                                                                         <input type="hidden" value="2" name="updateStatus">
+                                                                                        {{-- input to history_design --}}
                                                                                         <input type="hidden" value="{{ $req->id }}" name="inputRespon">
                                                                                         <input type="hidden" value="2" name="inputStatus">
                                                                                         <div class="mb-3">
                                                                                             <label for="inputuser" class="form-label">Pilih Pengguna</label>
-                                                                                            <select class="form-select" aria-label="Pilih Pengguna" name="inputUser" required>
+                                                                                            <select class="form-select" aria-label="Pilih Pengguna" name="inputUser" onchange="copyUser()" required>
                                                                                                 <option selected disabled>Pilih Pengguna</option>
                                                                                                 @foreach ($users as $user)
                                                                                                     <option value="{{ $user->id }}">{{ $user->name }}</option>
@@ -134,6 +135,9 @@
                                                                                             <label for="inputDescription" class="form-label">Deskripsi</label>
                                                                                             <input type="text" class="form-control" id="inputDescription" name="inputDescription" required>
                                                                                         </div>
+                                                                                        {{-- input to task_design --}}
+                                                                                        <input type="hidden" value="{{ $req->id }}" name="inputTaskRespon">
+                                                                                        <input type="hidden" id="inputTaskUser" name="inputTaskUser">
                                                                                     </div>
                                                                                     <div class="modal-footer">
                                                                                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Tutup</button>
@@ -251,5 +255,12 @@
     </div>
 </div>
 </div>
+
+<script>
+    function copyUser() {
+        var selectedUserId = document.querySelector('select[name="inputUser"]').value;
+        document.getElementById('inputTaskUser').value = selectedUserId;
+    }
+</script>
 @endsection
 @endsection

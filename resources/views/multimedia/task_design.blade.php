@@ -9,7 +9,7 @@
                         style="max-width: 250px;">
                 </div>
                 <div class="card-body">
-                    <a href="/multimedia/form_request" class="btn btn-primary"><i class="bi bi-box-seam"> Form Request
+                    <a href="/multimedia/form_taskuest" class="btn btn-primary"><i class="bi bi-box-seam"> Form taskuest
                             Design</i></a>
                     <a href="/multimedia" class="btn btn-primary"><i class="bi bi-box-seam"> List Design</i></a>
                     <div>
@@ -49,39 +49,38 @@
                                                     <td>{{ $task->status }}</td>
                                                     <td>
                                                         <!-- Button trigger modal -->
-                                                        <button type="button" class="btn btn-primary"1
-                                                            data-bs-toggle="modal" data-bs-target="#statusProcess">
-                                                            Selesai
-                                                        </button>
-
-                                                        <!-- Modal -->
-                                                        <div class="modal fade" id="statusProcess" tabindex="-1"
-                                                            aria-labelledby="statusProcessLabel" aria-hidden="true">
-                                                            <div class="modal-dialog">
-                                                                <div class="modal-content">
-                                                                    <div class="modal-header">
-                                                                        <h1 class="modal-title fs-5" id="statusProcessLabel">
-                                                                            Status Proses</h1>
-                                                                        <button type="button" class="btn-close"
-                                                                            data-bs-dismiss="modal"
-                                                                            aria-label="Close"></button>
-                                                                    </div>
+                                                        <button type="button" class="btn btn-primary"
+                                                        data-bs-toggle="modal" data-bs-target="#processAccepted">
+                                                        Selesai
+                                                    </button>
+                                                    <!-- Modal -->
+                                                    <div class="modal fade" id="processAccepted" tabindex="-1" aria-labelledby="processAcceptedLabel" aria-hidden="true">
+                                                        <div class="modal-dialog">
+                                                            <div class="modal-content">
+                                                                <div class="modal-header">
+                                                                    <h1 class="modal-title fs-5" id="exampleModalLabel">Apa Design Sudah Selesai ?</h1>
+                                                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                                </div>
+                                                                <form action="/multimedia/status/update/{{ $task->respons_id }}" method="POST">
                                                                     <div class="modal-body">
-                                                                        Apakah Design sudah selesai ? jika sudah upload link design dibawah ini !
-                                                                        <div class="mb-3">
-                                                                            {{-- <label for="" class="form-label">Upload Link design</label> --}}
-                                                                            <input type="text" class="form-control" name="">
-                                                                        </div>
+                                                                        @csrf
+                                                                        @method('PUT')
+                                                                        <input type="hidden" value="5" name="updateStatus">
+                                                                        <input type="hidden" value="{{ $task->respons_id }}" name="inputRespon">
+                                                                        <input type="hidden" value="5" name="inputStatus">
+                                                                        <input type="hidden" name="inputDescription" value="Diselesaikan oleh {{ auth()->user()->id }}">
+                                                                        <input type="hidden" value="{{ auth()->user()->id }}" name="inputUser">
+                                                                        <p>Link Design</p>
+                                                                        <input type="text" class="form-control" required>
                                                                     </div>
                                                                     <div class="modal-footer">
-                                                                        <button type="button" class="btn btn-secondary"
-                                                                            data-bs-dismiss="modal">Close</button>
-                                                                        <button type="button" class="btn btn-primary">Save
-                                                                            changes</button>
+                                                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Tutup</button>
+                                                                        <button type="submit" class="btn btn-primary">Simpan Perubahan</button>
                                                                     </div>
-                                                                </div>
+                                                                </form>
                                                             </div>
                                                         </div>
+                                                    </div>
                                                     </td>
                                                 </tr>
                                             @endif
@@ -154,7 +153,6 @@
                                                         </div>
                                                     </div>
                                                 </td>
-                                                <td></td>
                                             </tr>
                                         @endif
                                     @endforeach
