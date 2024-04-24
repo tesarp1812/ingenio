@@ -101,6 +101,7 @@ Route::controller(MultimediaController::class)->middleware('auth')->group(functi
 
     // Task design
     Route::get('/multimedia/task', 'taskDesign');
+    Route::put('/multimedia/task/update/{id}', 'updateTaskDesign');
 });
 
 Route::controller(GudangController::class)->middleware('auth')->group(function () {

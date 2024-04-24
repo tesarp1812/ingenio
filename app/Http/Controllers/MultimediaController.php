@@ -128,7 +128,7 @@ class MultimediaController extends Controller
                 'status_id' => $request->inputStatus
             ]);
 
-          dd($request->all());
+          //dd($request->all());
 
             task_design::create([
                 'respons_id' => $request->inputTaskRespon,
@@ -193,10 +193,10 @@ class MultimediaController extends Controller
             DB::commit();
 
             return redirect('/multimedia/task')
-                ->with('success_accepted', 'Status berubah menjadi Accepted');
+                ->with('success_accepted', 'Desain Sudah Diselesikan');
         } catch (\Exception $e) {
             DB::rollBack();
-            return redirect()->back()->with('error', 'Gagal memproses request design: ' . $e->getMessage());
+            return redirect()->back()->with('error', 'Gagal memproses status design: ' . $e->getMessage());
         }
     }
 }

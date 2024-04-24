@@ -1,5 +1,6 @@
 @extends('layout')
 
+@section('body')
 @section('main')
     <div class="container text-center">
         <div class="w-100 p-3">
@@ -52,7 +53,7 @@
                                                         <button type="button" class="btn btn-primary"
                                                         data-bs-toggle="modal" data-bs-target="#processAccepted">
                                                         Selesai
-                                                    </button>
+                                                        </button>
                                                     <!-- Modal -->
                                                     <div class="modal fade" id="processAccepted" tabindex="-1" aria-labelledby="processAcceptedLabel" aria-hidden="true">
                                                         <div class="modal-dialog">
@@ -61,17 +62,18 @@
                                                                     <h1 class="modal-title fs-5" id="exampleModalLabel">Apa Design Sudah Selesai ?</h1>
                                                                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                                                 </div>
-                                                                <form action="/multimedia/status/update/{{ $task->respons_id }}" method="POST">
+                                                                <form action="/multimedia/task/update/{{ $task->respons_id }}" method="POST" >
                                                                     <div class="modal-body">
                                                                         @csrf
                                                                         @method('PUT')
                                                                         <input type="hidden" value="5" name="updateStatus">
+                                                                        {{-- input history --}}
                                                                         <input type="hidden" value="{{ $task->respons_id }}" name="inputRespon">
                                                                         <input type="hidden" value="5" name="inputStatus">
-                                                                        <input type="hidden" name="inputDescription" value="Diselesaikan oleh {{ auth()->user()->id }}">
                                                                         <input type="hidden" value="{{ auth()->user()->id }}" name="inputUser">
                                                                         <p>Link Design</p>
-                                                                        <input type="text" class="form-control" required>
+                                                                        <input type="hidden" id="hiddenDescription" name="inputDescription" value="Diselesaikan oleh {{ auth()->user()->name }}">
+                                                                        <input type="text" id="visibleDescription" class="form-control" required>
                                                                     </div>
                                                                     <div class="modal-footer">
                                                                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Tutup</button>
@@ -162,6 +164,16 @@
                         </div>
                     </div>
                 </div>
+            </div>
+            <script>
+                function combineInputs() {
+                    var hiddenValue = document.getElementById("hiddenDescription").value;
+                    var visibleValue = document.getElementById("visibleDescription").value;
+                    document.getElementById("hiddenDescription").value = hiddenValue + ", " + "link design :" +  visibleValue;
+                }
+            </script>
             @endsection
-        </div>
+            
     @endsection
+
+@endsection

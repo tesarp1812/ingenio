@@ -195,56 +195,83 @@
                                                                 <td>{{ $req->description }}</td>
                                                                 <td>{{ $req->deadline }}</td>
                                                                 <td>{{ $req->whatsapp }}</td>
-                                                                <td>{{ $req->status }}</td>
+                                                                <td>
+                                                                    @if ($req->status === "accepted")
+                                                                        Selesai
+                                                                    @elseif ($req->status === "revision")
+                                                                        Revisi
+                                                                    @endif
+                                                                </td>
                                                                 <td>
                                                                     <a href="/multimedia/download/{{ $req->word_file }}"
                                                                         download>{{ $req->word_file }}</a>
                                                                 </td>
                                                                 <td>
-                                                                    {{-- User actions --}}
-                                                                    @if ($req->status === 'accepted')
-                                                                        <div class="dropdown">
-                                                                            <button class="btn btn-primary dropdown-toggle"
-                                                                                type="button" data-bs-toggle="dropdown"
-                                                                                aria-expanded="false">
-                                                                                Design Status
+                                                                    <div class="dropdown">
+                                                                        <button class="btn btn-primary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                                                          Status Design
+                                                                        </button>
+                                                                        <ul class="dropdown-menu">
+                                                                          <li>
+                                                                            <!-- Button trigger Modal selesai -->
+                                                                            <button type="button" class="dropdown-item" data-bs-toggle="modal" data-bs-target="#statusSelesai">
+                                                                                Selesai
                                                                             </button>
-
-                                                                            <ul class="dropdown-menu">
-                                                                                <li>
-                                                                                    <form
-                                                                                        action="/multimedia/status/update/{{ $req->id }}"
-                                                                                        method="POST">
-                                                                                        @csrf
-                                                                                        @method('PUT')
-                                                                                        <input type="text" value="5"
-                                                                                            name="updateStatus" hidden>
-                                                                                        <button type="submit"
-                                                                                            class="btn">Diterima</button>
-                                                                                    </form>
-                                                                                </li>
-                                                                                <li>
-                                                                                    <form
-                                                                                        action="/multimedia/status/update/{{ $req->id }}"
-                                                                                        method="POST">
-                                                                                        @csrf
-                                                                                        @method('PUT')
-                                                                                        <input type="text" value="4"
-                                                                                            name="updateStatus" hidden>
-                                                                                        <button type="submit"
-                                                                                            class="btn">Revisi</button>
-                                                                                    </form>
-                                                                                </li>
-                                                                    @endif
-                                                                    </ul>
-                                    </div>
-                                    </td>
-                                    </tr>
-                                    @endif
-                                    @endif
-                                    @endforeach
-                                @endauth
-                                </tbody>
+                                                                          </li>
+                                                                          <li>
+                                                                        <button type="button" class="dropdown-item" data-bs-toggle="modal" data-bs-target="#statusRevisi">
+                                                                                Revisi
+                                                                            </button>
+                                                                          </li>
+                                                                        </ul>
+                                                                      </div>
+                                                                      <!-- Modal selesai -->
+                                                                      <div class="modal fade" id="statusSelesai" tabindex="-1" aria-labelledby="statusSelesaiLabel" aria-hidden="true">
+                                                                        <div class="modal-dialog">
+                                                                        <div class="modal-content">
+                                                                            <div class="modal-header">
+                                                                            <form action="" method="POST">
+                                                                                @csrf
+                                                                                @method('PUT')
+                                                                            </form>
+                                                                            <h1 class="modal-title fs-5" id="statusSelesaiLabel">Status Selesai</h1>
+                                                                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                                            </div>
+                                                                            <div class="modal-body">
+                                                                            Apa anda yakin ingin menyelesaikan design ini ?
+                                                                            </div>
+                                                                            <div class="modal-footer">
+                                                                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Tutup</button>
+                                                                            <button type="button" class="btn btn-primary">Simpen Perubahan</button>
+                                                                            </div>
+                                                                        </div>
+                                                                        </div>
+                                                                    </div>
+                                                                    <!-- Modal Revisi -->
+                                                                <div class="modal fade" id="statusRevisi" tabindex="-1" aria-labelledby="statusRLabel" aria-hidden="true">
+                                                                        <div class="modal-dialog">
+                                                                        <div class="modal-content">
+                                                                            <div class="modal-header">
+                                                                        <h1 class="modal-title fs-5" id="statusRevisiLabel">Status Revisi</h1>
+                                                                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                                            </div>
+                                                                            <div class="modal-body">
+                                                                                Apa anda yakin design ini direvisi ?
+                                                                            </div>
+                                                                            <div class="modal-footer">
+                                                                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                                                            <button type="button" class="btn btn-primary">Save changes</button>
+                                                                            </div>
+                                                                        </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </td>
+                                                            </tr>
+                                                        @endif
+                                                    @endif
+                                                @endforeach
+                                            @endauth
+                                        </tbody>
                                 </table>
                             </div>
                         </div>
