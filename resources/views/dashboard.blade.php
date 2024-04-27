@@ -175,10 +175,15 @@
                                                         Profile</i></a>
                                             </span></li>
 
-                                            <li class="mb-2 mb-xl-3 display-28"><span
-                                                class="display-26 text-secondary me-2 font-weight-600">
-                                                <a href="/password" class="btn btn-primary"><i class="bi bi-box-seam"> Ganti Password</i></a>
-                                            </span></li>
+                                        <li class="mb-2 mb-xl-3 display-28"><span
+                                             class="display-26 text-secondary me-2 font-weight-600">
+                                            <a href="/password" class="btn btn-primary"><i class="bi bi-box-seam"> Ganti Password</i></a>
+                                        </span></li>
+
+                                        <li class="mb-2 mb-xl-3 display-28"><span
+                                            class="display-26 text-secondary me-2 font-weight-600">
+                                           <a href="/present" class="btn btn-primary"><i class="bi bi-box-seam"> Absensi Online</i></a>
+                                       </span></li>
                                     </ul>
                                 </div>
                             </div>
@@ -212,6 +217,8 @@
                                 @if (in_array(auth()->user()->role_id, $multimedia))
                                     <a href="/multimedia" class="btn btn-primary btn-lg"><i class="bi bi-box-seam"> Multimedia</i></a>
                                 @endif
+
+                                <a href="/dialy-task" class="btn btn-primary btn-lg"><i class="bi bi-box-seam">Task Harian</i></a>
                             @endauth
                         </div>
                     </div>

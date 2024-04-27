@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\GudangController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\HumanResourseController;
 use App\Http\Controllers\KasokuController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\MultimediaController;
@@ -102,6 +103,10 @@ Route::controller(MultimediaController::class)->middleware('auth')->group(functi
     // Task design
     Route::get('/multimedia/task', 'taskDesign');
     Route::put('/multimedia/task/update/{id}', 'updateTaskDesign');
+});
+
+Route::controller(HumanResourseController::class)->group(function(){
+    Route::get('/present', 'present');
 });
 
 Route::controller(GudangController::class)->middleware('auth')->group(function () {
