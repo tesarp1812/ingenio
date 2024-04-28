@@ -107,6 +107,7 @@ Route::controller(MultimediaController::class)->middleware('auth')->group(functi
 
 Route::controller(HumanResourseController::class)->group(function(){
     Route::get('/present', 'present');
+    Route::post('/clock-sign', 'clocklog');
 });
 
 Route::controller(GudangController::class)->middleware('auth')->group(function () {
