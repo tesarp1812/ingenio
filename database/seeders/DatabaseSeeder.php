@@ -53,6 +53,14 @@ class DatabaseSeeder extends Seeder
             'id' => '6',
             'roles' => 'Multimedia',
         ]);
+        DB::table('roles')->insert([
+            'id' => '7',
+            'roles' => 'Keuangan',
+        ]);
+        DB::table('roles')->insert([
+            'id' => '8',
+            'roles' => 'Official',
+        ]);
 
         // super admin
         DB::table('users')->insert([
