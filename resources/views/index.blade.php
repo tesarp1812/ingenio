@@ -7,24 +7,24 @@
 @section('main')
     {{-- carousel --}}
     <div class="myCarousel">
-        <div id="carouselExampleAutoplaying" class="carousel slide" data-bs-ride="carousel">
+        <div id="carouselAutoplaying" class="carousel slide" data-bs-ride="carousel">
             <div class="carousel-inner">
                 <div class="carousel-item active">
-                    <img src="{{ asset('images/OP CLASS UKMPPD BATCH 2 2024.png') }}" class="d-block w-100" alt="">
-                </div>
-                <div class="carousel-item">
                     <img src="{{ asset('images/OP CLASS UKMPPD BATCH 3 2024.png') }}" class="d-block w-100" alt="">
                 </div>
                 <div class="carousel-item">
                     <img src="{{ asset('images/OP CLASS UKMPPD BATCH 4 2024.png') }}" class="d-block w-100" alt="">
                 </div>
+                <div class="carousel-item">
+                    <img src="{{ asset('images/OP CLASS UKMPPD BATCH 1 2025.png') }}" class="d-block w-100" alt="">
+                </div>
             </div>
-            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleAutoplaying"
+            <button class="carousel-control-prev" type="button" data-bs-target="#carouselAutoplaying"
                 data-bs-slide="prev">
                 <span class="carousel-control-prev-icon" aria-hidden="true"></span>
                 <span class="visually-hidden">Previous</span>
             </button>
-            <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleAutoplaying"
+            <button class="carousel-control-next" type="button" data-bs-target="#carouselAutoplaying"
                 data-bs-slide="next">
                 <span class="carousel-control-next-icon" aria-hidden="true"></span>
                 <span class="visually-hidden">Next</span>

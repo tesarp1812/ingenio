@@ -39,7 +39,7 @@ class HumanResourseController extends Controller
         return redirect('dashboard');
     }
 
-    public function checklog()
+    public function index()
     {
         $checklog = DB::table('check_logs')
         ->select(
@@ -49,7 +49,35 @@ class HumanResourseController extends Controller
         )
         ->leftJoin('users', 'users.id', '=', 'check_logs.user_id')
         ->get();
-        //dd($checklog);
-        return view('hr.checklog', compact('checklog'));
+
+        $dialyTask = DB::table('task_works')
+        ->select(
+            'users.name',
+            'task_works.id',
+            'task_works.task',
+            'task_works.created_at'
+            )
+        ->leftJoin('users', 'users.id', '=', 'task_works.user_id')
+        ->get();
+        //dd($dialyTask);
+        return view('hr.dashboard', compact('checklog', 'dialyTask'));
+    }
+
+    public function taskById($id)
+    {
+
+        $dialyTask = DB::table('task_works')
+        ->select(
+            'users.name',
+            'task_works.id',
+            'task_works.task',
+            'task_works.created_at'
+            )
+        ->leftJoin('users', 'users.id', '=', 'task_works.user_id')
+        ->where('task_works.id', $id)
+        ->get();
+
+        //dd($dialyTask);
+        return view('hr.task', compact(' dialyTask'));
     }
 }

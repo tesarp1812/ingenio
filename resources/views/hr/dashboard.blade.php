@@ -20,7 +20,7 @@
     <div class="container">
         <div class="card mt-4">
             <div class="card-header">
-                Stock Kasoku
+                Checklog
             </div>
             <div class="card-body">
                 <div class="text-center mt-3">
@@ -38,6 +38,35 @@
                             <td>{{$log->name}}</td>
                             <td>{{$log->sign}}</td>
                             <td>{{$log->created_at}}</td>
+                           </tr>
+                           @endforeach
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container">
+        <div class="card mt-4">
+            <div class="card-header">
+                Laporan Harian 
+            </div>
+            <div class="card-body">
+                <div class="text-center mt-3">
+                    <table id="myTable" class="table table-striped table-bordered">
+                        <thead>
+                            <tr>
+                                <th>Nama</th>
+                                <th>Laporan</th>
+                                <th>Time</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                           @foreach ($dialyTask as $task)
+                           <tr>
+                            <td><a href="/human-resourse/task/{{$task->id}}">{{$task->name}}</a></td>
+                            <td>{{$task->task}}</td>
+                            <td>{{$task->created_at}}</td>
                            </tr>
                            @endforeach
                         </tbody>

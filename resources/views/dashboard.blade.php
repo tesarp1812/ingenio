@@ -254,12 +254,65 @@
                         <div class="container">
                             @auth
                                 @php
+                                    $admin = ['1','2']; // superadmin, admin
                                     $gudang = ['1', '3']; // superadmin, General Affair
                                     $kasoku = ['1', '5']; // superadmin, Kasoku
                                     $scheduleClass = ['1', '4']; // superadmin, Tutor
                                     $multimedia = ['1', '4', '6']; // superadmin, Tutor, Multimedia
                                     $hr = ['1']; // superadmin, 
-                                @endphp
+                                    @endphp                                 
+
+                                @if (in_array(auth()->user()->role_id, $gudang))
+                                    <!-- Button trigger modal -->
+                                    <button type="button" class="btn btn-primary btn-lg" data-bs-toggle="modal" data-bs-target="#addUser">
+                                        Tambah User
+                                    </button>
+  
+                                    <!-- Modal -->
+                                    <div class="modal fade" id="addUser" tabindex="-1" aria-labelledby="addUserLabel" aria-hidden="true">
+                                                                        <div class="modal-dialog">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                            <h1 class="modal-title fs-5" id="addUserLabel">Tambah User</h1>
+                                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                            </div>
+                                            <div class="modal-body">
+                                            <form action="/user-add" method="POST">
+                                                @csrf
+                                                <div class="mb-3">
+                                                    <label class="form-label">Nama</label>
+                                                    <input class="form-control" type="text" aria-label="default input example" name="inputName">
+                                                </div>
+                                                <div class="mb-3">
+                                                    <label class="form-label">Email</label>
+                                                    <input class="form-control" type="text" aria-label="default input example" name="inputEmail">
+                                                </div>
+                                                <div class="mb-3">
+                                                    <label class="form-label">Role</label>
+                                                    <select class="form-select" aria-label="Default select example" name="inputRole">
+                                                        <option selected disabled>pilih User</option>
+                                                        @foreach ($role as $role)
+                                                            <option value="{{ $role->id }}">{{ $role->roles }}</option>
+                                                        @endforeach
+                                                    </select>
+                                                </div>
+                                                <div class="mb-3">
+                                                    <label class="form-label">Password</label>
+                                                    <div class="input-group">
+                                                        <input id="passwordInput" class="form-control" type="input" aria-label="Password" name="inputPass">
+                                                        <button id="generatePassword" class="btn btn-outline-secondary" type="button">Generate Password</button>
+                                                    </div>
+                                                </div>
+                                                </div>
+                                                <div class="modal-footer">
+                                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                                <button type="submit" class="btn btn-primary">Save changes</button>
+                                            </form>
+                                            </div>
+                                        </div>
+                                        </div>
+                                    </div>
+                                @endif
 
                                 @if (in_array(auth()->user()->role_id, $gudang))
                                     <a href="/gudang" class="btn btn-primary btn-lg"><i class="bi bi-box-seam"> Gudang</i></a>
@@ -278,8 +331,9 @@
                                     <a href="/multimedia" class="btn btn-primary btn-lg"><i class="bi bi-box-seam">
                                             Multimedia</i></a>
                                 @endif
+
                                 @if (in_array(auth()->user()->role_id, $multimedia))
-                                    <a href="/checklog" class="btn btn-primary btn-lg"><i class="bi bi-box-seam">
+                                    <a href="/human-resourse" class="btn btn-primary btn-lg"><i class="bi bi-box-seam">
                                             HR</i></a>
                                 @endif
 
@@ -292,6 +346,25 @@
             </div>
         </div>
     </section>
+
+    <script>
+        document.getElementById("generatePassword").addEventListener("click", function() {
+            var passwordLength = 10; // You can adjust the length of the generated password
+            var password = generatePassword(passwordLength);
+            document.getElementById("passwordInput").value = password;
+        });
+    
+        function generatePassword(length) {
+            var charset = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#$%^&*()_-+=";
+            var password = "";
+            for (var i = 0; i < length; i++) {
+                var randomIndex = Math.floor(Math.random() * charset.length);
+                password += charset[randomIndex];
+            }
+            return password;
+        }
+    </script>
+
     <script>
         function startTime() {
           const today = new Date();

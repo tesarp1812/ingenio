@@ -48,12 +48,12 @@
                                     @csrf
                                     <div class="form-group">
                                         <label>Name</label>
-                                        <input class="form-control form-control-lg" type="text" name="name"
+                                        <input class="form-control form-control-lg" type="text" name=""
                                             placeholder="Enter your name">
                                     </div>
                                     <div class="form-group">
                                         <label>Email</label>
-                                        <span id="passwordHelpInline" class="form-text">
+                                        <span class="form-text">
                                             contoh email example@ingenioindonesia.co.id
                                           </span>
                                         <input class="form-control form-control-lg" type="email" name="email"
@@ -64,6 +64,8 @@
                                         <input class="form-control form-control-lg" type="password" name="password"
                                             placeholder="Enter password">
                                     </div>
+                                    {{-- default official roles --}}
+                                    <input type="hidden" value="8">
                                     <div class="text-center mt-3">
                                         <button type="submit" class="btn btn-lg btn-primary">Sign up</button>
                                     </div>

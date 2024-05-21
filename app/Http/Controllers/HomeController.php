@@ -2,13 +2,16 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\role;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
 {
     public function dashboard()
     {
-        return view('dashboard');
+        $role = role::get();
+        //dd($role);
+        return view('dashboard', compact('role'));
     }
 
     public function resetSession()
