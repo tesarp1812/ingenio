@@ -84,7 +84,7 @@ class DatabaseSeeder extends Seeder
         // syahrul
         DB::table('users')->insert([
             'name' => 'syahrul',
-            'email' => 'logistik@ingenioindonesia.co.id',
+            'email' => 'logistik@ingenioindonesia.id',
             'password' => bcrypt('12345'),
             'role_id' => '3',
             'remember_token' => Str::random(10),
@@ -96,7 +96,7 @@ class DatabaseSeeder extends Seeder
         // niam
         DB::table('users')->insert([
             'name' => 'niam',
-            'email' => 'logistik2@ingenioindonesia.co.id',
+            'email' => 'logistik2@ingenioindonesia.id',
             'password' => bcrypt('12345'),
             'role_id' => '3',
             'remember_token' => Str::random(10),
@@ -108,7 +108,7 @@ class DatabaseSeeder extends Seeder
         // andhika
         DB::table('users')->insert([
             'name' => 'andhika',
-            'email' => 'logistik3@ingenioindonesia.co.id',
+            'email' => 'logistik3@ingenioindonesia.id',
             'password' => bcrypt('12345'),
             'role_id' => '3',
             'remember_token' => Str::random(10),
@@ -130,7 +130,7 @@ class DatabaseSeeder extends Seeder
 
         DB::table('users')->insert([
             'name' => 'Pandu',
-            'email' => 'pandu@ingenioindonesia.co.id',
+            'email' => 'pandu@ingenioindonesia.id',
             'password' => Hash::make('12345'), 
             'role_id' => '6',
             'remember_token' => Str::random(10), 
@@ -140,7 +140,7 @@ class DatabaseSeeder extends Seeder
         ]);
         DB::table('users')->insert([
             'name' => 'Yusuf',
-            'email' => 'yusuf@ingenioindonesia.co.id',
+            'email' => 'yusuf@ingenioindonesia.id',
             'password' => Hash::make('12345'), 
             'role_id' => '6',
             'remember_token' => Str::random(10), 
