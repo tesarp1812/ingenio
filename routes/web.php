@@ -7,6 +7,7 @@ use App\Http\Controllers\HumanResourseController;
 use App\Http\Controllers\KasokuController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\MultimediaController;
+use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\ScheduleController;
 
 /*
@@ -62,6 +63,15 @@ Route::controller(LoginController::class)->group(function () {
         Route::get('/password', 'password');
 });
 
+// register controller
+Route::controller(RegisterController::class)->group(function() {
+    Route::get('/register-tutor');
+    Route::get('/register-official', 'registerOfficial');
+
+    // add user
+    Route::post('/user-add', 'addUser');
+});
+
 // schedule class
 Route::controller(ScheduleController::class)->group(function () {
     Route::get('/schedule', 'index');
@@ -107,6 +117,13 @@ Route::controller(MultimediaController::class)->middleware('auth')->group(functi
 
 Route::controller(HumanResourseController::class)->group(function(){
     Route::get('/present', 'present');
+    Route::post('/clock-sign', 'clocklog');
+    Route::get('/human-resourse', 'index');
+    Route::get('/human-resourse/task/{id}', 'taskById');
+
+    // dialy task
+    Route::get('/task-work', 'taskWork');
+    Route::post('/dialy-task', 'storeTaskWork');
 });
 
 Route::controller(GudangController::class)->middleware('auth')->group(function () {
