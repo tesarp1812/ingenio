@@ -259,7 +259,7 @@
                                     $kasoku = ['1', '5']; // superadmin, Kasoku
                                     $scheduleClass = ['1', '4']; // superadmin, Tutor
                                     $multimedia = ['1', '4', '6']; // superadmin, Tutor, Multimedia
-                                    $hr = ['1']; // superadmin, 
+                                    $hrd = ['1','9']; // superadmin, 
                                     @endphp                                 
 
                                 @if (in_array(auth()->user()->role_id, $gudang))
@@ -332,9 +332,9 @@
                                             Multimedia</i></a>
                                 @endif
 
-                                @if (in_array(auth()->user()->role_id, $multimedia))
+                                @if (in_array(auth()->user()->role_id, $hrd))
                                     <a href="/human-resourse" class="btn btn-primary btn-lg"><i class="bi bi-box-seam">
-                                            HR</i></a>
+                                            HRD</i></a>
                                 @endif
 
                                 <a href="/task-work" class="btn btn-primary btn-lg"><i class="bi bi-box-seam">Task
